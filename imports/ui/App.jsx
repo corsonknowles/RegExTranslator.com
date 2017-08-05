@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
+// import { Switch, Route, Redirect } from 'react-router';
+import Translator from './Translator';
 
-export default class App extends Component {
-  render() {
-    return (
-      <div>Here is some stuff</div>
-    );
-  }
-}
+// <Header />
+// <DisplayBox />
+// <ResultBox />
+// <SessionModal />
+export default () => (
+  <main>
+    <Translator />
+  </main>
+);

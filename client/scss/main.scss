@@ -1,3 +1,6 @@
-body {
-  background-color: red;
-}
+@import 'reset.scss';
+@import 'colors.scss';
+@import 'mixins.scss';
+@import 'fonts.scss';
+
+@import 'translator.scss';
