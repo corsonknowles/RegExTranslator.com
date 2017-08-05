@@ -6,7 +6,7 @@ In addition, we will need to build several variables to track state as we iterat
 Meanwhile, we can also check that characters are being escaped (with a backslash '\') in a similar fashion. This would also prevent escaped square brackets from being misinterpreted.
 
 [regextranslator.com](http://regextranslator.com)
-
+```
 sampleTranslations = {
   phone_numbers: " ^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$ ",
   email_address: " ^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$ "
@@ -14,5 +14,12 @@ sampleTranslations = {
 
 
 }
+```
+[Favorite Regex](http://www.catonmat.net/blog/my-favorite-regex/)
 
-http://www.catonmat.net/blog/my-favorite-regex/
+
+Translation boxes that look like this:
+https://babeljs.io
+
+### Model Wireframes on Google Translate
+https://translate.google.com
