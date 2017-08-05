@@ -10,6 +10,9 @@ Regular expression are incredibly useful and powerful. Unfortunately, they can b
 
 ## Technologies
 
+### External APIS
+https://words.bighugelabs.com/api.php
+
 ## First weekend
 
 ## Members and Responsibilities
