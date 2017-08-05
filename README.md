@@ -24,6 +24,11 @@ https://words.bighugelabs.com/api.php
 
 ## Members and Responsibilities
 
+- David Corson-Knowles
+- Adam Jacobson
+- Rod Shokrian
+- Andy Booth
+
 ## Timeline
 
 *** Data Structure
@@ -46,8 +51,8 @@ sampleTranslations = {
 [Favorite Regex](http://www.catonmat.net/blog/my-favorite-regex/)
 
 
-Translation boxes that look like this:
-https://babeljs.io
+### Wireframes Modeled on Google Translate
 
-### Model Wireframes on Google Translate
-https://translate.google.com
+![Wireframes](docs/regextranslator_wireframes.png)
+
+Compare ![Google Translate](https://translate.google.com)
