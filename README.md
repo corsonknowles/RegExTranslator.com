@@ -15,6 +15,13 @@ https://words.bighugelabs.com/api.php
 
 ## First weekend
 
+- [ ] Wireframe for the 5 key components of the app
+- [ ] Meteor backend up and running
+- [ ] Repo running on all team member's machines
+- [ ] Master branch protected, with feature-branch workflow in place
+- [ ] Heroku hosting with custom domain configured
+- [ ] Heroku live updating from masterbranch on GitHub
+
 ## Members and Responsibilities
 
 ## Timeline
