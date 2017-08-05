@@ -1,5 +1,21 @@
 # RegExTranslator.com
 
+## Background
+
+Regular expression are incredibly useful and powerful. Unfortunately, they can be very difficult for even experienced programmers to parse. The intent of **RegEx Translator** is to turn regular expressions into something more readable.
+
+## Core Functionality
+
+## Wireframes
+
+## Technologies
+
+## First weekend
+
+## Members and Responsibilities
+
+## Timeline
+
 *** Data Structure
 The bulk of the translation burden can be handled with a translation hash, a list of key-value pairs that matches RegEx expressions to English language translations. Since translation from RegEx must be 1-to-1, it will have a simpler hash. Translation from English into RegEx can take multiple potential phrasings, so the translation hash will be much more extensive. Fortunately the structure of the hash still provides clear translation for simple expressions.
 
