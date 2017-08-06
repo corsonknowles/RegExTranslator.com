@@ -5,6 +5,16 @@
 Regular expression are incredibly useful and powerful. Unfortunately, they can be very difficult for even experienced programmers to parse. The intent of **RegEx Translator** is to turn regular expressions into something more readable.
 
 ## Core Functionality
+
+Users will be able to translate and transpile between common programming
+languages (e.g., Javascript), Simple Regex Language (SRL), and something
+approximating natural language. Creating a regex with any of these
+languages will also highlight matched patterns in an example body of
+text and display the results of common operations performed on matched
+patterns, such as replacing text.
+
+A non-exhaustive list of features:
+
 - [ ] RegEx to SRL
 - [ ] English to SRL
 - [ ] SRL to English
@@ -25,8 +35,25 @@ Regular expression are incredibly useful and powerful. Unfortunately, they can b
 
 Compare [Google Translate](https://translate.google.com)
 
+The app's main page is roughly modeled on Google Translate
+(https://translate.google.com/) and Babel (https://babeljs.io/). The
+core translation and transpilation functionality of the app will be
+handled through the 3 'translate boxes.' Further features, like example
+text pattern match highlighting (component 2) and a capture
+groups/results box (component 3) will be displayed further down the
+page.
 
 ## Technologies
+
+RegexTranslator.com will be a web application built on the Meteorjs
+platform, an implementation of Nodejs.
+
+The database will be constructed with MongoDB, and the frontend will be
+developed in React with a Redux cycle.
+
+Additionally, we will build on SRL (https://simple-regex.com/) 
+
+
 - Node.js with Meteor.js
 - MongoDB
 - React
