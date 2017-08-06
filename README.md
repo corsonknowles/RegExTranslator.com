@@ -5,6 +5,20 @@
 Regular expression are incredibly useful and powerful. Unfortunately, they can be very difficult for even experienced programmers to parse. The intent of **RegEx Translator** is to turn regular expressions into something more readable.
 
 ## Core Functionality
+- [ ] RegEx to SRL
+- [ ] English to SRL
+- [ ] SRL to English
+- [ ] web implementation for SRL to RegEx (an existing technology)
+- [ ] pattern translation
+- [ ] Component for RegEx matching text
+- [ ] Large text database to generate example matches for a given regular expression
+- [ ] Common words to ignore (English words and insertion syntax for common languages, e.g. the initial and trailing slashes )
+- [ ] Algorithmic RegEx parser
+- [ ] Common RegEx patterns, like phone numbers, addresses and so on
+- [ ] RegEx multi-language support
+- [ ] User accounts and user customizations
+- [ ] Logic for aggregating user contributions and common customizations
+
 
 ## Wireframes
 ![Wireframes](docs/regextranslator_wireframes.png)
