@@ -18,15 +18,31 @@ export default connect(
     constructor(props) {
       super(props);
 
-      const srl = new SRL('literally "words"');
-      console.log(srl);
+      this.state = {
+        srl_input: '',
+        srl_output: ''
+      };
+
+      this.srlInputHandler = this.srlInputHandler.bind(this);
+    }
+
+    srlInputHandler(e) {
+      e.preventDefault();
+
+      this.setState({
+        srl_input: e.target.value,
+        srl_output: new SRL(e.target.value).get().toString()
+      });
     }
 
     render() {
       return (
         <div className='srl-input'>
-          <textarea/>
-          <textarea/>
+          <textarea
+            onChange={this.srlInputHandler}
+            value={this.state.srl_input}
+          />
+          <textarea value={this.state.srl_output} readOnly />
         </div>
       );
     }
