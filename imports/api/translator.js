@@ -1,4 +1,4 @@
-import SRL from '../srl/lib/SRL';
+import SRL from 'srl';
 
 export const srlToRegex = (srl) => {
   const query = new SRL(srl);
