@@ -1,0 +1,107 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "srl@^0.2.1",
+        "scope": null,
+        "escapedName": "srl",
+        "name": "srl",
+        "rawSpec": "^0.2.1",
+        "spec": ">=0.2.1 <0.3.0",
+        "type": "range"
+      },
+      "/Users/Adam/aa/RegExTranslator.com"
+    ]
+  ],
+  "_from": "srl@>=0.2.1 <0.3.0",
+  "_id": "srl@0.2.1",
+  "_inCache": true,
+  "_location": "/srl",
+  "_nodeVersion": "6.2.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/srl-0.2.1.tgz_1475248049993_0.14479085872881114"
+  },
+  "_npmUser": {
+    "name": "teabyii",
+    "email": "teabyii@gmail.com"
+  },
+  "_npmVersion": "3.9.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "srl@^0.2.1",
+    "scope": null,
+    "escapedName": "srl",
+    "name": "srl",
+    "rawSpec": "^0.2.1",
+    "spec": ">=0.2.1 <0.3.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/srl/-/srl-0.2.1.tgz",
+  "_shasum": "54df682c796aa00b8eda7ff420aa975a6b6c3d1f",
+  "_shrinkwrap": null,
+  "_spec": "srl@^0.2.1",
+  "_where": "/Users/Adam/aa/RegExTranslator.com",
+  "author": {
+    "name": "Simple Regex Language"
+  },
+  "bugs": {
+    "url": "https://github.com/SimpleRegex/SRL-JavaScript/issues"
+  },
+  "dependencies": {},
+  "description": "Simple Regex Language",
+  "devDependencies": {
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
+    "mocha-lcov-reporter": "^1.2.0"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "54df682c796aa00b8eda7ff420aa975a6b6c3d1f",
+    "tarball": "https://registry.npmjs.org/srl/-/srl-0.2.1.tgz"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "gitHead": "ba81904c918d6fda55a5b78c892f062b7a64c3f1",
+  "homepage": "https://simple-regex.com",
+  "keywords": [
+    "srl",
+    "regex",
+    "re",
+    "simpleregex"
+  ],
+  "license": "MIT",
+  "main": "lib/SRL.js",
+  "maintainers": [
+    {
+      "name": "Boom Lee",
+      "email": "teabyii@gmail.com"
+    }
+  ],
+  "name": "srl",
+  "optionalDependencies": {},
+  "readme": "# SRL-JavaScript\n\nJavaScript implementation of [Simple Regex](https://simple-regex.com/) :tada::tada::tada:\n\n[![npm version](https://badge.fury.io/js/srl.svg)](https://badge.fury.io/js/srl)\n[![Build Status](https://travis-ci.org/SimpleRegex/SRL-JavaScript.svg?branch=master)](https://travis-ci.org/SimpleRegex/SRL-JavaScript)\n[![codecov](https://codecov.io/gh/SimpleRegex/SRL-JavaScript/branch/master/graph/badge.svg)](https://codecov.io/gh/SimpleRegex/SRL-JavaScript)\n\n> Because of the JavaScript regex engine, there is something different from [Simple Regex](https://simple-regex.com/) \n- Support `as` to assign capture name with CODE but not regex \u0005engine. \n- NOT support `if already had/if not already had` \n- NO `first match` and NO `all lazy`, since in JavaScript `lazy` means non-greedy (matching the fewest possible characters).\n\n## Installation\n\n```sh\nnpm install srl\n```\n\n## Usage\n\nClass SRL accepts a Simple Regex Language string as input, and return the builder for the query. \n\nThe builder can agent `test/exec` method to the generated regex object. Or you can use `get()` to take the generated regex object.\n\n```js\nconst SRL = require('srl')\nconst query = new SRL('letter exactly 3 times')\n\nquery.isMatching('aaa') // true\nquery.getMatch('aaa') // [ 'aaa', index: 0, input: 'aaa' ]\n\nquery\n    .digit()\n    .neverOrMore()\n    .mustEnd()\n    .get() // /[a-z]{3}[0-9]*$/g\n```\n\nRequired Node 6.0+ for the ES6 support, Or you can use [Babel](http://babeljs.io/) to support Node below 6.0.\n\nUsing [Webpack](http://webpack.github.io) and [babel-loader](https://github.com/babel/babel-loader) to pack it if want to use in browsers.\n\n## Additional\n\nIn SRL-JavaScript we apply `g` flag as default to follow the [Simple Regex](https://simple-regex.com/) \"standard\", so we provide more API to use regex conveniently.\n\n- `isMatching` - Validate if the expression matches the given string.\n\n\t```js\n    const query = new SRL('starts with letter twice')\n    query.isMatching(' aa') // false\n    query.isMatching('bbb') // true\n    ```\n\n- `getMatch` - Get first match of the given string, like run `regex.exec` once.\n\n    ```js\n    const query = new SRL('capture (letter twice) as word whitespace')\n\n    query.getMatch('aa bb cc dd') // [ 'aa ', 'aa', index: 0, input: 'aa bb cc dd', word: 'aa' ]\n    ```\n\n- `getMatches` - Get all matches of the given string, like a loop to run `regex.exec`.\n\n    ```js\n    const query = new SRL('capture (letter twice) as word whitespace')\n    \n    query.getMatches('aa bb cc dd')\n    /**\n     * [ \n     *     [ 'aa ', 'aa', index: 0, input: 'aa bb cc dd', word: 'aa' ],\n     *     [ 'bb ', 'bb', index: 3, input: 'aa bb cc dd', word: 'bb' ],\n     *     [ 'cc ', 'cc', index: 6, input: 'aa bb cc dd', word: 'cc' ] \n     * ]\n     */\n    ```\n\n- `removeModifier` - Remove specific flag.\n\n\t```js\n    const query = new SRL('capture (letter twice) as word whitespace')\n    \n    query.removeModifier('g')\n    query.get() // /([a-z]{2})\\s/\n    ```\n\n## Development\n\nFirst, clone repo and init submodule for test.\n\nSRL-JavaScript depends on [Mocha](http://mochajs.org) and [Istanbul](https://github.com/gotwarlost/istanbul) to test code. You can use them like this:\n\n```sh\nnpm install\n\nnpm test # test \nnpm run coverage # Get coverage locally \n```\n\nHow to write Rules, see: [Test-Rules](https://github.com/SimpleRegex/Test-Rules).\n\n## License\n\nSRL-JavaScript is published under the MIT license. See LICENSE for more information.\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimpleRegex/SRL-JavaScript.git"
+  },
+  "scripts": {
+    "coverage": "istanbul cover _mocha",
+    "test": "mocha"
+  },
+  "version": "0.2.1",
+  "warnings": [
+    {
+      "code": "ENOTSUP",
+      "required": {
+        "node": ">= 6.0.0"
+      },
+      "pkgid": "srl@0.2.1"
+    }
+  ]
+}
