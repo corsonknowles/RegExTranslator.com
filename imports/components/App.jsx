@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Translator from './Translator';
+import Translator from './translator';
 
 // <Header />
 // <DisplayBox />
