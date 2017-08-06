@@ -6,16 +6,70 @@ Regular expression are incredibly useful and powerful. Unfortunately, they can b
 
 ## Core Functionality
 
+Users will be able to translate and transpile between common programming
+languages (e.g., Javascript), Simple Regex Language (SRL), and something
+approximating natural language. Creating a regex with any of these
+languages will also highlight matched patterns in an example body of
+text and display the results of common operations performed on matched
+patterns, such as replacing text.
+
+A non-exhaustive list of features:
+
+- [ ] RegEx to SRL
+- [ ] English to SRL
+- [ ] SRL to English
+- [ ] web implementation for SRL to RegEx (an existing technology)
+- [ ] pattern translation
+- [ ] Component for RegEx matching text
+- [ ] Large text database to generate example matches for a given regular expression
+- [ ] Common words to ignore (English words and insertion syntax for common languages, e.g. the initial and trailing slashes )
+- [ ] Algorithmic RegEx parser
+- [ ] Common RegEx patterns, like phone numbers, addresses and so on
+- [ ] RegEx multi-language support
+- [ ] User accounts and user customizations
+- [ ] Logic for aggregating user contributions and common customizations
+
+
 ## Wireframes
+![Wireframes](docs/regextranslator_wireframes.png)
+
+Compare [Google Translate](https://translate.google.com)
+
+The app's main page is roughly modeled on Google Translate
+(https://translate.google.com/) and Babel (https://babeljs.io/). The
+core translation and transpilation functionality of the app will be
+handled through the 3 'translate boxes.' Further features, like example
+text pattern match highlighting (component 2) and a capture
+groups/results box (component 3) will be displayed further down the
+page.
 
 ## Technologies
 
+RegexTranslator.com will be a web application built on the Meteorjs
+platform, an implementation of Nodejs.
+
+The database will be constructed with MongoDB, and the frontend will be
+developed in React with a Redux cycle.
+
+Technologies used:
+
+- Node.js with Meteor.js
+- MongoDB
+- React
+- Redux
+- SRL
+
+
 ### External APIS
+We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL
+parameters. SRL supports the use of natural language-like commands, but
+we will extend this functionality and allow the creation of more
+flexible SRL inputs by matching synonyms.
 https://words.bighugelabs.com/api.php
 
 ## First weekend
 
-- [ ] Wireframe for the 5 key components of the app
+- [ ] Wireframe showing the 5 key components of the app
 - [ ] Meteor backend up and running
 - [ ] Repo running on all team member's machines
 - [ ] Master branch protected, with feature-branch workflow in place
@@ -49,10 +103,3 @@ sampleTranslations = {
 }
 ```
 [Favorite Regex](http://www.catonmat.net/blog/my-favorite-regex/)
-
-
-### Wireframes Modeled on Google Translate
-
-![Wireframes](docs/regextranslator_wireframes.png)
-
-Compare ![Google Translate](https://translate.google.com)
