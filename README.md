@@ -51,8 +51,7 @@ platform, an implementation of Nodejs.
 The database will be constructed with MongoDB, and the frontend will be
 developed in React with a Redux cycle.
 
-Additionally, we will build on SRL (https://simple-regex.com/) 
-
+Technologies used:
 
 - Node.js with Meteor.js
 - MongoDB
@@ -62,6 +61,10 @@ Additionally, we will build on SRL (https://simple-regex.com/)
 
 
 ### External APIS
+We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL
+parameters. SRL supports the use of natural language-like commands, but
+we will extend this functionality and allow the creation of more
+flexible SRL inputs by matching synonyms.
 https://words.bighugelabs.com/api.php
 
 ## First weekend
