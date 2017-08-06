@@ -1,0 +1,35 @@
+
+.translator {
+  width: 100%;
+
+  padding: 20px;
+
+  display: flex;
+  flex-flow: row;
+}
+
+.srl-input {
+  width: 100%;
+
+  padding: 5px;
+
+  box-sizing: border-box;
+
+  textarea {
+    height: 130px;
+    width: 100%;
+
+    border: 1px solid #F5F5F5;
+    padding: 5px 8px;
+
+    resize: none;
+
+    font-family: Monaco, monospace;
+
+    background-color: #F5F5F5;
+
+    &:focus {
+      background-color: White;
+    }
+  }
+}
