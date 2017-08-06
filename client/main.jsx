@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 
 import { srlToRegex } from '../imports/api/translator';
 
-import App from '../imports/components/App.jsx';
+import App from '../imports/components/app.jsx';
 import configureStore from '../imports/store/store';
 
 window.srlToRegex = srlToRegex;
