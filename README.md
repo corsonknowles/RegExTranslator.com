@@ -7,15 +7,25 @@ Regular expression are incredibly useful and powerful. Unfortunately, they can b
 ## Core Functionality
 
 ## Wireframes
+![Wireframes](docs/regextranslator_wireframes.png)
+
+Compare [Google Translate](https://translate.google.com)
+
 
 ## Technologies
+- Node.js with Meteor.js
+- MongoDB
+- React
+- Redux
+- SRL
+
 
 ### External APIS
 https://words.bighugelabs.com/api.php
 
 ## First weekend
 
-- [ ] Wireframe for the 5 key components of the app
+- [ ] Wireframe showing the 5 key components of the app
 - [ ] Meteor backend up and running
 - [ ] Repo running on all team member's machines
 - [ ] Master branch protected, with feature-branch workflow in place
@@ -49,10 +59,3 @@ sampleTranslations = {
 }
 ```
 [Favorite Regex](http://www.catonmat.net/blog/my-favorite-regex/)
-
-
-### Wireframes Modeled on Google Translate
-
-![Wireframes](docs/regextranslator_wireframes.png)
-
-Compare ![Google Translate](https://translate.google.com)
