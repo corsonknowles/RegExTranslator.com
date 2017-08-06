@@ -15,7 +15,19 @@ https://words.bighugelabs.com/api.php
 
 ## First weekend
 
+- [ ] Wireframe for the 5 key components of the app
+- [ ] Meteor backend up and running
+- [ ] Repo running on all team member's machines
+- [ ] Master branch protected, with feature-branch workflow in place
+- [ ] Heroku hosting with custom domain configured
+- [ ] Heroku live updating from masterbranch on GitHub
+
 ## Members and Responsibilities
+
+- David Corson-Knowles
+- Adam Jacobson
+- Rod Shokrian
+- Andy Booth
 
 ## Timeline
 
@@ -39,8 +51,8 @@ sampleTranslations = {
 [Favorite Regex](http://www.catonmat.net/blog/my-favorite-regex/)
 
 
-Translation boxes that look like this:
-https://babeljs.io
+### Wireframes Modeled on Google Translate
 
-### Model Wireframes on Google Translate
-https://translate.google.com
+![Wireframes](docs/regextranslator_wireframes.png)
+
+Compare ![Google Translate](https://translate.google.com)
