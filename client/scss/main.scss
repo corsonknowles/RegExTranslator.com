@@ -1,6 +1,7 @@
-@import 'reset.scss';
-@import 'colors.scss';
-@import 'mixins.scss';
-@import 'fonts.scss';
+@import 'reset';
+@import 'colors';
+@import 'mixins';
+@import 'fonts';
 
-@import 'translator.scss';
+@import 'core';
+@import 'translator';
