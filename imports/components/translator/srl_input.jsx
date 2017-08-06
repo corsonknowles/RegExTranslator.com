@@ -24,7 +24,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     srlInputHandler(e) {
       e.preventDefault();
-
       this.props.receiveSrlInput(e.target.value);
     }
 
@@ -35,6 +34,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     render() {
       return (
         <div className="srl-input">
+          <h2>Structured</h2>
           <textarea
             onChange={this.srlInputHandler}
             value={this.state.srlInputText}

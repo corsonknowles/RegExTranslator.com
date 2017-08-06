@@ -1,5 +1,5 @@
 import React from 'react';
-import SrlInput from './translator/RECEIVE_SRL_INPUT';
+import SrlInput from './translator/srl_input';
 
 export default () => (
   <div className="translator">
