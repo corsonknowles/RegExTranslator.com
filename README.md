@@ -71,59 +71,59 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 ## Timeline
 
 ### Day 1 - Saturday August 5th
-Adam: Import and setup SRL built in functionality
-Andrew: Set up real-time SRL to RegEx translation.
-Dave: Requisition logo and setup Heroku live deployment through GitHub master branch, link Heroku to live URL with DNS settings, create wireframe for the single source of content
-Rod: Set up DB and basic validations, publications
+-Adam: Import and setup SRL built in functionality
+-Andrew: Set up real-time SRL to RegEx translation
+-Dave: Requisition logo and setup Heroku live deployment through GitHub master branch, link Heroku to live URL with DNS settings, create wireframe for the single source of content
+-Rod: Set up DB and basic validations, publications
 
 ### Day 2 - Sunday August 6th
-Adam: Basic framework for Regex to SRL translations. Not all functions supported.
-Andrew: Hook SRL translation into Redux cycle and begin styling
+-Adam: Basic framework for Regex to SRL translations. Not all functions supported.
+-Andrew: Hook SRL translation into Redux cycle and begin styling
 [configure papertrail](https://elements.heroku.com/addons/papertrail)
-Dave: Create Favicon, provision database, begin modal for UI of auth
-Rod: Work on README, provide moral support for team.
+-Dave: Create Favicon, provision database, begin modal for UI of auth
+-Rod: Work on README, provide moral support for team.
 
 ### Day 3 - Monday August 7th
-Adam: Continue to build out Regex to SRL translations. Include more obscure regex patterns
-Andrew: Get the git cycle working. Get reverse translation barely going in ui.
-Dave: Finish modal for user authentication on the front end 
-Rod: Get a workstation, actually work on project. Build out user auth, help David with modals (?)
+-Adam: Continue to build out Regex to SRL translations. Include more obscure regex patterns
+-Andrew: Get the git cycle working. Get reverse translation barely going in ui.
+-Dave: Finish modal for user authentication on the front end 
+-Rod: Get a workstation, actually work on project. Build out user auth, help David with modals (?)
 
 ### Day 4 - Tuesday August 8th
-Adam: Begin work on English to SRL translations. Test functionality of front-end components.
-Andrew: Continue to develop reverse translation. Optimize live search results for SRL to Regex
-Dave: Translate REGEX 
-Rod: Absolutely crush it. 
+-Adam: Begin work on English to SRL translations. Test functionality of front-end components.
+-Andrew: Continue to develop reverse translation. Optimize live search results for SRL to Regex
+-Dave: Translate REGEX 
+-Rod: Absolutely crush it. 
 
 ### Day 5 - Wednesday August 9th
-Adam: Continue building out English to SRL functionality. Import and verify synonyms from external API.
-Andrew: Create a framework for group analysis, starting with high-level groups and working down
-Dave: TRANSLATE MORE REGEX
-Rod: Continue crushing it. 
+-Adam: Continue building out English to SRL functionality. Import and verify synonyms from external API.
+-Andrew: Create a framework for group analysis, starting with high-level groups and working down
+-Dave: TRANSLATE MORE REGEX
+-Rod: Continue crushing it. 
 
 ### Day 6 - Thursday August 10th
-Adam: Populate database with pre-built regex and SRL patterns
-Andrew: Build abstract syntax tree to model nesting of groups, sets, etc.
-Dave: POLISH, POLISH 
-Rod: Take a brief break from crushing it
+-Adam: Populate database with pre-built regex and SRL patterns
+-Andrew: Build abstract syntax tree to model nesting of groups, sets, etc.
+-Dave: POLISH, POLISH 
+-Rod: Take a brief break from crushing it
 
 ### Day 7 - Friday August 11th
-Adam: Set up and validate subscriptions. Continue to populate DB with pre-built regex patterns
-Andrew: Style and polish front-end components
-Dave: Activities unknown. Whereabouts certain
-Rod: Ramp up to 2nd round of crushing it
+-Adam: Set up and validate subscriptions. Continue to populate DB with pre-built regex patterns
+-Andrew: Style and polish front-end components
+-Dave: Activities unknown. Whereabouts certain
+-Rod: Ramp up to 2nd round of crushing it
 
 ### Day 8 - Saturday August 12th
-Adam: Built out replace and capture group functionality
-Andrew: Vacation in Santorini. Meet exotic Mediterranean girl, drink plenty of ouzo, regret nothing
-Dave: Triple-check this for categorical inclusion: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
-Rod: Get checked for Chronic Crushing it Syndrome (CCS), get cleared by medical team, continue to crush it
+-Adam: Built out replace and capture group functionality
+-Andrew: Vacation in Santorini. Meet exotic Mediterranean girl, drink plenty of ouzo, regret nothing
+-Dave: Triple-check this for categorical inclusion: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+-Rod: Get checked for Chronic Crushing it Syndrome (CCS), get cleared by medical team, continue to crush it
 
 ### Day 9 - Sunday August 13th
-Adam: Polish and test components. Get a job offer from Amazon, spit in Bezos’s face and start own eCommerce site
-Andrew: Return from Santorini with a new perspective on life. Fix bugs and style components further
-Dave: SUBMIT SUBMIT 
-Rod: Crush it with a bang. Stretch goal: smash it
+-Adam: Polish and test components. Get a job offer from Amazon, spit in Bezos’s face and start own eCommerce site
+-Andrew: Return from Santorini with a new perspective on life. Fix bugs and style components further
+-Dave: SUBMIT SUBMIT 
+-Rod: Crush it with a bang. Stretch goal: smash it
 
 
 
