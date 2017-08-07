@@ -6,7 +6,46 @@ export const srlToRegex = (srl) => {
 };
 
 export const regexToSrl = regex => {
-  console.log("Start. Create root node.");
+  const tree = createTree(regex);
+  console.log(tree);
+  const translation = translate(tree);
+  return translation;
+};
+
+const translate = root => {
+  return dfs(root);
+};
+
+const dfs = node => {
+  let text = "";
+
+  node.visited = true;
+  node.children.forEach(child => {
+    if (typeof child === "string") {
+      text += child;
+    } else if (!child.visited) {
+      switch (child.type) {
+        case "group":
+          text += "(" + dfs(child) + ")";
+          break;
+        case "charset":
+          text += "[" + dfs(child) + "]";
+          break;
+        case "count":
+          text += "{" + dfs(child) + "}";
+          break;
+      }
+    }
+  });
+
+  return text;
+};
+
+const map = input => {
+  
+};
+
+const createTree = regex => {
   const root = new Node();
 
   let currentNode = root;
@@ -16,31 +55,24 @@ export const regexToSrl = regex => {
     let char = regex[i];
     switch(char) {
       case '(':
-        console.log("New group");
-        currentNode = currentNode.addChild();
+        currentNode = currentNode.addChild("group");
         break;
       case ')':
-        console.log("End group");
         currentNode = currentNode.parent;
         break;
       case '[':
-        console.log("New charset");
-        currentNode = currentNode.addChild();
+        currentNode = currentNode.addChild("charset");
         break;
       case ']':
-        console.log("End charset");
         currentNode = currentNode.parent;
         break;
       case '{':
-        console.log("New count");
-        currentNode = currentNode.addChild();
+        currentNode = currentNode.addChild("count");
         break;
       case '}':
-        console.log("End count");
         currentNode = currentNode.parent;
         break;
       default:
-        console.log(char);
         currentNode.addText(char);
     }
   }
@@ -54,15 +86,16 @@ class Node {
     this.children = [];
   }
 
-  addChild() {
+  addChild(type = "text") {
     let newChild = new Node(this);
+    newChild.type = type;
     this.children.push(newChild);
     return newChild;
   }
 
   /* Add text to last text child or create a new one */
   addText(text) {
-    if (this.children[this.children.length - 1] instanceof String) {
+    if (typeof this.children[this.children.length - 1] === "string") {
       this.children[this.children.length - 1] += text;
     } else {
       this.children.push(text);
