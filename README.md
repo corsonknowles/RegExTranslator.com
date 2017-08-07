@@ -2,7 +2,7 @@
 
 ## Background
 
-Regular expression are incredibly useful and powerful. Their abstract nature allows them to be used in almost all modern programming languages. This very level of abstractness however is also what makes regular expressions difficult for even experienced programmers to parse. The intent of **RegEx Translator** is to turn regular expressions into something more readable. In addition to decoding regex, we intend for our web app’s extended features to make Regular Expressions more accessible for programmers to craft and modify. 
+Regular expression are incredibly useful and powerful. Their abstract nature allows them to be used in almost all modern programming languages. This very level of abstractness however is also what makes regular expressions difficult for even experienced programmers to parse. The intent of **RegEx Translator** is to turn regular expressions into something more readable. In addition to decoding regex, we intend for our web app’s extended features to make Regular Expressions more accessible for programmers to craft and modify.
 
 ## Core Functionality
 
@@ -34,7 +34,7 @@ The app's main page is roughly modeled on [Google Translate] (https://translate.
 
 ## Technologies
 
-RegexTranslator.com is a web application built on the Meteorjs platform, an implementation of Nodejs. 
+RegexTranslator.com is a web application built on the Meteorjs platform, an implementation of Nodejs.
 
 The database is MongoDB, specifically using mLab for deployment, and the frontend will be developed in React with a Redux cycle.
 
@@ -47,7 +47,7 @@ Technologies used:
 - SRL
 
 ### External APIS
-We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL parameters. SRL supports the use of natural language-like commands, but we will extend this functionality and allow the creation of more flexible SRL inputs by matching synonyms. 
+We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL parameters. SRL supports the use of natural language-like commands, but we will extend this functionality and allow the creation of more flexible SRL inputs by matching synonyms.
 
 [Big Huge Thesaurus](https://words.bighugelabs.com/api.php)
 
@@ -94,7 +94,7 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 
 -Andrew: Get the git cycle working. Get reverse translation barely going in ui.
 
--Dave: Finish modal for user authentication on the front end 
+-Dave: Finish modal for user authentication on the front end
 
 -Rod: Get a workstation, actually work on project. Build out user auth, help David with modals (?)
 
@@ -103,9 +103,9 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 
 -Andrew: Continue to develop reverse translation. Optimize live search results for SRL to Regex
 
--Dave: Translate REGEX 
+-Dave: Translate REGEX
 
--Rod: Absolutely crush it. 
+-Rod: Absolutely crush it.
 
 ### Day 5 - Wednesday August 9th
 -Adam: Continue building out English to SRL functionality. Import and verify synonyms from external API.
@@ -114,14 +114,14 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 
 -Dave: TRANSLATE MORE REGEX
 
--Rod: Continue crushing it. 
+-Rod: Continue crushing it.
 
 ### Day 6 - Thursday August 10th
 -Adam: Populate database with pre-built regex and SRL patterns
 
 -Andrew: Build abstract syntax tree to model nesting of groups, sets, etc.
 
--Dave: POLISH, POLISH 
+-Dave: POLISH, POLISH
 
 -Rod: Take a brief break from crushing it
 
@@ -144,11 +144,11 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 -Rod: Get checked for Chronic Crushing it Syndrome (CCS), get cleared by medical team, continue to crush it
 
 ### Day 9 - Sunday August 13th
--Adam: Polish and test components. Get a job offer from Amazon, spit in Bezos’s face and start own eCommerce site
+-Adam: Polish and test components.
 
 -Andrew: Return from Santorini with a new perspective on life. Fix bugs and style components further
 
--Dave: SUBMIT SUBMIT 
+-Dave: SUBMIT SUBMIT
 
 -Rod: Crush it with a bang. Stretch goal: smash it
 
@@ -175,5 +175,3 @@ sampleTranslations = {
 }
 ```
 [Favorite Regex](http://www.catonmat.net/blog/my-favorite-regex/)
-
-
