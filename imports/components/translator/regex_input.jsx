@@ -5,8 +5,8 @@ import {
   receiveRegexInput
 } from '../../actions/actions';
 
-const mapStateToProps = ({ regexInput: { regexInputText } }) => ({
-  regexInputText
+const mapStateToProps = ({ regexInput: { regex } }) => ({
+  regex
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -20,18 +20,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       super(props);
 
       this.state = {
-        regexInputText: this.props.regexInputText
+        regexInputText: this.props.regex.toString().split('/')[1]
       };
 
       this.regexInputHandler = this.regexInputHandler.bind(this);
     }
 
-    regexInputHandler(event) {
-      this.props.receiveRegexInput(event.target.value);
+    componentWillReceiveProps(nextProps) {
+      this.setState({
+        regexInputText: nextProps.regex.toString().split('/')[1]
+      });
     }
 
-    componentWillReceiveProps(nextProps) {
-      this.setState({ regexInputText: nextProps.regexInputText });
+    regexInputHandler(event) {
+      this.props.receiveRegexInput(event.target.value);
     }
 
     render() {

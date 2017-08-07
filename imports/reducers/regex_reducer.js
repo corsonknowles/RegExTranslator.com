@@ -4,7 +4,7 @@ import {
 } from '../actions/actions';
 
 const defaultState = {
-  regexInputText: '',
+  regex: /(?:)/g,
   errors: []
 };
 
@@ -14,7 +14,7 @@ export default (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_REGEX_INPUT:
-      return Object.assign(stateCopy, { regexInputText: action.input });
+      return Object.assign(stateCopy, { regex: action.input });
 
     case RECEIVE_REGEX_INPUT_ERRORS:
       return Object.assign(stateCopy, { errors: action.errors });

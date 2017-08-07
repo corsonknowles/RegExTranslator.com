@@ -8,15 +8,15 @@ import {
   receiveRegexInput
 } from '../../actions/actions';
 
-const mapStateToProps = ({ srlInput: { srlInputText } }) => ({
-  srlInputText
+const mapStateToProps = ({ srlInput: { srlText } }) => ({
+  srlText
 });
 
 const mapDispatchToProps = dispatch => ({
   receiveSrlInput: input => dispatch(receiveSrlInput(input)),
   receiveSrlInputErrors: errors => dispatch(receiveSrlInputErrors(errors)),
   clearSrlInputErrors: () => dispatch(clearSrlInputErrors()),
-  setRegexText: input => dispatch(receiveRegexInput(input))
+  setRegex: input => dispatch(receiveRegexInput(input))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -31,21 +31,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       this.srlInputHandler = this.srlInputHandler.bind(this);
     }
 
+    componentWillReceiveProps(nextProps, nextState) {
+      this.setState({ srlInputText: nextProps.srlInputText });
+    }
+
     srlInputHandler(event) {
       this.props.receiveSrlInput(event.target.value);
       try {
-        const regex = new Srl(event.target.value).get().toString();
-        this.props.setRegexText(regex);
+        const regEx = new Srl(event.target.value).raw()._result;
+        this.props.setRegex(regEx);
         this.props.clearSrlInputErrors();
         this.srlInputBox.style.border = null;
       } catch(error) {
         this.props.receiveSrlInputErrors([error]);
         this.srlInputBox.style.border = '1px solid Red';
       }
-    }
-
-    componentWillReceiveProps(nextProps, nextState) {
-      this.setState({ srlInputText: nextProps.srlInputText });
     }
 
     render() {
