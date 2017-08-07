@@ -2,12 +2,13 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 
-import { srlToRegex } from '../imports/api/translator';
+import { srlToRegex, regexToSrl } from '../imports/api/translator';
 
 import App from '../imports/components/app.jsx';
 import configureStore from '../imports/store/store';
 
 window.srlToRegex = srlToRegex;
+window.regexToSrl = regexToSrl;
 
 Meteor.startup(() => {
   const store = configureStore();
