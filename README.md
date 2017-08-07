@@ -137,7 +137,7 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 ### Day 8 - Saturday August 12th
 -Adam: Built out replace and capture group functionality
 
--Andrew: Vacation in Santorini. Meet exotic Mediterranean girl, drink plenty of ouzo, regret nothing
+-Andrew: Implement language-specific output along with function generation
 
 -Dave: Triple-check this for categorical inclusion: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 
@@ -146,7 +146,7 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 ### Day 9 - Sunday August 13th
 -Adam: Polish and test components.
 
--Andrew: Return from Santorini with a new perspective on life. Fix bugs and style components further
+-Andrew: Fix bugs and style components further
 
 -Dave: SUBMIT SUBMIT
 
