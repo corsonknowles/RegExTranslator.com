@@ -2,7 +2,7 @@
 .translator {
   width: 100%;
 
-  padding: 20px;
+  padding: 20px 0;
 
   display: flex;
   flex-flow: row;
@@ -25,8 +25,9 @@
     width: 100%;
 
     padding: 5px 8px;
+    border: 1px solid $border-normal;
 
-    background-color: #F5F5F5;
+    background-color: $display-text-field-background;
 
     font-size: 14px;
     font-family: Monaco, monospace;
@@ -34,15 +35,15 @@
     resize: none;
 
     &:hover {
-      box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);
-      background-color: White;
-      border: 1px solid #d9d9d9;
+      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+      background-color: $input-text-field-background;
+      border: 1px solid $border-normal;
     }
 
     &:focus {
-      box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);
-      background-color: White;
-      border: 1px solid #4d90fe;
+      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+      background-color: $input-text-field-background;
+      border: 1px solid $border-selected;
     }
   }
 }
