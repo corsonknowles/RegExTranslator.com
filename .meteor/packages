@@ -24,3 +24,6 @@ dburles:collection-helpers
 fourseven:scss
 accounts-ui
 accounts-password
+accounts-facebook
+accounts-google
+accounts-github
