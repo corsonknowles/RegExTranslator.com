@@ -4,7 +4,7 @@ import {
 } from '../actions/actions';
 
 const defaultState = {
-  srlInputText: '',
+  srlText: '',
   errors: []
 };
 
@@ -14,7 +14,7 @@ export default (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_SRL_INPUT:
-      return Object.assign(stateCopy, { srlInputText: action.input });
+      return Object.assign(stateCopy, { srlText: action.input });
 
     case RECEIVE_SRL_INPUT_ERRORS:
       return Object.assign(stateCopy, { errors: action.errors });
