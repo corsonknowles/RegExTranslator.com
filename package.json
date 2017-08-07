@@ -1,6 +1,10 @@
 {
-  "name": "Stuff",
+  "name": "regex-translator",
   "private": true,
+  "engines": {
+    "node": "6.10.x",
+    "npm": "5.3.x"
+  },
   "scripts": {
     "start": "meteor run"
   },
@@ -18,5 +22,22 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "srl": "^0.2.1"
-  }
+  },
+  "description": "## Background",
+  "version": "1.0.0",
+  "main": "server/main.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corsonknowles/RegExTranslator.com.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corsonknowles/RegExTranslator.com/issues"
+  },
+  "homepage": "https://github.com/corsonknowles/RegExTranslator.com#readme"
 }
