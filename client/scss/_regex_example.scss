@@ -1,0 +1,33 @@
+
+.regex-example {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  font-family: Verdana;
+  font-size: 16px;
+
+  > * {
+    height: 130px;
+    width: 450px;
+
+    margin: 10px 0;
+    padding: 8px 10px;
+  }
+
+  textarea {
+    resize: none;
+    border: 1px solid $border-normal;
+  }
+
+  div {
+    background-color: Beige;
+    border-radius: 5px;
+
+    span {
+      border-radius: 2px;
+
+      background-color: LightCoral;
+    }
+  }
+}
