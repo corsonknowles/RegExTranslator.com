@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ regexInput: { regex } }) => ({
-  regex
+const mapStateToProps = ({ regex: { regexText } }) => ({
+  regexText
 });
 
 const mapDispatchToProps = dispatch => ({});
@@ -21,19 +21,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
 
     componentDidUpdate() {
-      const { props: { regex }, state: { exampleText } } = this;
-
-      if (
-        (regex.toString() === '/(?:)/g') ||
-        (regex.toString() === '/^/g')
-      ) return;
+      const { props: { regexText }, state: { exampleText } } = this;
 
       const matches = {};
-      let match;
+      const regex = new RegExp(regexText, 'g');
+      let match, counter = 1;
       while ((match = regex.exec(exampleText)) !== null) {
+        if (counter >= 1000) break;   // To avoid infinite match loops
         matches[match.index] = match;
+        counter++;
       }
 
+      // TODO: Improve highlighting markup generation algorithm
       let resultsText = '';
       for (let idx = 0; idx < exampleText.length; idx++) {
         if (matches[idx]) {

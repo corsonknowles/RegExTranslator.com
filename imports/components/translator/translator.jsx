@@ -1,6 +1,6 @@
 import React from 'react';
-import SrlInput from './translator/srl_input';
-import RegexInput from './translator/regex_input';
+import SrlInput from './srl_input';
+import RegexInput from './regex_input';
 
 export default () => (
   <div className="translator">
