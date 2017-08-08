@@ -31,6 +31,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       this.srlInputHandler = this.srlInputHandler.bind(this);
     }
 
+    componentDidMount() {
+      this.srlInputBox.select();
+    }
+
     componentWillReceiveProps(nextProps, nextState) {
       this.setState({ srlInputText: nextProps.srlText });
     }
