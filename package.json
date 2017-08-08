@@ -29,7 +29,9 @@
   "directories": {
     "doc": "docs"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/corsonknowles/RegExTranslator.com.git"
