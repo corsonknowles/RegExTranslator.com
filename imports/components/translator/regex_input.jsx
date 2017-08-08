@@ -1,17 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  receiveSrlInput,
-  receiveRegexInput
-} from '../../actions/actions';
+import { receiveRegex } from '../../actions/regex_actions';
 
-const mapStateToProps = ({ regexInput: { regex } }) => ({
-  regex
+const mapStateToProps = ({ regex: { regexText } }) => ({
+  regexText
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveSrlInput: input => dispatch(receiveSrlInput(input)),
-  receiveRegexInput: input => dispatch(receiveRegexInput(input))
+  receiveRegex: input => dispatch(receiveRegex(input))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -20,20 +16,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       super(props);
 
       this.state = {
-        regexInputText: this.props.regex.toString().split('/')[1]
+        regexInputText: this.props.regexText
       };
 
       this.regexInputHandler = this.regexInputHandler.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
-      this.setState({
-        regexInputText: nextProps.regex.toString().split('/')[1]
-      });
+      this.setState({ regexInputText: nextProps.regexText });
     }
 
     regexInputHandler(event) {
-      this.props.receiveRegexInput(event.target.value);
+      this.props.receiveRegex(event.target.value);
+      // TODO: Run reverse translation here
     }
 
     render() {

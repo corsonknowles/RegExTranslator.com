@@ -2,21 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Srl from 'srl';
 import {
-  receiveSrlInput,
-  receiveSrlInputErrors,
-  clearSrlInputErrors,
-  receiveRegexInput
-} from '../../actions/actions';
+  receiveSrl,
+  receiveSrlErrors,
+  clearSrlInputErrors
+} from '../../actions/srl_actions';
+import { receiveRegex } from '../../actions/regex_actions';
 
-const mapStateToProps = ({ srlInput: { srlText } }) => ({
+const mapStateToProps = ({ srl: { srlText } }) => ({
   srlText
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveSrlInput: input => dispatch(receiveSrlInput(input)),
-  receiveSrlInputErrors: errors => dispatch(receiveSrlInputErrors(errors)),
+  receiveSrl: input => dispatch(receiveSrl(input)),
+  receiveSrlErrors: errors => dispatch(receiveSrlErrors(errors)),
   clearSrlInputErrors: () => dispatch(clearSrlInputErrors()),
-  setRegex: input => dispatch(receiveRegexInput(input))
+  setRegex: regexText => dispatch(receiveRegex(regexText))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -25,25 +25,31 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       super(props);
 
       this.state = {
-        srlInputText: this.props.srlInputText
+        srlInputText: this.props.srlText
       };
 
       this.srlInputHandler = this.srlInputHandler.bind(this);
     }
 
     componentWillReceiveProps(nextProps, nextState) {
-      this.setState({ srlInputText: nextProps.srlInputText });
+      this.setState({ srlInputText: nextProps.srlText });
     }
 
     srlInputHandler(event) {
-      this.props.receiveSrlInput(event.target.value);
+      // Set SRL slice
+      this.props.receiveSrl(event.target.value);
+
       try {
-        const regEx = new Srl(event.target.value).raw()._result;
-        this.props.setRegex(regEx);
+        // NOTE: Error causing line
+        const regexText = new Srl(event.target.value).getRawRegex();
+
+        // Set regex to SRL-translated version and clear errors
+        this.props.setRegex(regexText);
         this.props.clearSrlInputErrors();
         this.srlInputBox.style.border = null;
       } catch(error) {
-        this.props.receiveSrlInputErrors([error]);
+        // If SRL parsing fails, set errors
+        this.props.receiveSrlErrors(['Invalid SRL syntax', error]);
         this.srlInputBox.style.border = '1px solid Red';
       }
     }
