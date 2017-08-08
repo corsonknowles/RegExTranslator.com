@@ -12,8 +12,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     constructor(props) {
       super(props);
 
+      let textContent = "Thank you for your interest in RegExTranslator.\nYou can edit this text to see example matches for your regular expressions below.\n\nHere are some common text types you can explore matches with:\nthe lowercase letters [a-z] group abcdefghijklmnopqrstuvwxyz\nand the capital letters [A-Z] ABCDEFGHIJKLMNOPQRSTUVWXYZ\ndigits [0-9] 0123456789\ncommon keyboard special characters [!-/] !\"#$%&\'()*+,-./\n\nCommand-Z will undo typing and command-Y will redo typing in most browsers.";
+
       this.state = {
-        exampleText: '',
+        exampleText: textContent
       };
 
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
