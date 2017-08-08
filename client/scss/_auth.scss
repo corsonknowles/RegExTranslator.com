@@ -1,0 +1,30 @@
+.login-container {
+  width: 100%;
+  margin-left: 90%;
+}
+
+.login-button {
+  background-color: #596595;
+  color: #fff;
+  border: none;
+  transition-duration: 0.4s;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 7px;
+  text-decoration: none;
+  outline: none;
+  position: static;
+  border: 1px solid #596595;
+  transition: 0.4s;
+  margin-top: 10px;
+}
+
+.login-button:hover {
+  background: #7580ac;
+}
+
+
+#login-buttons a {
+  text-decoration: none;
+}

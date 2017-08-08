@@ -26,7 +26,6 @@ accounts-ui
 accounts-password
 accounts-facebook
 accounts-google
-accounts-github
 blaze
 google-config-ui
 facebook-config-ui
