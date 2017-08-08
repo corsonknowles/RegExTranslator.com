@@ -6,6 +6,7 @@ import { srlToRegex, regexToSrl } from '../imports/api/translator';
 
 import App from '../imports/components/app.jsx';
 import configureStore from '../imports/store/store';
+import '../imports/startup/accounts-config.js';
 
 window.srlToRegex = srlToRegex;
 window.regexToSrl = regexToSrl;
