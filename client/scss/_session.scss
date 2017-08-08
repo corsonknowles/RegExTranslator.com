@@ -1,6 +1,18 @@
-.login-container {
+.nav-left {
   width: 100%;
-  margin-left: 90%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.logo {
+  width: auto;
+  height: auto;
+  display: inline;
+}
+
+.login-container {
+
 }
 
 .login-button {
@@ -17,7 +29,6 @@
   position: static;
   border: 1px solid #596595;
   transition: 0.4s;
-  margin-top: 10px;
 }
 
 .login-button:hover {
