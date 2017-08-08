@@ -14,9 +14,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.state = {
         exampleText: '',
+        currentTransferFunction: 'match',
+        replaceText: ', '
       };
 
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
+      this.handleReplaceInputChange = this.handleReplaceInputChange.bind(this);
     }
 
     componentDidUpdate() {
@@ -50,9 +53,28 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         counter++;
       }
 
+      // Set results box content
+      this.resultsBox.innerHTML = this[this.state.currentTransferFunction]({
+        regex,
+        matches,
+        matchIndices
+      });
+    }
+
+    handleExampleInputChange(event) {
+      this.setState({ exampleText: event.target.value });
+    }
+
+    handleReplaceInputChange(event) {
+      this.setState({ replaceText: event.target.value });
+    }
+
+    match(options) {
+      const matchIndices = options.matchIndices;
+
       // Wrap consecutive sets of match-indices in spans for highlighting
       let resultsMarkup = '';
-      for (let idx = 0; idx < exampleText.length; idx++) {
+      for (let idx = 0; idx < this.state.exampleText.length; idx++) {
         // Open span if previous not a matching character and current is a
         //  matching character
         if (!matchIndices.has(idx - 1) && matchIndices.has(idx)) {
@@ -66,15 +88,41 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         }
 
         // Add current character
-        resultsMarkup += exampleText[idx];
+        const currentChar = this.state.exampleText[idx];
+        switch (currentChar) {
+          case ' ':
+            resultsMarkup += '&nbsp;';
+            break;
+
+          case '\n':
+            resultsMarkup += '<br/>';
+            break;
+
+          default:
+            resultsMarkup += currentChar;
+            break;
+        }
       }
 
-      // Set results box content
-      this.resultsBox.innerHTML = resultsMarkup;
+      return resultsMarkup;
     }
 
-    handleExampleInputChange(event) {
-      this.setState({ exampleText: event.target.value });
+    split(options) {
+      const regex = options.regex;
+
+      let resultsMarkup = '[<br/>&nbsp;&nbsp;';
+      resultsMarkup += this.state.exampleText.split(regex).join(
+        ',<br/>&nbsp;&nbsp;'
+      );
+      resultsMarkup += '<br/>]';
+
+      return resultsMarkup;
+    }
+
+    replace(options) {
+      const regex = options.regex;
+
+      return this.state.exampleText.replace(regex, this.state.replaceText);
     }
 
     render() {
@@ -92,7 +140,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
               <button>Capture</button>
               <button>Split</button>
               <button>Replace</button>
-              <input type="text" value={'", "'} />
+              <input
+                onChange={this.handleReplaceInputChange}
+                value={this.state.replaceText} />
             </div>
           </div>
 
