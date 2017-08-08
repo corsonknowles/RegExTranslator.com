@@ -28,7 +28,7 @@ A non-exhaustive list of features:
 ## Wireframes
 ![Wireframes](docs/regextranslator_wireframes.png)
 
-The app's main page is roughly modeled on [Google Translate] (https://translate.google.com/) and [Babel](https://babeljs.io/). The core translation and transpilation functionality of the app will be handled through the 3 'translate boxes.' Further features, like example text pattern match highlighting (component 2) and a capture groups/results box (component 3) will be displayed further down the page.
+The app's main page is roughly modeled on [Google Translate](https://translate.google.com/) and [Babel](https://babeljs.io/). The core translation and transpilation functionality of the app will be handled through the 3 'translate boxes.' Further features, like example text pattern match highlighting (component 2) and a capture groups/results box (component 3) will be displayed further down the page.
 
 ![AuthModal](docs/Modal.png)
 
@@ -105,7 +105,7 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 
 -Dave: Translate REGEX, OAuth setup for Facebook, content, deployment settings
 
--Rod: Absolutely crush it.
+-Rod: Absolutely crush it. Preset RegEx options menu
 
 ### Day 5 - Wednesday August 9th
 -Adam: Continue building out English to SRL functionality. Import and verify synonyms from external API.
