@@ -33,15 +33,9 @@ class SessionForm extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-			email: "",
-			password: "",
-			username: "",
 			modalIsOpen: false,
       pending: false
 		};
-
-		this.handleSubmit = this.handleSubmit.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 
 		this.openModal = this.openModal.bind(this);
 		this.afterOpenModal = this.afterOpenModal.bind(this);
@@ -50,54 +44,6 @@ class SessionForm extends React.Component {
     // this.clearErrors = this.props.clearErrors.bind(this);
 	}
 
-  componentDidMount () {
-    this.view = Blaze.render(Template.loginButtons,
-    ReactDOM.findDOMNode(this.refs.container));
-  }
-
-  componentWillUnmount() {
-    // this.props.clearErrors()
-    Blaze.remove(this.view);
-  };
-
-// check applicability of this to user login flow
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.loggedIn) {
-      this.props.history.push('/')
-    }
-  }
-
-	handleChange(event) {
-		const target = event.target;
-		const name = target.name;
-		this.setState({
-			[name]: event.target.value
-		});
-	}
-
-	handleSubmit(event, type, user){
-		return () => {
-			if (user === undefined) {
-        user = this.state;
-        user.username = "";
-      }
-			this.props.processForm(user, type);
-		};
-	}
-
-	renderErrors(){
-		return(
-      <div>
-  			<ul className="errors">
-  				{this.props.errors.map( (error, i) => (
-  					<li key={`error-${i}`}>
-  						{error}
-  					</li>
-  				))}
-  			</ul>
-      </div>
-		);
-	}
 
 	openModal() {
 	this.setState({modalIsOpen: true});
@@ -136,10 +82,6 @@ class SessionForm extends React.Component {
           style={customStyles}
           contentLabel="Login Form"
         >
-
-          return <span ref="container" />
-
-
 
           <button className="close-modal" onClick={this.closeModal}>X</button>
 
