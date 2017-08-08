@@ -1,10 +1,10 @@
 import {
-  RECEIVE_REGEX_INPUT,
-  RECEIVE_REGEX_INPUT_ERRORS
-} from '../actions/actions';
+  RECEIVE_REGEX,
+  RECEIVE_REGEX_ERRORS
+} from '../actions/regex_actions';
 
 const defaultState = {
-  regex: /(?:)/g,
+  regexText: '(?:)',
   errors: []
 };
 
@@ -13,10 +13,10 @@ export default (state = defaultState, action) => {
   const stateCopy = Object.assign({}, state);
 
   switch (action.type) {
-    case RECEIVE_REGEX_INPUT:
-      return Object.assign(stateCopy, { regex: action.input });
+    case RECEIVE_REGEX:
+      return Object.assign(stateCopy, { regexText: action.input });
 
-    case RECEIVE_REGEX_INPUT_ERRORS:
+    case RECEIVE_REGEX_ERRORS:
       return Object.assign(stateCopy, { errors: action.errors });
 
     default:

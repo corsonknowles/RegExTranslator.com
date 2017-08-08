@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Translator from './translator';
+import Translator from './translator/translator';
 import RegexExample from './regex_example';
 
 // <Header />
