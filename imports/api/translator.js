@@ -9,7 +9,7 @@ export const regexToSrl = regex => {
   const tree = createTree(regex);
   console.log(tree);
   const translation = translate(tree);
-  return translation;
+  return translation.join(", ");
 };
 
 const translate = root => {
@@ -17,22 +17,22 @@ const translate = root => {
 };
 
 const dfs = node => {
-  let text = "";
+  let text = [];
 
   node.visited = true;
   node.children.forEach(child => {
     if (typeof child === "string") {
-      text += child;
+      text.push(map(child));
     } else if (!child.visited) {
       switch (child.type) {
         case "group":
-          text += "(" + dfs(child) + ")";
+          text.push("(" + dfs(child) + ")");
           break;
         case "charset":
-          text += "[" + dfs(child) + "]";
+          text.push("[" + dfs(child) + "]");
           break;
         case "count":
-          text += "{" + dfs(child) + "}";
+          text.push("{" + dfs(child) + "}");
           break;
       }
     }
@@ -42,7 +42,25 @@ const dfs = node => {
 };
 
 const map = input => {
-  
+  switch(true) {
+    case /^\^$/.test(input):
+      return "begin with";
+    case /^$^$/.test(input):
+      return "must end";
+    case /^a-z$/.test(input):
+      return "letter";
+    case /^0-9$/.test(input):
+      return "digit";
+    case /^\*$/.test(input):
+      return "never or more";
+    case /^\+$/.test(input):
+      return "once or more";
+    case /^\$$/.test(input):
+      return "must end";
+
+    default:
+      return `literally "${input}"`;
+  }
 };
 
 const createTree = regex => {
