@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ regexInput: { regex } }) => ({
-  regex
+const mapStateToProps = ({ regex: { regexText } }) => ({
+  regexText
 });
 
 const mapDispatchToProps = dispatch => ({});
@@ -19,38 +19,60 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
     }
 
-
     componentDidUpdate() {
-      const { props: { regex }, state: { exampleText } } = this;
+      const { props: { regexText }, state: { exampleText } } = this;
 
-      if (
-        (regex.toString() === '/(?:)/g') ||
-        (regex.toString() === '/^/g')
-      ) return;
+      // Create regex to match with
+      // NOTE: Global flag set,
+      // TODO: Set flags with GUI
+      const regex = new RegExp(regexText, 'g');
 
-      const matches = {};
-      let match;
+      // Create list of matches and match indices (all indices at which a
+      //  character should be highlighted)
+      const matches = {};   // NOTE: `matches` currently going unused
+      const matchIndices = new Set;
+      let match, counter = 0;
       while ((match = regex.exec(exampleText)) !== null) {
+        // Avoid infinite match loops
+        // TODO: Find better way to avoid infinite match cases
+        if (counter >= 100) break;
+
         matches[match.index] = match;
-      }
 
-      let resultsText = '';
-      for (let idx = 0; idx < exampleText.length; idx++) {
-        if (matches[idx]) {
-          resultsText += `<span>${matches[idx][0]}</span>`;
-          idx += matches[idx][0].length - 1;
-        } else {
-          resultsText += exampleText[idx];
+        // Add all indices of characters within match to `matchIndices`
+        for (let i = 0; i < match[0].length; i++) {
+          matchIndices.add(match.index + i);
         }
+
+        // Increment limit counter
+        counter++;
       }
 
-      this.resultsBox.innerHTML = resultsText;
+      // Wrap consecutive sets of match-indices in spans for highlighting
+      let resultsMarkup = '';
+      for (let idx = 0; idx < exampleText.length; idx++) {
+        // Open span if previous not a matching character and current is a
+        //  matching character
+        if (!matchIndices.has(idx - 1) && matchIndices.has(idx)) {
+          resultsMarkup += '<span>';
+        }
+
+        // Close span if previous was a matching character and current is not a
+        //  matching character
+        if (matchIndices.has(idx - 1) && !matchIndices.has(idx)) {
+          resultsMarkup += '</span>';
+        }
+
+        // Add current character
+        resultsMarkup += exampleText[idx];
+      }
+
+      // Set results box content
+      this.resultsBox.innerHTML = resultsMarkup;
     }
 
     handleExampleInputChange(event) {
-      this.setState({
-        exampleText: event.target.value,
-      });
+      this.setState({ exampleText: event.target.value });
     }
 
     render() {
@@ -61,13 +83,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.exampleText}
           />
 
-          |
-          <br/>
-          v
+          |<br/>v
 
-          <div
-            ref={el => { this.resultsBox = el; }}
-          />
+          <div ref={el => { this.resultsBox = el; }} />
         </div>
       );
     }
