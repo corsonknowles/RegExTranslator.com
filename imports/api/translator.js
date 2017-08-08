@@ -9,8 +9,8 @@ export const regexToSrl = regex => {
   if (!regexIsValid(regex)) {
     return "Invalid Regular Expression";
   }
-
   const tree = createTree(regex);
+  console.log(tree);
   const translation = translate(tree);
   return translation.join(" ");
 };
@@ -58,10 +58,13 @@ const anyCount = /^\{[0-9,]*\}$/;
 
 const mapToSrl = input => {
   switch(true) {
+    case /^$/.test(input):
+      return null;
+      // break; // ignore empty
     case /^\^$/.test(input):
       return "begin with";
-    case /^$^$/.test(input):
-      return "must end";
+    // case /^$^$/.test(input):
+    //   return "must end";
     case anyCount.test(input):
       return count(input);
     case anyCharset.test(input):
@@ -74,6 +77,22 @@ const mapToSrl = input => {
       return "optional";
     case /^\$$/.test(input):
       return "must end";
+    default:
+      return literal(input);
+  }
+};
+
+const escapedChar = /^\\(.){1}$/;
+
+const literal = input => {
+  switch(true) {
+    case /\\d/.test(input):
+      return "digit";
+    case /\\D/.test(input):
+      return "non-digit";
+    case escapedChar.test(input):
+      let res = input.match(escapedChar);
+      return `literally "${res[1]}"`;
     default:
       return `literally "${input}"`;
   }
@@ -135,36 +154,51 @@ const createTree = regex => {
   const root = new Node();
 
   let currentNode = root;
-
   let depth = 0;
+  let escaped = false;
+
   for (let i = 0; i < regex.length; i++) {
     let char = regex[i];
-    switch(char) {
-      case '(':
-        currentNode = currentNode.addChild("group");
-        break;
-      case ')':
-        currentNode = currentNode.parent;
-        break;
-      case '[':
-        currentNode = currentNode.addChild("charset");
-        currentNode.addText('[');
-        break;
-      case ']':
-        currentNode.addText(']');
-        currentNode = currentNode.parent;
-        break;
-      case '{':
-        currentNode = currentNode.addChild("count");
-        currentNode.addText('{');
-        break;
-      case '}':
-        currentNode.addText('}');
-        currentNode = currentNode.parent;
-        break;
-      default:
-        currentNode.addText(char);
+
+    // if escaped, always add char as text
+    if (escaped) {
+      currentNode.addText(char);
+      escaped = false;
+
+    } else {
+      switch(char) {
+        case '(':
+          currentNode = currentNode.addChild("group");
+          break;
+        case ')':
+          currentNode = currentNode.parent;
+          break;
+        case '[':
+          currentNode = currentNode.addChild("charset");
+          currentNode.addText('[');
+          break;
+        case ']':
+          currentNode.addText(']');
+          currentNode = currentNode.parent;
+          break;
+        case '{':
+          currentNode = currentNode.addChild("count");
+          currentNode.addText('{');
+          break;
+        case '}':
+          currentNode.addText('}');
+          currentNode = currentNode.parent;
+          break;
+        default:
+          if (char === '\\') {
+            escaped = true;
+            currentNode = currentNode.addTextChild(char);
+          } else {
+            currentNode.addText(char);
+          }
+      }
     }
+
   }
 
   return root;
@@ -183,12 +217,18 @@ class Node {
     return newChild;
   }
 
+  /* create a new text child with the given text */
+  addTextChild(text = "") {
+    this.children.push(text);
+    return this;
+  }
+
   /* Add text to last text child or create a new one */
   addText(text) {
     if (typeof this.children[this.children.length - 1] === "string") {
       this.children[this.children.length - 1] += text;
     } else {
-      this.children.push(text);
+      this.addTextChild(text);
     }
   }
 }
