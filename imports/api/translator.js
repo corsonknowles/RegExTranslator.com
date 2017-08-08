@@ -22,7 +22,7 @@ const dfs = node => {
   node.visited = true;
   node.children.forEach(child => {
     if (typeof child === "string") {
-      text.push(map(child));
+      text.push(mapToSrl(child));
     } else if (!child.visited) {
       switch (child.type) {
         case "group":
@@ -32,7 +32,7 @@ const dfs = node => {
           text.push("[" + dfs(child) + "]");
           break;
         case "count":
-          text.push("{" + dfs(child) + "}");
+          text.push(dfs(child));
           break;
       }
     }
@@ -41,12 +41,14 @@ const dfs = node => {
   return text;
 };
 
-const map = input => {
+const mapToSrl = input => {
   switch(true) {
     case /^\^$/.test(input):
       return "begin with";
     case /^$^$/.test(input):
       return "must end";
+    case /^\{[0-9,]*\}$/.test(input):
+      return count(input);
     case /^a-z$/.test(input):
       return "letter";
     case /^0-9$/.test(input):
@@ -60,6 +62,35 @@ const map = input => {
 
     default:
       return `literally "${input}"`;
+  }
+};
+
+const exactlyXTimes = /^\{([0-9]*)\}$/;
+const xOrMoreTimes = /^\{([0-9]*),\}$/;
+const betweenXAndYTimes = /^\{([0-9]*),([0-9]*)\}$/;
+
+/* match counting quantifies: {3}, {3,}, {3,6} */
+const count = input => {
+  let res;
+  switch(true) {
+    case exactlyXTimes.test(input):
+      res = input.match(exactlyXTimes);
+      switch(res[1]){
+        case "1":
+          return "once";
+        case "2":
+          return "twice";
+        default:
+          return `exactly ${res[1]} times`;
+      }
+
+    case xOrMoreTimes.test(input):
+      res = input.match(xOrMoreTimes);
+      return `${res[1]} or more times`;
+
+    case betweenXAndYTimes.test(input):
+      res = input.match(betweenXAndYTimes);
+      return `between ${res[1]} and ${res[2]} times`;
   }
 };
 
@@ -80,14 +111,18 @@ const createTree = regex => {
         break;
       case '[':
         currentNode = currentNode.addChild("charset");
+        currentNode.addText('[');
         break;
       case ']':
+        currentNode.addText(']');
         currentNode = currentNode.parent;
         break;
       case '{':
         currentNode = currentNode.addChild("count");
+        currentNode.addText('{');
         break;
       case '}':
+        currentNode.addText('}');
         currentNode = currentNode.parent;
         break;
       default:
