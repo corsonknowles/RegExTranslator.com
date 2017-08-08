@@ -23,7 +23,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       const { props: { regexText }, state: { exampleText } } = this;
 
       // Create regex to match with
-      // NOTE: Global flag set,
+      // NOTE: Global flag set
       // TODO: Set flags with GUI
       const regex = new RegExp(regexText, 'g');
 
@@ -35,6 +35,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       while ((match = regex.exec(exampleText)) !== null) {
         // Avoid infinite match loops
         // TODO: Find better way to avoid infinite match cases
+        // Investigate: https://stackoverflow.com/questions/33015942/regex-exec-loop-never-terminates-in-js
         if (counter >= 100) break;
 
         // Add matches to match pojo
@@ -84,9 +85,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.exampleText}
           />
 
-          |<br/>v
+          <div className="transfer-functions">
+            <img src="img/arrow-12-512.png" alt="function arrow" />
+            <div>
+              <button className="transfer-function-active">Match</button>
+              <button>Capture</button>
+              <button>Split</button>
+              <button>Replace</button>
+              <input type="text" value={'", "'} />
+            </div>
+          </div>
 
-          <div ref={el => { this.resultsBox = el; }} />
+          <div
+            className="results-box"
+            ref={el => { this.resultsBox = el; }}
+          />
         </div>
       );
     }
