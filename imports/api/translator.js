@@ -82,16 +82,43 @@ const mapToSrl = input => {
   }
 };
 
-const escapedChar = /^\\(.){1}$/;
+const escapedChars = /^\\(.+)$/;
+
+// \\d\\D\\w\\W\\s\\S\\t\\r\\n\\v\\f\\A\\z\\b
 
 const literal = input => {
   switch(true) {
+    case /\\s/.test(input):
+      return "whitespace";
+    case /\\S/.test(input):
+      return "non-whitespace";
     case /\\d/.test(input):
       return "digit";
     case /\\D/.test(input):
       return "non-digit";
-    case escapedChar.test(input):
-      let res = input.match(escapedChar);
+    case /\\w/.test(input):
+      return "word character";
+    case /\\W/.test(input):
+      return "non-word character";
+    case /\\b/.test(input):
+      return "word boundary";
+    case /\\A/.test(input):
+      return "start of string";
+    case /\\z/.test(input):
+      return "end of string";
+    case /\\t/.test(input):
+      return "tab";
+    case /\\r/.test(input):
+      return "return";
+    case /\\n/.test(input):
+      return "new line";
+    case /\\v/.test(input):
+      return "vertical tab";
+    case /\\f/.test(input):
+      return "form-feed";
+
+    case escapedChars.test(input):
+      let res = input.match(escapedChars);
       return `literally "${res[1]}"`;
     default:
       return `literally "${input}"`;
