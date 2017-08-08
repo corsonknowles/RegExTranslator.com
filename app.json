@@ -10,7 +10,8 @@
       "required": true
     },
     "ROOT_URL": {
-      "required": true
+      "required": true,
+      
     }
   },
   "formation": {

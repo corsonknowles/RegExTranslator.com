@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { receiveRegex } from '../../actions/regex_actions';
+import { Regexs } from '../../api/regexs';
 
 const mapStateToProps = ({ regex: { regexText } }) => ({
-  regexText
+  regexText,
+  patterns: Regexs.find().fetch()
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -32,6 +34,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     render() {
+      debugger;
       return (
         <div className="translator-input-section">
           <h2>Regular Expression</h2>
