@@ -6,10 +6,22 @@ export const srlToRegex = (srl) => {
 };
 
 export const regexToSrl = regex => {
+  if (!regexIsValid(regex)) {
+    return "Invalid Regular Expression";
+  }
+
   const tree = createTree(regex);
-  console.log(tree);
   const translation = translate(tree);
-  return translation.join(", ");
+  return translation.join(" ");
+};
+
+const regexIsValid = regex => {
+  try {
+    const test = new RegExp(regex);
+  } catch(SyntaxError) {
+    return false;
+  }
+  return true;
 };
 
 const translate = root => {
@@ -29,7 +41,7 @@ const dfs = node => {
           text.push("(" + dfs(child) + ")");
           break;
         case "charset":
-          text.push("[" + dfs(child) + "]");
+          text.push(dfs(child));
           break;
         case "count":
           text.push(dfs(child));
@@ -41,25 +53,27 @@ const dfs = node => {
   return text;
 };
 
+const anyCharset = /^\[.*\]$/;
+const anyCount = /^\{[0-9,]*\}$/;
+
 const mapToSrl = input => {
   switch(true) {
     case /^\^$/.test(input):
       return "begin with";
     case /^$^$/.test(input):
       return "must end";
-    case /^\{[0-9,]*\}$/.test(input):
+    case anyCount.test(input):
       return count(input);
-    case /^a-z$/.test(input):
-      return "letter";
-    case /^0-9$/.test(input):
-      return "digit";
+    case anyCharset.test(input):
+      return charset(input);
     case /^\*$/.test(input):
       return "never or more";
     case /^\+$/.test(input):
       return "once or more";
+    case /^\?$/.test(input):
+      return "optional";
     case /^\$$/.test(input):
       return "must end";
-
     default:
       return `literally "${input}"`;
   }
@@ -69,7 +83,6 @@ const exactlyXTimes = /^\{([0-9]*)\}$/;
 const xOrMoreTimes = /^\{([0-9]*),\}$/;
 const betweenXAndYTimes = /^\{([0-9]*),([0-9]*)\}$/;
 
-/* match counting quantifies: {3}, {3,}, {3,6} */
 const count = input => {
   let res;
   switch(true) {
@@ -91,6 +104,30 @@ const count = input => {
     case betweenXAndYTimes.test(input):
       res = input.match(betweenXAndYTimes);
       return `between ${res[1]} and ${res[2]} times`;
+  }
+};
+
+const digit = /^\[0-9\]$/;
+const letter = /^\[a-z\]$/;
+const uppercaseLetter = /^\[A-Z\]$/;
+const digitRange = /^\[(\d)-(\d)\]$/;
+const letterRange = /^\[(\D)-(\D)\]$/;
+
+const charset = input => {
+  let res;
+  switch(true) {
+    case digit.test(input):
+      return "digit";
+    case letter.test(input):
+      return "letter";
+    case uppercaseLetter.test(input):
+      return "uppercase letter";
+    case digitRange.test(input):
+      res = input.match(digitRange);
+      return `digit from ${res[1]} to ${res[2]} `;
+    case letterRange.test(input):
+      res = input.match(letterRange);
+      return `letter from ${res[1]} to ${res[2]} `;
   }
 };
 
