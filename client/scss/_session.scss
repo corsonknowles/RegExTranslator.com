@@ -36,10 +36,11 @@
   text-decoration: none;
 }
 
-#login-buttons-password {
+#login-buttons .login-button, .accounts-dialog .login-button {
   background-color: $go-blue;
+  border: 1px solid $go-blue;
 }
 
-#login-buttons-google {
+#login-buttons .login-button:hover, .accounts-dialog .login-button:hover {
   background-color: $go-blue;
 }
