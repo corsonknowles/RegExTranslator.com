@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Template } from 'meteor/templating';
+import { Blaze } from 'meteor/blaze';
 import Modal from 'react-modal';
 import { withRouter, Link, NavLink } from 'react-router-dom';
 
@@ -45,11 +47,17 @@ class SessionForm extends React.Component {
 		this.afterOpenModal = this.afterOpenModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
 
-    this.clearErrors = this.props.clearErrors.bind(this);
+    // this.clearErrors = this.props.clearErrors.bind(this);
 	}
 
+  componentDidMount () {
+    this.view = Blaze.render(Template.loginButtons,
+    ReactDOM.findDOMNode(this.refs.container));
+  }
+
   componentWillUnmount() {
-    this.props.clearErrors()
+    // this.props.clearErrors()
+    Blaze.remove(this.view);
   };
 
 // check applicability of this to user login flow
@@ -120,7 +128,7 @@ class SessionForm extends React.Component {
   					<button className="login-button" onClick={this.openModal}>Log In</button>
           </div>
         </nav>
-        
+
         <Modal
           isOpen={this.state.modalIsOpen}
           onAfterOpen={this.afterOpenModal}
@@ -129,42 +137,9 @@ class SessionForm extends React.Component {
           contentLabel="Login Form"
         >
 
-          <div className="form login">
-            { this.renderErrors() }
-            <h2>Register or Log In</h2>
+          return <span ref="container" />
 
-            <div className="login-box">
-              <label htmlFor="email" className="login-label">EMAIL ADDRESS</label>
 
-              <input type="text" name="email" id="email"
-                value={this.state.email}
-                onChange={(event) => this.handleChange(event)}
-                className="login-input"
-                placeholder="recruiters@regextranslator.com"
-              />
-
-              <label htmlFor="password" className="login-label">PASSWORD</label>
-
-              <input type="password" name="password" id="password"
-                value={this.state.password}
-                onChange={(event) => this.handleChange(event)}
-                className="login-input"
-                placeholder="6 characters or more"
-              />
-
-            </div>
-
-            <div>
-              <button className="white" onClick={this.handleSubmit(event, 'signup')}>
-                Register
-              </button>
-
-              <button onClick={this.handleSubmit(event, 'login')}>
-                Log In
-              </button>
-            </div>
-
-          </div>
 
           <button className="close-modal" onClick={this.closeModal}>X</button>
 
