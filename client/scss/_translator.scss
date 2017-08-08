@@ -43,7 +43,7 @@
     &:focus {
       box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
       background-color: $input-text-field-background;
-      border: 1px solid $border-selected;
+      border: 1px solid $go-blue;
     }
   }
 }

@@ -1,0 +1,46 @@
+.nav-left {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
+.logo {
+  width: auto;
+  height: auto;
+  display: inline;
+}
+
+.login-container {
+
+}
+
+.login-button {
+  background-color: $go-blue;
+  color: $go-white;
+  border: none;
+  transition-duration: 0.4s;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 7px;
+  text-decoration: none;
+  outline: none;
+  position: static;
+  border: 1px solid $go-blue;
+  transition: 0.4s;
+}
+
+
+#login-buttons a {
+  text-decoration: none;
+}
+
+#login-buttons .login-button, .accounts-dialog .login-button {
+  background-color: $go-blue;
+  border: 1px solid $go-blue;
+}
+
+#login-buttons .login-button:hover, .accounts-dialog .login-button:hover {
+  background-color: $go-blue;
+}
