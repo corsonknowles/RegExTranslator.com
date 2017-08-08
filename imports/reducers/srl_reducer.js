@@ -1,7 +1,7 @@
 import {
-  RECEIVE_SRL_INPUT,
-  RECEIVE_SRL_INPUT_ERRORS
-} from '../actions/actions';
+  RECEIVE_SRL,
+  RECEIVE_SRL_ERRORS
+} from '../actions/srl_actions';
 
 const defaultState = {
   srlText: '',
@@ -13,10 +13,10 @@ export default (state = defaultState, action) => {
   const stateCopy = Object.assign({}, state);
 
   switch (action.type) {
-    case RECEIVE_SRL_INPUT:
+    case RECEIVE_SRL:
       return Object.assign(stateCopy, { srlText: action.input });
 
-    case RECEIVE_SRL_INPUT_ERRORS:
+    case RECEIVE_SRL_ERRORS:
       return Object.assign(stateCopy, { errors: action.errors });
 
     default:
