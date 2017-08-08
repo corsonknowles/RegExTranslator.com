@@ -37,6 +37,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         // TODO: Find better way to avoid infinite match cases
         if (counter >= 100) break;
 
+        // Add matches to match pojo
         matches[match.index] = match;
 
         // Add all indices of characters within match to `matchIndices`
