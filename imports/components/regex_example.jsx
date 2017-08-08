@@ -22,37 +22,53 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     componentDidUpdate() {
       const { props: { regexText }, state: { exampleText } } = this;
 
-      const regex = new RegExp(regexText, 'g');   // NOTE: Global flag set
-      const matches = {};
+      // Create regex to match with
+      // NOTE: Global flag set,
+      // TODO: Set flags with GUI
+      const regex = new RegExp(regexText, 'g');
+
+      // Create list of matches and match indices (all indices at which a
+      //  character should be highlighted)
+      const matches = {};   // NOTE: `matches` currently going unused
       const matchIndices = new Set;
       let match, counter = 0;
       while ((match = regex.exec(exampleText)) !== null) {
-        if (counter >= 100) break;   // Avoid infinite match loops
+        // Avoid infinite match loops
+        // TODO: Find better way to avoid infinite match cases
+        if (counter >= 100) break;
 
         matches[match.index] = match;
 
+        // Add all indices of characters within match to `matchIndices`
         for (let i = 0; i < match[0].length; i++) {
           matchIndices.add(match.index + i);
         }
 
+        // Increment limit counter
         counter++;
       }
 
-      let resultsText = '';
-      let currentMatch;
+      // Wrap consecutive sets of match-indices in spans for highlighting
+      let resultsMarkup = '';
       for (let idx = 0; idx < exampleText.length; idx++) {
+        // Open span if previous not a matching character and current is a
+        //  matching character
         if (!matchIndices.has(idx - 1) && matchIndices.has(idx)) {
-          resultsText += '<span>';
+          resultsMarkup += '<span>';
         }
 
+        // Close span if previous was a matching character and current is not a
+        //  matching character
         if (matchIndices.has(idx - 1) && !matchIndices.has(idx)) {
-          resultsText += '</span>';
+          resultsMarkup += '</span>';
         }
 
-        resultsText += exampleText[idx];
+        // Add current character
+        resultsMarkup += exampleText[idx];
       }
 
-      this.resultsBox.innerHTML = resultsText;
+      // Set results box content
+      this.resultsBox.innerHTML = resultsMarkup;
     }
 
     handleExampleInputChange(event) {
