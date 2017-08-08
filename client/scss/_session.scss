@@ -16,8 +16,8 @@
 }
 
 .login-button {
-  background-color: #596595;
-  color: #fff;
+  background-color: $go-blue;
+  color: $go-white;
   border: none;
   transition-duration: 0.4s;
   border-radius: 4px;
@@ -27,15 +27,19 @@
   text-decoration: none;
   outline: none;
   position: static;
-  border: 1px solid #596595;
+  border: 1px solid $go-blue;
   transition: 0.4s;
-}
-
-.login-button:hover {
-  background: #7580ac;
 }
 
 
 #login-buttons a {
   text-decoration: none;
+}
+
+#login-buttons-password {
+  background-color: $go-blue;
+}
+
+#login-buttons-google {
+  background-color: $go-blue;
 }
