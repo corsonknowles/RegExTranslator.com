@@ -20,6 +20,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
       this.handleReplaceInputChange = this.handleReplaceInputChange.bind(this);
+      this.handleFunctionButtonClick = this.handleFunctionButtonClick.bind(this);
     }
 
     componentDidUpdate() {
@@ -37,6 +38,24 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       // Set results box content
       resultsBox.innerHTML = this[currentTransferFunction](regex);
+    }
+
+    handleFunctionButtonClick(event) {
+      // Skip if not button
+      if (event.target.tagName !== 'BUTTON') return;
+
+      // Remove active class from all buttons
+      event.currentTarget.querySelectorAll('button').forEach(button => {
+        button.classList.remove('transfer-function-active');
+      });
+
+      // Add active class to clicked button and overwrite
+      //  currentTransferFunction
+      const targetButton = event.target;
+      targetButton.classList.add('transfer-function-active');
+      this.setState({
+        currentTransferFunction: targetButton.innerText.toLowerCase()
+      });
     }
 
     handleExampleInputChange(event) {
@@ -138,7 +157,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
           <div className="transfer-functions">
             <img src="img/arrow-12-512.png" alt="function arrow" />
-            <div>
+            <div onClick={this.handleFunctionButtonClick}>
               <button className="transfer-function-active">Match</button>
               <button>Capture</button>
               <button>Split</button>
