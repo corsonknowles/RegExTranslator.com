@@ -2,10 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { receiveRegex } from '../../actions/regex_actions';
 import { Regexs } from '../../api/regexs';
-
+debugger;
 const mapStateToProps = ({ regex: { regexText } }) => ({
-  regexText,
-  patterns: Regexs.find().fetch()
+  regexText
 });
 
 const mapDispatchToProps = dispatch => ({
