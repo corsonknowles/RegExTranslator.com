@@ -38,7 +38,10 @@ const dfs = node => {
     } else if (!child.visited) {
       switch (child.type) {
         case "group":
-          text.push("(" + dfs(child) + ")");
+          text.push("capture (" + dfs(child) + ")");
+          break;
+        case "nonCapturingGroup":
+          text.push(dfs(child));
           break;
         case "charset":
           text.push(dfs(child));
@@ -59,12 +62,9 @@ const anyCount = /^\{[0-9,]*\}$/;
 const mapToSrl = input => {
   switch(true) {
     case /^$/.test(input):
-      return null;
-      // break; // ignore empty
+      return null; // ignore empty
     case /^\^$/.test(input):
       return "begin with";
-    // case /^$^$/.test(input):
-    //   return "must end";
     case anyCount.test(input):
       return count(input);
     case anyCharset.test(input):
@@ -78,44 +78,42 @@ const mapToSrl = input => {
     case /^\$$/.test(input):
       return "must end";
     default:
-      return literal(input);
+      return escaped(input);
   }
 };
 
 const escapedChars = /^\\(.+)$/;
 
-// \\d\\D\\w\\W\\s\\S\\t\\r\\n\\v\\f\\A\\z\\b
-
-const literal = input => {
+const escaped = input => {
   switch(true) {
     case /\\s/.test(input):
       return "whitespace";
     case /\\S/.test(input):
-      return "non-whitespace";
+      return "no whitespace";
     case /\\d/.test(input):
       return "digit";
-    case /\\D/.test(input):
-      return "non-digit";
+    case /\\D/.test(input): // No direct representation in SRL
+      return "raw [^0-9]";
     case /\\w/.test(input):
-      return "word character";
+      return "any character";
     case /\\W/.test(input):
-      return "non-word character";
-    case /\\b/.test(input):
-      return "word boundary";
-    case /\\A/.test(input):
-      return "start of string";
-    case /\\z/.test(input):
-      return "end of string";
+      return "no character";
+    case /\\b/.test(input): // No direct representation in SRL
+      return "raw \\b";
+    case /\\A/.test(input): // No direct representation in SRL
+      return "raw \\A";
+    case /\\z/.test(input): // No direct representation in SRL
+      return "raw \\z";
     case /\\t/.test(input):
       return "tab";
-    case /\\r/.test(input):
-      return "return";
+    case /\\r/.test(input): // No direct representation in SRL
+      return "raw \\r";
     case /\\n/.test(input):
       return "new line";
-    case /\\v/.test(input):
-      return "vertical tab";
-    case /\\f/.test(input):
-      return "form-feed";
+    case /\\v/.test(input): // No direct representation in SRL
+      return "raw \\v";
+    case /\\f/.test(input): // No direct representation in SRL
+      return "raw \\f";
 
     case escapedChars.test(input):
       let res = input.match(escapedChars);
@@ -182,20 +180,25 @@ const createTree = regex => {
 
   let currentNode = root;
   let depth = 0;
-  let escaped = false;
+  let escapeNext = false;
 
   for (let i = 0; i < regex.length; i++) {
     let char = regex[i];
 
-    // if escaped, always add char as text
-    if (escaped) {
+    // if escapeNext, always add char as text
+    if (escapeNext) {
       currentNode.addText(char);
-      escaped = false;
+      escapeNext = false;
 
     } else {
       switch(char) {
         case '(':
-          currentNode = currentNode.addChild("group");
+          if (regex[i + 1] === '?' && regex[i + 2] === ':') {
+            currentNode = currentNode.addChild("nonCapturingGroup");
+            i += 2; // skip next 2 characters
+          } else {
+            currentNode = currentNode.addChild("group");
+          }
           break;
         case ')':
           currentNode = currentNode.parent;
@@ -218,7 +221,7 @@ const createTree = regex => {
           break;
         default:
           if (char === '\\') {
-            escaped = true;
+            escapeNext = true;
             currentNode = currentNode.addTextChild(char);
           } else {
             currentNode.addText(char);
