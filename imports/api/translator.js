@@ -38,7 +38,10 @@ const dfs = node => {
     } else if (!child.visited) {
       switch (child.type) {
         case "group":
-          text.push("(" + dfs(child) + ")");
+          text.push("capture (" + dfs(child) + ")");
+          break;
+        case "nonCapturingGroup":
+          text.push(dfs(child));
           break;
         case "charset":
           text.push(dfs(child));
@@ -177,20 +180,25 @@ const createTree = regex => {
 
   let currentNode = root;
   let depth = 0;
-  let escaped = false;
+  let escapeNext = false;
 
   for (let i = 0; i < regex.length; i++) {
     let char = regex[i];
 
-    // if escaped, always add char as text
-    if (escaped) {
+    // if escapeNext, always add char as text
+    if (escapeNext) {
       currentNode.addText(char);
-      escaped = false;
+      escapeNext = false;
 
     } else {
       switch(char) {
         case '(':
-          currentNode = currentNode.addChild("group");
+          if (regex[i + 1] === '?' && regex[i + 2] === ':') {
+            currentNode = currentNode.addChild("nonCapturingGroup");
+            i += 2; // skip next 2 characters
+          } else {
+            currentNode = currentNode.addChild("group");
+          }
           break;
         case ')':
           currentNode = currentNode.parent;
@@ -213,7 +221,7 @@ const createTree = regex => {
           break;
         default:
           if (char === '\\') {
-            escaped = true;
+            escapeNext = true;
             currentNode = currentNode.addTextChild(char);
           } else {
             currentNode.addText(char);
