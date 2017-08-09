@@ -62,7 +62,7 @@
   border: 1px solid $border-normal;
 
   background-color: $display-text-field-background;
-  max-height: 50px;
+  max-height: 100px;
   overflow-y: scroll;
 
   &:hover {
@@ -76,4 +76,9 @@
   display: block;
   font-size: 14px;
   font-family: Roboto, monospace;
+  width: 100%;
+
+  &:hover {
+    background-color: $display-text-field-background;
+  }
 }
