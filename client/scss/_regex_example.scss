@@ -7,7 +7,7 @@
   font-family: Verdana;
   font-size: 16px;
 
-  > * {
+  textarea, .results-box {
     height: 130px;
     width: 450px;
 
@@ -20,7 +20,61 @@
     border: 1px solid $border-normal;
   }
 
-  div {
+  .transfer-functions {
+    text-align: center;
+
+    img {
+      width: auto;
+      height: 80px;
+
+      @include rotate(90deg);
+    }
+
+    div {
+      position: absolute;
+      transform: translate(-35%, -55px);
+
+      button {
+
+        background-color: $display-text-field-background;
+        color: #444;
+        font-weight: bold;
+
+        &.transfer-function-active {
+          box-shadow: inset 1px 1px 1px LightGray;
+        }
+
+        &:not(.transfer-function-active):hover {
+          border: 1px solid Gray;
+        }
+      }
+
+      input {
+        display: inline;
+        width: 60px;
+      }
+
+      > * {
+        padding: 5px 8px;
+        margin-left: -1px;
+        border: 1px solid LightGray;
+
+        font-family: Arial;
+        font-size: 12px;
+
+        &:first-child {
+          border-radius: 4px 0 0 4px;
+        }
+
+        &:last-child {
+          border-radius: 0 4px 4px 0;
+        }
+      }
+    }
+
+  }
+
+  .results-box {
     background-color: Beige;
     border-radius: 5px;
 
