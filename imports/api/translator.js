@@ -63,6 +63,8 @@ const mapToSrl = input => {
   switch(true) {
     case /^$/.test(input):
       return null; // ignore empty
+    case /^\.$/.test(input):
+      return "anything";
     case /^\^$/.test(input):
       return "begin with";
     case anyCount.test(input):
@@ -156,6 +158,7 @@ const letter = /^\[a-z\]$/;
 const uppercaseLetter = /^\[A-Z\]$/;
 const digitRange = /^\[(\d)-(\d)\]$/;
 const letterRange = /^\[(\D)-(\D)\]$/;
+const noRange = /^\[([^\]]*)\]$/;
 
 const charset = input => {
   let res;
@@ -172,6 +175,9 @@ const charset = input => {
     case letterRange.test(input):
       res = input.match(letterRange);
       return `letter from ${res[1]} to ${res[2]} `;
+    default:
+      res = input.match(noRange);
+      return `any of \"${res[1]}\"`;
   }
 };
 
