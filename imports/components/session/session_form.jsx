@@ -19,7 +19,7 @@ export default class AccountsUIWrapper extends Component {
 			<header>
         <nav className="nav-left">
           <a href="/">
-            <img className="logo" src='http://res.cloudinary.com/cloudfunded/image/upload/c_scale,h_49/v1502130863/Logomakr_7ZxwIP_go6w8y.png' />
+            <img className="logo" src='https://res.cloudinary.com/cloudfunded/image/upload/c_scale,h_49/v1502130863/Logomakr_7ZxwIP_go6w8y.png' />
           </a>
           <div className="login-container">
             <button className="login-button">
