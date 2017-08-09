@@ -23,42 +23,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     componentDidUpdate() {
-      const { props: { regexText }, state: { exampleText } } = this;
+      const {
+        resultsBox,
+        props: { regexText },
+        state: { exampleText, currentTransferFunction }
+      } = this;
 
       // Create regex to match with
       // NOTE: Global flag set
       // TODO: Set flags with GUI
-      const regex = new RegExp(regexText, 'g');
-
-      // Create list of matches and match indices (all indices at which a
-      //  character should be highlighted)
-      const matches = {};   // NOTE: `matches` currently going unused
-      const matchIndices = new Set;
-      let match, counter = 0;
-      while ((match = regex.exec(exampleText)) !== null) {
-        // Avoid infinite match loops
-        // TODO: Find better way to avoid infinite match cases
-        // Investigate: https://stackoverflow.com/questions/33015942/regex-exec-loop-never-terminates-in-js
-        if (counter >= 100) break;
-
-        // Add matches to match pojo
-        matches[match.index] = match;
-
-        // Add all indices of characters within match to `matchIndices`
-        for (let i = 0; i < match[0].length; i++) {
-          matchIndices.add(match.index + i);
-        }
-
-        // Increment limit counter
-        counter++;
-      }
+      const flags = ['g'];
+      const regex = new RegExp(regexText, flags.join(''));
 
       // Set results box content
-      this.resultsBox.innerHTML = this[this.state.currentTransferFunction]({
-        regex,
-        matches,
-        matchIndices
-      });
+      resultsBox.innerHTML = this[currentTransferFunction](regex);
     }
 
     handleExampleInputChange(event) {
@@ -69,8 +47,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       this.setState({ replaceText: event.target.value });
     }
 
-    match(options) {
-      const matchIndices = options.matchIndices;
+    match(regex) {
+      const exampleText = this.state.exampleText;
+
+      // Create list of matches and match indices (all indices at which a
+      //  character should be highlighted)
+      const matchIndices = new Set;
+      let match, counter = 0;
+      while ((match = regex.exec(exampleText))) {
+        if (match.index === regex.lastIndex) regex.lastIndex++;
+
+        // Add all indices of characters within match to `matchIndices`
+        for (let i = 0; i < match[0].length; i++) {
+          matchIndices.add(match.index + i);
+        }
+      }
 
       // Wrap consecutive sets of match-indices in spans for highlighting
       let resultsMarkup = '';
@@ -107,21 +98,33 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       return resultsMarkup;
     }
 
-    split(options) {
-      const regex = options.regex;
+    capture(regex) {
+      const exampleText = this.state.exampleText;
 
-      let resultsMarkup = '[<br/>&nbsp;&nbsp;';
-      resultsMarkup += this.state.exampleText.split(regex).join(
-        ',<br/>&nbsp;&nbsp;'
-      );
+      // Print list of captures
+      // TODO: Not sure if this is actually right. How do I obtain capture
+      //  groups?
+      let resultsMarkup = '';
+      resultsMarkup += '[<br/>&nbsp;&nbsp;';
+      resultsMarkup += exampleText.match(regex).join(',<br/>&nbsp;&nbsp;');
       resultsMarkup += '<br/>]';
 
       return resultsMarkup;
     }
 
-    replace(options) {
-      const regex = options.regex;
+    split(regex) {
+      const exampleText = this.state.exampleText;
 
+      // Print list of split results
+      let resultsMarkup = '';
+      resultsMarkup += '[<br/>&nbsp;&nbsp;';
+      resultsMarkup += exampleText.split(regex).join(',<br/>&nbsp;&nbsp;');
+      resultsMarkup += '<br/>]';
+
+      return resultsMarkup;
+    }
+
+    replace(regex) {
       return this.state.exampleText.replace(regex, this.state.replaceText);
     }
 
