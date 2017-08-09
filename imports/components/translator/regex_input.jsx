@@ -1,14 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveRegex } from '../../actions/regex_actions';
-import { Regexs } from '../../api/regexs';
-debugger;
-const mapStateToProps = ({ regex: { regexText } }) => ({
-  regexText
+import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
+import { bindActionCreators } from 'redux';
+
+const mapStateToProps = (state, { regex: { regexText } }) => ({
+  regexText,
+  regexs: state.regexs
 });
 
 const mapDispatchToProps = dispatch => ({
-  receiveRegex: input => dispatch(receiveRegex(input))
+  receiveRegex: input => dispatch(receiveRegex(input)),
+  getRegexs: () => dispatch(getRegexs()),
+  createRegex: (data) => dispatch(createRegex(data))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -21,6 +24,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       };
 
       this.regexInputHandler = this.regexInputHandler.bind(this);
+    }
+
+    componentDidMount() {
+      this.props.getRegexs();
     }
 
     componentWillReceiveProps(nextProps) {

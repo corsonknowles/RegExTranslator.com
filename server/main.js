@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import '../imports/api/regexs.js';
+import Regexs from '../imports/api/regexs.js';
 
 Meteor.startup(() => {
-  
+
 });
