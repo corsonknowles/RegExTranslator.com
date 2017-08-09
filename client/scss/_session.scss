@@ -1,13 +1,21 @@
+
+header {
+  padding: 5px;
+}
+
 .nav-left {
   width: 100%;
+  padding-top: 10px;
+
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
+  align-items: center;
 }
 
 .logo {
   width: auto;
   height: auto;
+
   display: inline;
 }
 
@@ -16,31 +24,50 @@
 }
 
 .login-button {
+  padding: 7px;
+  border: 0.5px solid rgb(48, 121, 237);
+
+  cursor: pointer;
+
+  border-radius: 2px;
   background-color: $go-blue;
   color: $go-white;
-  border: none;
-  transition-duration: 0.4s;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 7px;
-  text-decoration: none;
-  outline: none;
-  position: static;
-  border: 1px solid $go-blue;
-  transition: 0.4s;
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 
+#login-dropdown-list {
+  left: -170px;
+
+  border-radius: 0;
+  // box-shadow: none;
+
+}
+
+.login-close-text {
+  float: right;
+  display: none;
+}
+
+// .login-form {
+//   input {
+//     border-radius: 0;
+//   }
+// }
+
+#login-email[type="email"] {
+  border-radius: 0;
+}
 
 #login-buttons a {
   text-decoration: none;
 }
 
 #login-buttons .login-button, .accounts-dialog .login-button {
-  background-color: $go-blue;
-  border: 1px solid $go-blue;
+  // background-color: $go-blue;
+  // border: 1px solid $go-blue;
 }
 
 #login-buttons .login-button:hover, .accounts-dialog .login-button:hover {
-  background-color: $go-blue;
+  // background-color: $go-blue;
 }
