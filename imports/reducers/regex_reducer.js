@@ -1,6 +1,8 @@
 import {
   RECEIVE_REGEX,
-  RECEIVE_REGEX_ERRORS
+  RECEIVE_REGEX_ERRORS,
+  GET_REGEXS,
+  CREATE_REGEX
 } from '../actions/regex_actions';
 
 const defaultState = {
@@ -14,10 +16,17 @@ export default (state = defaultState, action) => {
 
   switch (action.type) {
     case RECEIVE_REGEX:
+    debugger;
       return Object.assign(stateCopy, { regexText: action.input });
 
     case RECEIVE_REGEX_ERRORS:
       return Object.assign(stateCopy, { errors: action.errors });
+
+    case GET_REGEXS:
+      return Object.assign(stateCopy, action.payload);
+
+    case CREATE_REGEX:
+      return Object.assign(stateCopy, action.payload);
 
     default:
       return stateCopy;

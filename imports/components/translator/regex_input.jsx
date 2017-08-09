@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
 import { bindActionCreators } from 'redux';
 
-const mapStateToProps = (state, { regex: { regexText } }) => ({
-  regexText,
+const mapStateToProps = (state) => ({
+  regexText: state.regex.regexText,
   regexs: state.regexs
 });
 
