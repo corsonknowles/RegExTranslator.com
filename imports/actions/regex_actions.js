@@ -1,9 +1,9 @@
 import Regexs from '../api/regexs.js';
-
 export const RECEIVE_REGEX = 'RECEIVE_REGEX';
 export const RECEIVE_REGEX_ERRORS = 'RECEIVE_REGEX_ERRORS';
 export const GET_REGEXS = 'GET_REGEXS';
 export const CREATE_REGEX = 'CREATE_REGEX';
+
 
 export const receiveRegex = input => ({
   type: RECEIVE_REGEX,
