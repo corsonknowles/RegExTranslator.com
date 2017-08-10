@@ -1,36 +1,70 @@
+
+header {
+  padding: 5px;
+}
+
 .nav-left {
   width: 100%;
+  padding-top: 10px;
+
   display: flex;
   justify-content: space-between;
-  padding-top: 10px;
+  align-items: center;
+
+  a {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+
+    h1 {
+      margin-left: 20px;
+      display: inline;
+
+      font-size: 25px;
+      font-family: Verdana;
+
+      cursor: pointer;
+    }
+  }
 }
 
 .logo {
   width: auto;
   height: auto;
+
   display: inline;
 }
 
-.login-container {
-
-}
-
 .login-button {
+  padding: 7px;
+  border: 0.5px solid rgb(48, 121, 237);
+  border-radius: 2px;
+
+  cursor: pointer;
+
   background-color: $go-blue;
   color: $go-white;
-  border: none;
-  transition-duration: 0.4s;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 7px;
-  text-decoration: none;
-  outline: none;
-  position: static;
-  border: 1px solid $go-blue;
-  transition: 0.4s;
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: rgb(48, 121, 237);
+  }
 }
 
+#login-dropdown-list {
+  left: -170px;
+
+  border-radius: 0;
+
+  * {
+    font-family: Arial;
+  }
+}
+
+#login-dropdown-list > .login-close-text {
+  float: right;
+}
 
 #login-buttons a {
   text-decoration: none;
@@ -38,9 +72,23 @@
 
 #login-buttons .login-button, .accounts-dialog .login-button {
   background-color: $go-blue;
-  border: 1px solid $go-blue;
+  border: 0.5px solid rgb(48, 121, 237);
+  border-radius: 2px;
+
+  color: $go-white;
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  span.text-besides-image {
+    font-family: Arial;
+  }
+
+  &:hover {
+    background-color: rgb(48, 121, 237);
+    border-color: rgb(48, 121, 237);
+  }
 }
 
-#login-buttons .login-button:hover, .accounts-dialog .login-button:hover {
-  background-color: $go-blue;
+div#login-buttons-password {
+  font-family: Arial;
 }

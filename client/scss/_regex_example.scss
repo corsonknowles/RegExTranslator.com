@@ -13,15 +13,29 @@
 
     margin: 10px 0;
     padding: 8px 10px;
-  }
 
-  textarea {
     resize: none;
     border: 1px solid $border-normal;
   }
 
+  textarea {
+    &:hover {
+      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+      background-color: $input-text-field-background;
+      border: 1px solid $border-normal;
+    }
+
+    &:focus {
+      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+      background-color: $input-text-field-background;
+      border: 1px solid $go-blue;
+    }
+  }
+
   .transfer-functions {
     text-align: center;
+
+    user-select: none;
 
     img {
       width: auto;
@@ -35,7 +49,6 @@
       transform: translate(-35%, -55px);
 
       button {
-
         background-color: $display-text-field-background;
         color: #444;
         font-weight: bold;
@@ -75,13 +88,17 @@
   }
 
   .results-box {
-    background-color: Beige;
-    border-radius: 5px;
+    overflow-y: scroll;
+
+    // NOTE: Can't figure out how to get word breaking to break only between
+    //  words. Think it might be because of usage of non-breaking spaces
+    word-wrap: break-word;
 
     span {
-      border-radius: 2px;
+      border-radius: 1px;
 
-      background-color: LightCoral;
+      background-color: Black;
+      color: White;
     }
   }
 }
