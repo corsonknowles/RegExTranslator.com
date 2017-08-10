@@ -137,7 +137,7 @@ const count = input => {
 
     case xOrMoreTimes.test(input):
       res = input.match(xOrMoreTimes);
-      return `${res[1]} or more times`;
+      return `at least ${res[1]} times`;
 
     case betweenXAndYTimes.test(input):
       res = input.match(betweenXAndYTimes);
