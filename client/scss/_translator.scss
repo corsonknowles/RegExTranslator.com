@@ -8,6 +8,14 @@
   flex-flow: row;
 }
 
+.translator-container {
+  width: 100%;
+
+  padding: 5px;
+
+  box-sizing: border=box;
+}
+
 .translator-input-section {
   width: 100%;
 
@@ -45,5 +53,32 @@
       background-color: $input-text-field-background;
       border: 1px solid $go-blue;
     }
+  }
+
+}
+
+.pattern-box {
+  padding: 5px 8px;
+  border: 1px solid $border-normal;
+
+  background-color: $display-text-field-background;
+  max-height: 100px;
+  overflow-y: scroll;
+
+  &:hover {
+    box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+    background-color: $input-text-field-background;
+    border: 1px solid $border-normal;
+  }
+}
+
+.pattern-item {
+  display: block;
+  font-size: 14px;
+  font-family: Roboto, monospace;
+  width: 100%;
+
+  &:hover {
+    background-color: $display-text-field-background;
   }
 }
