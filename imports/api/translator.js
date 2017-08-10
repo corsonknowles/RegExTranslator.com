@@ -94,28 +94,20 @@ const escaped = input => {
       return "no whitespace";
     case /\\d/.test(input):
       return "digit";
-    case /\\D/.test(input): // No direct representation in SRL
-      return "raw [^0-9]";
+    case /\\D/.test(input): // non-digit
+      return "raw [^0-9]"; // No direct representation in SRL
     case /\\w/.test(input):
       return "any character";
     case /\\W/.test(input):
       return "no character";
-    case /\\b/.test(input): // No direct representation in SRL
-      return "raw \\b";
-    case /\\A/.test(input): // No direct representation in SRL
-      return "raw \\A";
-    case /\\z/.test(input): // No direct representation in SRL
-      return "raw \\z";
+    case /\\b/.test(input): // Word boundary
+      return "raw \\b"; // No direct representation in SRL
     case /\\t/.test(input):
       return "tab";
-    case /\\r/.test(input): // No direct representation in SRL
-      return "raw \\r";
+    case /\\r/.test(input): // Carriage return
+      return "raw \\r"; // No direct representation in SRL
     case /\\n/.test(input):
       return "new line";
-    case /\\v/.test(input): // No direct representation in SRL
-      return "raw \\v";
-    case /\\f/.test(input): // No direct representation in SRL
-      return "raw \\f";
 
     case escapedChars.test(input):
       let res = input.match(escapedChars);
@@ -171,10 +163,10 @@ const charset = input => {
       return "uppercase letter";
     case digitRange.test(input):
       res = input.match(digitRange);
-      return `digit from ${res[1]} to ${res[2]} `;
+      return `digit from ${res[1]} to ${res[2]}`;
     case letterRange.test(input):
       res = input.match(letterRange);
-      return `letter from ${res[1]} to ${res[2]} `;
+      return `letter from ${res[1]} to ${res[2]}`;
     default:
       res = input.match(noRange);
       return `any of \"${res[1]}\"`;
