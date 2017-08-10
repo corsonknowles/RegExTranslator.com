@@ -4,16 +4,12 @@ import Translator from './translator/translator';
 import RegexExample from './regex_example';
 import SessionForm from './session/session_form';
 
-// <Header />
-// <SessionModal />
-
 export default ({ store }) => (
   <Provider store={store}>
     <main>
       <SessionForm />
       <Translator />
       <RegexExample />
-
     </main>
   </Provider>
 );
