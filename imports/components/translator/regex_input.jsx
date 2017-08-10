@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
-import { bindActionCreators } from 'redux';
 import PatternDropdown from './pattern_dropdown.jsx';
 
 const mapStateToProps = (state) => ({
