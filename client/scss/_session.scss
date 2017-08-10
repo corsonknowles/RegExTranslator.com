@@ -10,6 +10,22 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  a {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+
+    h1 {
+      margin-left: 20px;
+      display: inline;
+
+      font-size: 25px;
+      font-family: Verdana;
+
+      cursor: pointer;
+    }
+  }
 }
 
 .logo {
@@ -19,44 +35,35 @@ header {
   display: inline;
 }
 
-.login-container {
-
-}
-
 .login-button {
   padding: 7px;
   border: 0.5px solid rgb(48, 121, 237);
+  border-radius: 2px;
 
   cursor: pointer;
 
-  border-radius: 2px;
   background-color: $go-blue;
   color: $go-white;
   font-size: 12px;
   letter-spacing: 1px;
+
+  &:hover {
+    background-color: rgb(48, 121, 237);
+  }
 }
 
 #login-dropdown-list {
   left: -170px;
 
   border-radius: 0;
-  // box-shadow: none;
 
+  * {
+    font-family: Arial;
+  }
 }
 
-.login-close-text {
+#login-dropdown-list > .login-close-text {
   float: right;
-  display: none;
-}
-
-// .login-form {
-//   input {
-//     border-radius: 0;
-//   }
-// }
-
-#login-email[type="email"] {
-  border-radius: 0;
 }
 
 #login-buttons a {
@@ -64,10 +71,24 @@ header {
 }
 
 #login-buttons .login-button, .accounts-dialog .login-button {
-  // background-color: $go-blue;
-  // border: 1px solid $go-blue;
+  background-color: $go-blue;
+  border: 0.5px solid rgb(48, 121, 237);
+  border-radius: 2px;
+
+  color: $go-white;
+  font-size: 12px;
+  letter-spacing: 1px;
+
+  span.text-besides-image {
+    font-family: Arial;
+  }
+
+  &:hover {
+    background-color: rgb(48, 121, 237);
+    border-color: rgb(48, 121, 237);
+  }
 }
 
-#login-buttons .login-button:hover, .accounts-dialog .login-button:hover {
-  // background-color: $go-blue;
+div#login-buttons-password {
+  font-family: Arial;
 }
