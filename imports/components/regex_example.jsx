@@ -86,7 +86,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       // Wrap consecutive sets of match-indices in spans for highlighting
       let resultsMarkup = '';
-      for (let idx = 0; idx < exampleText.length; idx++) {
+      for (let idx = 0; idx < this.state.exampleText.length; idx++) {
         // Open span if previous not a matching character and current is a
         //  matching character
         if (!matchIndices.has(idx - 1) && matchIndices.has(idx)) {
@@ -114,15 +114,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             resultsMarkup += currentChar;
             break;
         }
-
-        // Close span if previous was a matching character and current is not a
-        //  matching character
-        if (matchIndices.has(idx - 1) && !matchIndices.has(idx)) {
-          resultsMarkup += '</span>';
-        }
-
-        // Add current character
-        resultsMarkup += exampleText[idx];
       }
 
       return resultsMarkup;
