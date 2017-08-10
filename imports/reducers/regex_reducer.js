@@ -1,6 +1,6 @@
 import {
   RECEIVE_REGEX,
-  RECEIVE_REGEX_ERRORS,
+  RECEIVE_REGEX_ERRORS
 } from '../actions/regex_actions';
 
 const defaultState = {

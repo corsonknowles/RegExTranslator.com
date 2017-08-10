@@ -7,27 +7,98 @@
   font-family: Verdana;
   font-size: 16px;
 
-  > * {
+  textarea, .results-box {
     height: 130px;
     width: 450px;
 
     margin: 10px 0;
     padding: 8px 10px;
-  }
 
-  textarea {
     resize: none;
     border: 1px solid $border-normal;
   }
 
-  div {
-    background-color: Beige;
-    border-radius: 5px;
+  textarea {
+    &:hover {
+      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+      background-color: $input-text-field-background;
+      border: 1px solid $border-normal;
+    }
+
+    &:focus {
+      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+      background-color: $input-text-field-background;
+      border: 1px solid $go-blue;
+    }
+  }
+
+  .transfer-functions {
+    text-align: center;
+
+    user-select: none;
+
+    img {
+      width: auto;
+      height: 80px;
+
+      @include rotate(90deg);
+    }
+
+    div {
+      position: absolute;
+      transform: translate(-35%, -55px);
+
+      button {
+        background-color: $display-text-field-background;
+        color: #444;
+        font-weight: bold;
+
+        &.transfer-function-active {
+          box-shadow: inset 1px 1px 1px LightGray;
+        }
+
+        &:not(.transfer-function-active):hover {
+          border: 1px solid Gray;
+        }
+      }
+
+      input {
+        display: inline;
+        width: 60px;
+      }
+
+      > * {
+        padding: 5px 8px;
+        margin-left: -1px;
+        border: 1px solid LightGray;
+
+        font-family: Arial;
+        font-size: 12px;
+
+        &:first-child {
+          border-radius: 4px 0 0 4px;
+        }
+
+        &:last-child {
+          border-radius: 0 4px 4px 0;
+        }
+      }
+    }
+
+  }
+
+  .results-box {
+    overflow-y: scroll;
+
+    // NOTE: Can't figure out how to get word breaking to break only between
+    //  words. Think it might be because of usage of non-breaking spaces
+    word-wrap: break-word;
 
     span {
-      border-radius: 2px;
+      border-radius: 1px;
 
-      background-color: LightCoral;
+      background-color: Black;
+      color: White;
     }
   }
 }

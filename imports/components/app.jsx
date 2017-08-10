@@ -2,10 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import Translator from './translator/translator';
 import RegexExample from './regex_example';
-import SessionForm from './session_modal/session_form';
-
-// <Header />
-// <SessionModal />
+import SessionForm from './session/session_form';
 
 export default ({ store }) => (
   <Provider store={store}>
@@ -13,7 +10,6 @@ export default ({ store }) => (
       <SessionForm />
       <Translator />
       <RegexExample />
-
     </main>
   </Provider>
 );
