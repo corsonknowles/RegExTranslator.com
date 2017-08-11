@@ -29,7 +29,6 @@ const traverseTree = node => {
   let text = [];
   let orGroup = false;
 
-  node.visited = true; // needed?
   node.children.forEach(child => {
     if (child.tag) {
       switch (child.tag) {
