@@ -34,14 +34,17 @@ export function getRegexs() {
 
 export function createRegex(data) {
   return async function(dispatch) {
-    const { name } = data;
-    const regexId = await Meteor.callPromise('regexs.insert', { name });
+    const { name, pattern, language, userId } = data;
+    const regexId = await Meteor.callPromise('regexs.insert', { name, pattern, language, userId });
 
     return dispatch({
       type: 'CREATE_REGEX',
       payload: {
         _id: regexId,
-        name
+        name,
+        pattern,
+        language,
+        userId
       }
     })
   }

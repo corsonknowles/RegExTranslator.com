@@ -36,10 +36,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // NOTE: Global flag set
       // TODO: Set flags with GUI
       const flags = ['g'];
-      const regex = new RegExp(regexText, flags.join(''));
 
-      // Set results box content
-      resultsBox.innerHTML = this[currentTransferFunction](regex);
+      try {
+        const regex = new RegExp(regexText, flags.join(''));
+      } catch(error) {
+        //
+      } finally {
+        // Set results box content
+        resultsBox.innerHTML = this[currentTransferFunction](regex);
+      }
     }
 
     handleFunctionButtonClick(event) {

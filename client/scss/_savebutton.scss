@@ -1,0 +1,31 @@
+.save-bar {
+  position: absolute;
+  left: 0px;
+  bottom: 0px;
+  padding: 15px;
+  transform: scale(1, 1);
+
+  .fa-bookmark-o {
+    cursor: pointer;
+  }
+
+  .save-input {
+    width: 0;
+    overflow: hidden;
+    position: fixed;
+    bottom: 15px;
+  }
+
+  .name-input {
+    display: inline;
+  }
+
+  .save-regex {
+    display: inline;
+  }
+
+  .clicked {
+    width: 350px;
+  }
+
+}
