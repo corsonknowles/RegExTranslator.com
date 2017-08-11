@@ -15,6 +15,21 @@ const patterns = [
 ];
 
 export const tokenizeRegex = input => {
-  let tokens = tokenize(input, patterns);
-  return tokens;
+  return tokenize(input, patterns);
+};
+
+const charsetPatterns = [
+  { regex: /^\[/, tag: "boundary" },
+  { regex: /\]$/, tag: "boundary" },
+  { regex: /0-9/, tag: "digit" },
+  { regex: /a-z/, tag: "letter" },
+  { regex: /A-Z/, tag: "uppercase" },
+  { regex: /\d-\d/, tag: "digitRange" },
+  { regex: /[a-z]-[a-z]/, tag: "lowercaseRange" },
+  { regex: /[A-Z]-[A-Z]/, tag: "uppercaseRange" },
+  { regex: /.*/, tag: "remaining" },
+];
+
+export const tokenizeCharset = input => {
+  return tokenize(input, charsetPatterns);
 };

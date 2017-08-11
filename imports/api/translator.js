@@ -1,6 +1,6 @@
 import SRL from 'srl';
 
-import { tokenizeRegex } from './tokenize';
+import { tokenizeRegex, tokenizeCharset } from './tokenize';
 
 export const srlToRegex = (srl) => {
   const query = new SRL(srl);
@@ -12,20 +12,19 @@ export const regexToSrl = regex => {
     return "Invalid Regular Expression";
   }
   const tree = createTree(regex);
-  console.log(tree);
   return traverseTree(tree);
 };
 
 const regexIsValid = regex => {
   try {
     const test = new RegExp(regex);
-  } catch(SyntaxError) {
+  } catch(e) {
     return false;
   }
   return true;
 };
 
-/* Traverse the tree DFS style */
+/* Traverse the tree using DFS */
 const traverseTree = node => {
   let text = [];
   let orGroup = false;
@@ -58,14 +57,11 @@ const traverseTree = node => {
         case "anyChar":
           text.push("anything");
           break;
-        default:
-          text.push("Unknown tag: " + child.tag);
-          console.warn(child);
       }
     } else {
       switch (child.type) {
         case "root":
-          text.push("root: " + traverseTree(child));
+          text.push(traverseTree(child));
           break;
         case "nonCapture":
           text.push(traverseTree(child));
@@ -73,9 +69,6 @@ const traverseTree = node => {
         case "capture":
           text.push("capture (" + traverseTree(child) + ")");
           break;
-        default:
-          text.push("unknown node type: " + child.type);
-          console.warn(node);
       }
     }
   });
@@ -93,7 +86,6 @@ const boundary = input => {
       return "begin with";
     case "$":
       return "must end";
-    default:
   }
 };
 
@@ -105,8 +97,6 @@ const quantifier = input => {
       return "never or more";
     case "?":
       return "optional";
-    default:
-      return "unknown quantifier: " + input;
   }
 };
 
@@ -171,52 +161,45 @@ const count = input => {
   }
 };
 
-const digit = /^\[0-9\]$/;
-const letter = /^\[a-z\]$/;
-const uppercaseLetter = /^\[A-Z\]$/;
-const digitRange = /^\[(\d)-(\d)\]$/;
-const letterRange = /^\[(\D)-(\D)\]$/;
-const noneOf = /\[\^(.*)\]/;
-const anyOf = /^\[([^\]]*)\]$/;
-
-/*
-regex: [a-zA-Z0-9%$]
-expanded: (?:[a-z]|[A-Z]|[0-9]|[%$])
-[letter, uppercase, digit, one of "%$"].join(", ")
-SRL: any of (letter, uppercase, digit, one of "%$")
-
-regex: [a-z]
-
-*/
-
-/* (?:[a-z]|[A-Z]|[0-9]|[%$]) */
+const range = /(\w)-(\w)/;
 
 const charset = input => {
-  let res;
-  switch(true) {
-    case digit.test(input):
-      return "digit,";
-    case letter.test(input):
-      return "letter,";
-    case uppercaseLetter.test(input):
-      return "uppercase,";
-    case digitRange.test(input):
-      res = input.match(digitRange);
-      return `digit from ${res[1]} to ${res[2]},`;
-    case letterRange.test(input):
-      res = input.match(letterRange);
-      return `letter from ${res[1]} to ${res[2]},`;
-    case noneOf.test(input):
-      return `raw \"${input}\"`;
-    default:
-      res = input.match(anyOf);
-      return `any of \"${res[1]}\",`;
+  let tokens = tokenizeCharset(input);
+
+  let text = [];
+
+  tokens.forEach(token => {
+    let res = token.text.match(range);
+
+    switch(token.tag) {
+      case "boundary":
+        break;
+      case "digitRange":
+        text.push(`digit from ${res[1]} to ${res[2]}`);
+        break;
+      case "lowercaseRange":
+        text.push(`letter from ${res[1]} to ${res[2]}`);
+        break;
+      case "uppercaseRange":
+        text.push(`uppercase letter from ${res[1]} to ${res[2]}`);
+        break;
+      case "remaining":
+        text.push(`one of "${token.text}"`);
+        break;
+      default:
+        text.push(token.tag);
+    }
+  });
+
+  if (text.length > 1) {
+    return "any of (" + text.join(", ") + ")";
   }
+
+  return text.join("");
 };
 
 const createTree = regex => {
   const tokens = tokenizeRegex(regex);
-  console.log(tokens);
 
   const root = new Node();
   let currentNode = root;
