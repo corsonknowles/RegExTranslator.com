@@ -1,0 +1,52 @@
+.dropdown-container {
+
+  width: 30%;
+  margin-left: 70%;
+
+  h2 {
+    cursor: pointer;
+  }
+
+  .dropdown-display {
+    transform: scale(0, 0);
+
+  }
+
+  .clicked {
+    transform: scale(1, 1);
+  }
+
+    .show {
+      .dropdown-list {
+        transform: scale(1, 1);
+      }
+    }
+
+    .dropdown-display {
+      float: left;
+      width: 100%;
+      background: white;
+      cursor: pointer;
+      border: solid 1px $border-normal;
+
+      .dropdown-list {
+        float: left;
+        width: 100%;
+        position: relative;
+        transition: -webkit-transform ease 250ms;
+        transition: transform ease 250ms;
+
+        .dropdown-item {
+          display: block;
+          font-family: Roboto, monospace;
+          width: 100%;
+          font-size: 14px;
+
+          &:hover {
+            background-color: $display-text-field-background;
+          }
+
+        }
+      }
+    }
+}
