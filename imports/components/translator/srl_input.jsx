@@ -8,8 +8,9 @@ import {
 } from '../../actions/srl_actions';
 import { receiveRegex } from '../../actions/regex_actions';
 
-const mapStateToProps = ({ srl: { srlText } }) => ({
-  srlText
+const mapStateToProps = ({ srl: { srlText, errors } }) => ({
+  srlText,
+  errors
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -31,10 +32,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       this.srlInputHandler = this.srlInputHandler.bind(this);
     }
 
-    componentDidMount() {
-      this.srlInputBox.select();
-    }
-
     componentWillReceiveProps(nextProps, nextState) {
       this.setState({ srlInputText: nextProps.srlText });
     }
@@ -50,33 +47,37 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         // Set regex to SRL-translated version and clear errors
         this.props.setRegex(regexText);
         this.props.clearSrlInputErrors();
-        this.srlInputBox.style.border = null;
       } catch(error) {
         // If SRL parsing fails, set errors
         this.props.receiveSrlErrors(['Invalid SRL syntax', error]);
-        this.srlInputBox.style.border = '1px solid Red';
       }
     }
 
     render() {
-      console.log(this.props);
+      let swapButton = <div />;
+      let klasses = [];
+      if (this.props.idx === 0) {
+        swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
+        klasses.push('editable');
+      }
+
+      if (this.props.errors.length > 0) {
+        klasses.push('error');
+      }
 
       return (
         <div className="translator-input-section">
           <header>
             <h2>Simple Regex Language</h2>
-            {
-              this.props.idx === 0 ? (
-                <button>Swap</button>
-              ) : (
-                <div></div>
-              )
-            }
+            {swapButton}
           </header>
+
           <textarea
-            ref={el => { this.srlInputBox = el; }}
             onChange={this.srlInputHandler}
             value={this.state.srlInputText}
+            disabled={this.props.idx !== 0}
+            autoFocus={this.props.idx === 0}
+            className={klasses.join(' ')}
           />
         </div>
       );
