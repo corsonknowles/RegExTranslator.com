@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { receiveSrl } from '../../actions/srl_actions';
 import {
   receiveRegex,
+  receiveRegexErrors,
+  clearRegexInputErrors,
   getRegexs,
   createRegex
 } from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown';
+import { regexToSrl } from '../../api/translator';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
@@ -15,8 +19,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   receiveRegex: input => dispatch(receiveRegex(input)),
+  receiveRegexErrors: errors => dispatch(receiveRegexErrors(errors)),
+  clearRegexInputErrors: () => dispatch(clearRegexInputErrors()),
   getRegexs: () => dispatch(getRegexs()),
-  createRegex: (data) => dispatch(createRegex(data))
+  createRegex: (data) => dispatch(createRegex(data)),
+  setSrl: srlText => dispatch(receiveSrl(srlText))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -25,7 +32,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       super(props);
 
       this.state = {
-        regexInputText: this.props.regexText
+        regexInputText: this.props.regexText,
+        regexSaved: false
       };
 
       this.regexInputHandler = this.regexInputHandler.bind(this);
@@ -41,8 +49,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     regexInputHandler(event) {
+      // Set regex slice
       this.props.receiveRegex(event.target.value);
-      // TODO: Run reverse translation here
+
+      try {
+        // NOTE: Error causing line
+        const srlText = regexToSrl(event.target.value);
+
+        // Set regex to reverse-translated version and clear errors
+        this.props.setSrl(srlText);
+        this.props.clearRegexInputErrors();
+      } catch(error) {
+        // If regex parsing fails, set errors
+        this.props.receiveRegexErrors(['Invalid regex syntax', error]);
+      }
+
     }
 
     regexSelector(pattern) {
@@ -65,7 +86,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       }
 
       let swapButton = <div />;
-      let klasses = ['regex-input-container'];
+      let klasses = [];
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
         klasses.push('editable');
@@ -82,19 +103,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             {swapButton}
           </header>
 
-          <div>
-            <textarea
-              onChange={this.regexInputHandler}
-              value={this.state.regexInputText}
-              disabled={this.props.idx !== 0}
-              autoFocus={this.props.idx === 0}
-              className={klasses.join(' ')}
-            />
-            <footer className={klasses.join(' ')}>
-              <img src="img/outline-star.png" />
-              <img src="img/yellow-star.png" />
-            </footer>
-          </div>
+          <textarea
+            onChange={this.regexInputHandler}
+            value={this.state.regexInputText}
+            disabled={this.props.idx !== 0}
+            autoFocus={this.props.idx === 0}
+            className={klasses.join(' ')}
+          />
+
+          <footer>
+            <img className="save" src={`img/${'outline'}-star.png`} />
+          </footer>
         </div>
       );
     }
