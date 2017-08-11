@@ -8,20 +8,11 @@ export const srlToRegex = (srl) => {
 };
 
 export const regexToSrl = regex => {
-  if (!regexIsValid(regex)) {
-    return "Invalid Regular Expression";
-  }
+  // throw error if invalid
+  new RegExp(regex);
+
   const tree = createTree(regex);
   return traverseTree(tree);
-};
-
-const regexIsValid = regex => {
-  try {
-    const test = new RegExp(regex);
-  } catch(e) {
-    return false;
-  }
-  return true;
 };
 
 /* Traverse the tree using DFS */
