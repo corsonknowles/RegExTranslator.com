@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
+import {
+  receiveRegex,
+  getRegexs,
+  createRegex
+} from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown';
 
 const mapStateToProps = (state) => ({
@@ -78,13 +82,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             {swapButton}
           </header>
 
-          <textarea
-            onChange={this.regexInputHandler}
-            value={this.state.regexInputText}
-            disabled={this.props.idx !== 0}
-            autoFocus={this.props.idx === 0}
-            className={klasses.join(' ')}
-          />
+
+          <div>
+            <textarea
+              onChange={this.regexInputHandler}
+              value={this.state.regexInputText}
+              disabled={this.props.idx !== 0}
+              autoFocus={this.props.idx === 0}
+              className={klasses.join(' ')}
+            />
+            <footer>
+              <img src="img/outline-star.png" />
+              <img src="img/yellow-star.png" />
+            </footer>
+          </div>
         </div>
       );
     }
