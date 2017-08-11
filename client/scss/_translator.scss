@@ -13,7 +13,7 @@
 
   padding: 5px;
 
-  box-sizing: border=box;
+  box-sizing: border-box;
 }
 
 .translator-input-section {
@@ -23,9 +23,15 @@
 
   box-sizing: border-box;
 
-  h2 {
-    font-family: Verdana;
-    margin: 5px;
+  header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+
+    h2 {
+      font-family: Verdana;
+      margin: 5px;
+    }
   }
 
   textarea {
