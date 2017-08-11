@@ -8,15 +8,9 @@
   flex-flow: row;
 }
 
-.translator-container {
-  width: 100%;
-
-  padding: 5px;
-
-  box-sizing: border-box;
-}
-
 .translator-input-section {
+  position: relative;
+
   width: 100%;
 
   padding: 5px;
@@ -52,61 +46,57 @@
     }
   }
 
-  div {
-    display: flex;
-    flex-flow: column;
+  textarea {
+    flex: 1;
+
+    padding: 5px 8px;
+    border: 1px solid $border-normal;
 
     height: 130px;
     width: 100%;
 
-    textarea {
-      flex: 1;
+    background-color: $display-text-field-background;
 
-      padding: 5px 8px;
-      border: 1px solid $border-normal;
+    font-size: 14px;
+    font-family: Monaco, monospace;
 
-      background-color: $display-text-field-background;
+    resize: none;
+  }
 
-      font-size: 14px;
-      font-family: Monaco, monospace;
+  .editable {
+    background-color: $input-text-field-background;
+    border: 1px solid $border-normal;
 
-      resize: none;
+    &:hover, &:focus {
+      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+      border: 1px solid $go-blue;
+    }
+  }
+
+  .error {
+    border: 1px solid Red;
+  }
+
+  footer {
+    position: absolute;
+
+    top: 148px;
+
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+
+    padding: 5px;
+
+    img.save {
+      height: auto;
+      width: 15px;
+
+      margin-right: 5px;
     }
 
-    .editable {
-      // box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
-      background-color: $input-text-field-background;
-      border: 1px solid $border-normal;
-    }
-
-    .error {
-      border: 1px solid Red;
-    }
-
-    footer {
-      display: flex;
-      flex-flow: row;
-      align-items: flex-start;
-
-      padding: 4px;
-      border: 1px solid $border-normal;
-
-      background-color: $display-text-field-background;
-
-      img {
-        height: auto;
-        width: 15px;
-
-        margin-right: 5px;
-      }
-    }
-
-    textarea.regex-input-container {
-      border-bottom: none;
-    }
-
-    footer.regex-input-container {
-      border-top: none;
+    img.save-click {
+      display: none;
     }
   }
 }
