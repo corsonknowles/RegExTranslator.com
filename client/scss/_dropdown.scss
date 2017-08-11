@@ -1,0 +1,46 @@
+.dropdown-container {
+
+  width: 35%;
+  margin-left: 58%;
+  margin-top: 20px;
+
+  h2 {
+    cursor: pointer;
+  }
+
+  .dropdown-display {
+    float: left;
+    background: white;
+    overflow-y: scroll;
+    cursor: pointer;
+    border: solid 1px $border-normal;
+    position: fixed;
+    overflow:hidden;
+    height:0;
+    -webkit-transition:height 200ms ease-in;
+    -moz-transition:height 200ms ease-in;
+    -o-transition:height 200ms ease-in;
+    transition:height 200ms ease-in;
+
+    .dropdown-list {
+      float: left;
+      position: relative;
+
+      .dropdown-item {
+        display: block;
+        font-family: Roboto, monospace;
+        font-size: 14px;
+        width: 100%;
+
+        &:hover {
+          background-color: $display-text-field-background;
+        }
+      }
+    }
+  }
+
+  .clicked {
+    height: 200px;
+  }
+
+}

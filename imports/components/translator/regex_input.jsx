@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 import { receiveSrl } from '../../actions/srl_actions';
 import {
@@ -10,6 +11,7 @@ import {
 } from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown';
 import { regexToSrl } from '../../api/translator';
+import SaveButton from './save_button.jsx';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
@@ -63,9 +65,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         // If regex parsing fails, set errors
         this.props.receiveRegexErrors(['Invalid regex syntax', error]);
       }
-
     }
 
+    //Set the regex input text to the selected prebuilt pattern
     regexSelector(pattern) {
       this.setState({ regexInputText: pattern });
     }
@@ -96,6 +98,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         klasses.push('error');
       }
 
+      let SaveComponent;
+      if (Meteor.userId()) {
+        SaveComponent = <SaveButton createRegex={this.props.createRegex}
+                                    pattern={this.state.regexInputText}
+                                    language="javascript"
+                                    userId={Meteor.userId}/>;
+      } else {
+        SaveComponent = <div className="save-bar"/>;
+      }
+
       return (
         <div className="translator-input-section">
           <header>
@@ -110,6 +122,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             autoFocus={this.props.idx === 0}
             className={klasses.join(' ')}
           />
+
+          {DropdownComponent}
+          {SaveComponent}
 
           <footer>
             <img className="save" src={`img/${'outline'}-star.png`} />
