@@ -33,7 +33,7 @@ class PatternDropdown extends React.Component {
 
     return (
       <div className="dropdown-container">
-        <h2 onClick={this.handleClick}>Prebuilt Patterns</h2>
+        <h2 onClick={this.handleClick}>Prebuilt Patterns ▼</h2>
         <div className={"dropdown-display" +
           (this.state.visible ? " clicked" : "")}>
           <div className="dropdown-list">
