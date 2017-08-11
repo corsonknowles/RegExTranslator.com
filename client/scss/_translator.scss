@@ -46,6 +46,10 @@
       background-color: $display-text-field-background;
       color: #444;
     }
+
+    div {
+      display: none;
+    }
   }
 
   div {
@@ -58,9 +62,6 @@
     textarea {
       flex: 1;
 
-      // height: 130px;
-      // width: 100%;
-
       padding: 5px 8px;
       border: 1px solid $border-normal;
 
@@ -70,16 +71,16 @@
       font-family: Monaco, monospace;
 
       resize: none;
+    }
 
-      &.editable {
-        box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
-        background-color: $input-text-field-background;
-        border: 1px solid $border-normal;
-      }
+    .editable {
+      // box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+      background-color: $input-text-field-background;
+      border: 1px solid $border-normal;
+    }
 
-      &.error {
-        border: 1px solid Red;
-      }
+    .error {
+      border: 1px solid Red;
     }
 
     footer {
@@ -93,14 +94,19 @@
       background-color: $display-text-field-background;
 
       img {
-        // position: absolute;
-
         height: auto;
         width: 15px;
 
         margin-right: 5px;
-        // top: 235px;
       }
+    }
+
+    textarea.regex-input-container {
+      border-bottom: none;
+    }
+
+    footer.regex-input-container {
+      border-top: none;
     }
   }
 }
