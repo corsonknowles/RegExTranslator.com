@@ -28,9 +28,23 @@
     flex-flow: row;
     justify-content: space-between;
 
+    padding-right: 0;
+
     h2 {
       font-family: Verdana;
       margin: 5px;
+    }
+
+    button {
+      padding: 5px 8px;
+      border: 1px solid LightGray;
+      border-radius: 2px;
+
+      font-family: Arial;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: $display-text-field-background;
+      color: #444;
     }
   }
 
@@ -47,20 +61,17 @@
     font-family: Monaco, monospace;
 
     resize: none;
-
-    &:hover {
-      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
-      background-color: $input-text-field-background;
-      border: 1px solid $border-normal;
-    }
-
-    &:focus {
-      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
-      background-color: $input-text-field-background;
-      border: 1px solid $go-blue;
-    }
   }
 
+  textarea.editable {
+    box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+    background-color: $input-text-field-background;
+    border: 1px solid $border-normal;
+  }
+
+  textarea.error {
+    border: 1px solid Red;
+  }
 }
 
 .pattern-box {

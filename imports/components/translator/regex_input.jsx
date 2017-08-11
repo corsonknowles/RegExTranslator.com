@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
-import PatternDropdown from './pattern_dropdown.jsx';
+import PatternDropdown from './pattern_dropdown';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
-  regexs: state.regexs
+  regexs: state.regexs,
+  errors: state.regex.errors
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -49,23 +50,41 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // we've received our regexs)
       let DropdownComponent;
       if (Object.keys(this.props.regexs).length > 0) {
-        DropdownComponent = <PatternDropdown
-                            regexs={this.props.regexs}
-                            regexSelector={this.regexSelector} />;
+        DropdownComponent = (
+          <PatternDropdown
+            regexs={this.props.regexs}
+            regexSelector={this.regexSelector}
+          />
+        );
       } else {
         DropdownComponent = <div />;
       }
 
+      let swapButton = <div />;
+      let klasses = [];
+      if (this.props.idx === 0) {
+        swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
+        klasses.push('editable');
+      }
+
+      if (this.props.errors.length > 0) {
+        klasses.push('error');
+      }
+
       return (
-        <div className="translator-container">
-          <div className="translator-input-section">
+        <div className="translator-input-section">
+          <header>
             <h2>Regular Expression</h2>
-            <textarea
-              onChange={this.regexInputHandler}
-              value={this.state.regexInputText}
-            />
-          </div>
-          {DropdownComponent}
+            {swapButton}
+          </header>
+
+          <textarea
+            onChange={this.regexInputHandler}
+            value={this.state.regexInputText}
+            disabled={this.props.idx !== 0}
+            autoFocus={this.props.idx === 0}
+            className={klasses.join(' ')}
+          />
         </div>
       );
     }
