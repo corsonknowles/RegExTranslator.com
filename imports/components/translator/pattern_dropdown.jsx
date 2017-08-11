@@ -3,6 +3,17 @@ import React from 'react';
 class PatternDropdown extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { visible: false };
+    this.show = this.show.bind(this);
+    this.hide = this.hide.bind(this);
+  }
+
+  show() {
+    this.setState({ visisble: true });
+  }
+
+  hide() {
+    this.setState({ visible: false });
   }
 
   render() {
@@ -17,7 +28,7 @@ class PatternDropdown extends React.Component {
 
     return (
       <div className="pattern-container">
-          <h2>Preset Patterns</h2>
+          <h2>Prebuilt Patterns</h2>
           <div className="pattern-box">
             {patternItems}
           </div>

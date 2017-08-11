@@ -10,10 +10,7 @@
 
 .translator-container {
   width: 100%;
-
-  padding: 5px;
-
-  box-sizing: border=box;
+  box-sizing: border-box;
 }
 
 .translator-input-section {
@@ -55,6 +52,14 @@
     }
   }
 
+}
+
+.pattern-container {
+  padding: 5px;
+
+  h2 {
+    margin: 5px;
+  }
 }
 
 .pattern-box {

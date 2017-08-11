@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown.jsx';
@@ -40,8 +41,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // TODO: Run reverse translation here
     }
 
+    //Set the regex input text to the selected prebuilt pattern
     regexSelector(pattern) {
       this.setState({ regexInputText: pattern });
+    }
+
+    //Save a pattern from the regex input text in the DB. Associate
+    //the pattern with the current user
+    saveRegex(name, pattern, language) {
+      this.props.createRegex({
+        name: name,
+        pattern: this.state.regexInputText,
+        language: "javascript",
+        userId: Meteor.userId()
+      });
     }
 
     render() {
