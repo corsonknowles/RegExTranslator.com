@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown.jsx';
+import SaveButton from './save_button.jsx';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
@@ -46,17 +47,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       this.setState({ regexInputText: pattern });
     }
 
-    //Save a pattern from the regex input text in the DB. Associate
-    //the pattern with the current user
-    saveRegex(name, pattern, language) {
-      this.props.createRegex({
-        name: name,
-        pattern: this.state.regexInputText,
-        language: "javascript",
-        userId: Meteor.userId()
-      });
-    }
-
     render() {
       //Initialize a variable to hold our PatternDropdown component (if
       // we've received our regexs)
@@ -69,6 +59,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         DropdownComponent = <div />;
       }
 
+      let SaveComponent;
+      if (Meteor.userId()) {
+        SaveComponent = <SaveButton createRegex={this.props.createRegex}
+                                    pattern={this.state.regexInputText}
+                                    language="javascript"
+                                    userId={Meteor.userId}/>;
+      } else {
+        SaveComponent = <div className="save-bar"/>;
+      }
+
       return (
         <div className="translator-container">
           <div className="translator-input-section">
@@ -77,6 +77,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
               onChange={this.regexInputHandler}
               value={this.state.regexInputText}
             />
+            {SaveComponent}
           </div>
           {DropdownComponent}
         </div>

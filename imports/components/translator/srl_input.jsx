@@ -62,11 +62,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       return (
         <div className="translator-input-section">
           <h2>Simple Regex Language</h2>
-          <textarea
-            ref={el => { this.srlInputBox = el; }}
-            onChange={this.srlInputHandler}
-            value={this.state.srlInputText}
-          />
+          <div className="text-box">
+            <textarea
+              ref={el => { this.srlInputBox = el; }}
+              onChange={this.srlInputHandler}
+              value={this.state.srlInputText}
+            />
+          </div>
         </div>
       );
     }
