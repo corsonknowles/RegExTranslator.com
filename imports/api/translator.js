@@ -1,5 +1,7 @@
 import SRL from 'srl';
 
+import { tokenizeRegex } from './tokenize';
+
 export const srlToRegex = (srl) => {
   const query = new SRL(srl);
   return query.get().toString();
@@ -11,8 +13,7 @@ export const regexToSrl = regex => {
   }
   const tree = createTree(regex);
   console.log(tree);
-  const translation = translate(tree);
-  return translation.join(" ");
+  return traverseTree(tree);
 };
 
 const regexIsValid = regex => {
@@ -24,63 +25,88 @@ const regexIsValid = regex => {
   return true;
 };
 
-const translate = root => {
-  return dfs(root);
-};
-
-const dfs = node => {
+/* Traverse the tree DFS style */
+const traverseTree = node => {
   let text = [];
+  let orGroup = false;
 
-  node.visited = true;
+  node.visited = true; // needed?
   node.children.forEach(child => {
-    if (typeof child === "string") {
-      text.push(mapToSrl(child));
-    } else if (!child.visited) {
-      switch (child.type) {
-        case "group":
-          text.push("capture (" + dfs(child) + ")");
-          break;
-        case "nonCapturingGroup":
-          text.push(dfs(child));
-          break;
+    if (child.tag) {
+      switch (child.tag) {
         case "charset":
-          text.push(dfs(child));
+          text.push(charset(child.text));
           break;
         case "count":
-          text.push(dfs(child));
+          text.push(count(child.text));
           break;
+        case "charData":
+          text.push(child.text);
+          break;
+        case "or":
+          orGroup = true;
+          break;
+        case "literal":
+          text.push(escaped(child.text));
+          break;
+        case "quantifier":
+          text.push(quantifier(child.text));
+          break;
+        case "stringBoundary":
+          text.push(boundary(child.text));
+          break;
+        case "anyChar":
+          text.push("anything");
+          break;
+        default:
+          text.push("Unknown tag: " + child.tag);
+          console.warn(child);
+      }
+    } else {
+      switch (child.type) {
+        case "root":
+          text.push("root: " + traverseTree(child));
+          break;
+        case "nonCapture":
+          text.push(traverseTree(child));
+          break;
+        case "capture":
+          text.push("capture (" + traverseTree(child) + ")");
+          break;
+        default:
+          text.push("unknown node type: " + child.type);
+          console.warn(node);
       }
     }
   });
 
-  return text;
+  if (orGroup) {
+    return "any of (" + text.join(", ") + ")";
+  }
+
+  return text.join(" ");
 };
 
-const anyCharset = /^\[.*\]$/;
-const anyCount = /^\{[0-9,]*\}$/;
-
-const mapToSrl = input => {
-  switch(true) {
-    case /^$/.test(input):
-      return null; // ignore empty
-    case /^\.$/.test(input):
-      return "anything";
-    case /^\^$/.test(input):
+const boundary = input => {
+  switch (input) {
+    case "^":
       return "begin with";
-    case anyCount.test(input):
-      return count(input);
-    case anyCharset.test(input):
-      return charset(input);
-    case /^\*$/.test(input):
-      return "never or more";
-    case /^\+$/.test(input):
-      return "once or more";
-    case /^\?$/.test(input):
-      return "optional";
-    case /^\$$/.test(input):
+    case "$":
       return "must end";
     default:
-      return escaped(input);
+  }
+};
+
+const quantifier = input => {
+  switch (input) {
+    case "+":
+      return "once or more";
+    case "*":
+      return "never or more";
+    case "?":
+      return "optional";
+    default:
+      return "unknown quantifier: " + input;
   }
 };
 
@@ -150,84 +176,67 @@ const letter = /^\[a-z\]$/;
 const uppercaseLetter = /^\[A-Z\]$/;
 const digitRange = /^\[(\d)-(\d)\]$/;
 const letterRange = /^\[(\D)-(\D)\]$/;
-const noRange = /^\[([^\]]*)\]$/;
+const noneOf = /\[\^(.*)\]/;
+const anyOf = /^\[([^\]]*)\]$/;
+
+/*
+regex: [a-zA-Z0-9%$]
+expanded: (?:[a-z]|[A-Z]|[0-9]|[%$])
+[letter, uppercase, digit, one of "%$"].join(", ")
+SRL: any of (letter, uppercase, digit, one of "%$")
+
+regex: [a-z]
+
+*/
+
+/* (?:[a-z]|[A-Z]|[0-9]|[%$]) */
 
 const charset = input => {
   let res;
   switch(true) {
     case digit.test(input):
-      return "digit";
+      return "digit,";
     case letter.test(input):
-      return "letter";
+      return "letter,";
     case uppercaseLetter.test(input):
-      return "uppercase letter";
+      return "uppercase,";
     case digitRange.test(input):
       res = input.match(digitRange);
-      return `digit from ${res[1]} to ${res[2]}`;
+      return `digit from ${res[1]} to ${res[2]},`;
     case letterRange.test(input):
       res = input.match(letterRange);
-      return `letter from ${res[1]} to ${res[2]}`;
+      return `letter from ${res[1]} to ${res[2]},`;
+    case noneOf.test(input):
+      return `raw \"${input}\"`;
     default:
-      res = input.match(noRange);
-      return `any of \"${res[1]}\"`;
+      res = input.match(anyOf);
+      return `any of \"${res[1]}\",`;
   }
 };
 
 const createTree = regex => {
+  const tokens = tokenizeRegex(regex);
+  console.log(tokens);
+
   const root = new Node();
-
   let currentNode = root;
-  let depth = 0;
-  let escapeNext = false;
 
-  for (let i = 0; i < regex.length; i++) {
-    let char = regex[i];
-
-    // if escapeNext, always add char as text
-    if (escapeNext) {
-      currentNode.addText(char);
-      escapeNext = false;
-
-    } else {
-      switch(char) {
-        case '(':
-          if (regex[i + 1] === '?' && regex[i + 2] === ':') {
-            currentNode = currentNode.addChild("nonCapturingGroup");
-            i += 2; // skip next 2 characters
-          } else {
-            currentNode = currentNode.addChild("group");
-          }
-          break;
-        case ')':
-          currentNode = currentNode.parent;
-          break;
-        case '[':
-          currentNode = currentNode.addChild("charset");
-          currentNode.addText('[');
-          break;
-        case ']':
-          currentNode.addText(']');
-          currentNode = currentNode.parent;
-          break;
-        case '{':
-          currentNode = currentNode.addChild("count");
-          currentNode.addText('{');
-          break;
-        case '}':
-          currentNode.addText('}');
-          currentNode = currentNode.parent;
-          break;
-        default:
-          if (char === '\\') {
-            escapeNext = true;
-            currentNode = currentNode.addTextChild(char);
-          } else {
-            currentNode.addText(char);
-          }
-      }
+  tokens.forEach(token => {
+    switch(token.tag) {
+      case "nonCapture":
+        currentNode = currentNode.addChildNode("nonCapture");
+        break;
+      case "capture":
+        currentNode = currentNode.addChildNode("capture");
+        break;
+      case "groupEnd":
+        currentNode = currentNode.parent;
+        break;
+      default:
+        token.children = [];
+        currentNode.addChildObj(token);
     }
-
-  }
+  });
 
   return root;
 };
@@ -236,27 +245,20 @@ class Node {
   constructor(parent = null) {
     this.parent = parent;
     this.children = [];
+    this.type = "root"; // default type is root
   }
 
-  addChild(type = "text") {
+  /* Adds a new Node child. For things which may contain multiple regex parts */
+  addChildNode(type = "text") {
     let newChild = new Node(this);
     newChild.type = type;
     this.children.push(newChild);
     return newChild;
   }
 
-  /* create a new text child with the given text */
-  addTextChild(text = "") {
-    this.children.push(text);
+  /* Adds a new JS object child. For things which don't contain other regex parts */
+  addChildObj(obj) {
+    this.children.push(obj);
     return this;
-  }
-
-  /* Add text to last text child or create a new one */
-  addText(text) {
-    if (typeof this.children[this.children.length - 1] === "string") {
-      this.children[this.children.length - 1] += text;
-    } else {
-      this.addTextChild(text);
-    }
   }
 }
