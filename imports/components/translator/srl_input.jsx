@@ -72,13 +72,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             {swapButton}
           </header>
 
-          <textarea
-            onChange={this.srlInputHandler}
-            value={this.state.srlInputText}
-            disabled={this.props.idx !== 0}
-            autoFocus={this.props.idx === 0}
-            className={klasses.join(' ')}
-          />
+          <div>
+            <textarea
+              onChange={this.srlInputHandler}
+              value={this.state.srlInputText}
+              disabled={this.props.idx !== 0}
+              autoFocus={this.props.idx === 0}
+              className={klasses.join(' ')}
+            />
+          </div>
         </div>
       );
     }

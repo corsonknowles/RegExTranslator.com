@@ -48,29 +48,60 @@
     }
   }
 
-  textarea {
+  div {
+    display: flex;
+    flex-flow: column;
+
     height: 130px;
     width: 100%;
 
-    padding: 5px 8px;
-    border: 1px solid $border-normal;
+    textarea {
+      flex: 1;
 
-    background-color: $display-text-field-background;
+      // height: 130px;
+      // width: 100%;
 
-    font-size: 14px;
-    font-family: Monaco, monospace;
+      padding: 5px 8px;
+      border: 1px solid $border-normal;
 
-    resize: none;
-  }
+      background-color: $display-text-field-background;
 
-  textarea.editable {
-    box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
-    background-color: $input-text-field-background;
-    border: 1px solid $border-normal;
-  }
+      font-size: 14px;
+      font-family: Monaco, monospace;
 
-  textarea.error {
-    border: 1px solid Red;
+      resize: none;
+
+      &.editable {
+        box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
+        background-color: $input-text-field-background;
+        border: 1px solid $border-normal;
+      }
+
+      &.error {
+        border: 1px solid Red;
+      }
+    }
+
+    footer {
+      display: flex;
+      flex-flow: row;
+      align-items: flex-start;
+
+      padding: 4px;
+      border: 1px solid $border-normal;
+
+      background-color: $display-text-field-background;
+
+      img {
+        // position: absolute;
+
+        height: auto;
+        width: 15px;
+
+        margin-right: 5px;
+        // top: 235px;
+      }
+    }
   }
 }
 
