@@ -65,7 +65,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       }
 
       let swapButton = <div />;
-      let klasses = [];
+      let klasses = ['regex-input-container'];
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
         klasses.push('editable');
@@ -82,7 +82,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             {swapButton}
           </header>
 
-
           <div>
             <textarea
               onChange={this.regexInputHandler}
@@ -91,7 +90,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
               autoFocus={this.props.idx === 0}
               className={klasses.join(' ')}
             />
-            <footer>
+            <footer className={klasses.join(' ')}>
               <img src="img/outline-star.png" />
               <img src="img/yellow-star.png" />
             </footer>
