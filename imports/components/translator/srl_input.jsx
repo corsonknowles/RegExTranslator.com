@@ -59,9 +59,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     render() {
+      console.log(this.props);
+
       return (
         <div className="translator-input-section">
-          <h2>Simple Regex Language</h2>
+          <header>
+            <h2>Simple Regex Language</h2>
+            {
+              this.props.idx === 0 ? (
+                <button>Swap</button>
+              ) : (
+                <div></div>
+              )
+            }
+          </header>
           <textarea
             ref={el => { this.srlInputBox = el; }}
             onChange={this.srlInputHandler}
