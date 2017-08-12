@@ -34,16 +34,16 @@ The app's main page is roughly modeled on [Google Translate](https://translate.g
 
 ## Technologies
 
-RegexTranslator.com is a web application built on the Meteorjs platform, an implementation of Nodejs.
+RegexTranslator.com is a web application built on the Meteor platform, an implementation of Node.js.
 
 The database is MongoDB, specifically using mLab for deployment, and the frontend will be developed in React with a Redux cycle.
 
 Technologies used:
 
 - Node.js with Meteor.js
-- MongoDB & mLab MongoDB
-- React
-- Redux
+- MongoDB (developer side) & mLab MongoDB (deployment)
+- React.js
+- Redux.js
 - SRL
 
 ### External APIS
@@ -63,10 +63,10 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 
 ## Members and Responsibilities
 
-- David Corson-Knowles
-- Adam Jacobson
-- Rod Shokrian
-- Andy Booth
+- David Corson-Knowles, Server, Coordination, Libraries, SSL, OAuth, UX, Analytics
+- Adam Jacobson, RegEx to SRL, a new technology
+- Rod Shokrian, OAuth, Personalization, RegEx Pattern Library, Redux, Database
+- Andy Booth, SASS, Redux, Integration, SRL to RegEx, Swapping, UI 
 
 ## Timeline
 
