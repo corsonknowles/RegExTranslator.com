@@ -15,6 +15,7 @@
     "mongodb": "^2.2.31",
     "react": "^15.6.1",
     "react-addons-pure-render-mixin": "^15.6.0",
+    "react-autocomplete-input": "^1.0.3",
     "react-dom": "^15.6.1",
     "react-modal": "^2.2.2",
     "react-redux": "^5.0.5",
