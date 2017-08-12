@@ -5,7 +5,7 @@ const Regexs = new Mongo.Collection('regexs');
 
 Meteor.methods({
   'regexs.fetch'() { return Regexs.find({
-    userId: {$exists: false}
+    $or: [ { userId: {$exists: false} }, { userId: { $eq: Meteor.userId()} } ]
     }).fetch(); },
   'regexs.insert'(data) { return Regexs.insert(data); },
 });

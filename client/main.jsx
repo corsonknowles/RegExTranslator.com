@@ -14,6 +14,5 @@ window.regexToSrl = regexToSrl;
 
 Meteor.startup(() => {
   const store = configureStore();
-
   render(<App store={store} />, document.getElementById('root'));
 });

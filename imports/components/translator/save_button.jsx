@@ -16,13 +16,12 @@ class SaveButton extends React.Component {
   //the pattern with the current user.
   //Language is set to Javascript by default (for now)
   handleSubmit() {
-    debugger;
     this.props.createRegex({
                             name: this.state.name,
                             pattern: this.props.pattern,
                             language: this.props.language,
                             userId: Meteor.userId()
-    });
+    }).then(this.props.getRegexs());
   }
 
   handleClick() {
