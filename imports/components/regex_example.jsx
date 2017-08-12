@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ regex: { regexText } }) => ({
-  regexText
+const mapStateToProps = ({ regex: { regexText, regexFlags } }) => ({
+  regexText,
+  regexFlags
 });
 
 const mapDispatchToProps = dispatch => ({});
@@ -12,7 +13,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     constructor(props) {
       super(props);
 
-      let textContent = "Thank you for your interest in RegExTranslator.\nYou can edit this text to see example matches for your regular expressions below.\n\nHere are some common text types you can explore matches with:\nthe lowercase letters [a-z] group abcdefghijklmnopqrstuvwxyz\nand the capital letters [A-Z] ABCDEFGHIJKLMNOPQRSTUVWXYZ\ndigits [0-9] 0123456789\ncommon keyboard special characters [!-/] !\"#$%&\'()*+,-./\n\nCommand-Z will undo typing and command-Y will redo typing in most browsers.";
+      let textContent = `Thank you for your interest in RegExTranslator.\nYou can edit this text to see example matches for your regular expressions below.\n\nHere are some common text types you can explore matches with:\nthe lowercase letters [a-z] group abcdefghijklmnopqrstuvwxyz\nand the capital letters [A-Z] ABCDEFGHIJKLMNOPQRSTUVWXYZ\ndigits [0-9] 0123456789\ncommon keyboard special characters [!-/] !\"#$%&\'()*+,-./\n\nCommand-Z will undo typing and command-Y will redo typing in most browsers.\n\nGuide to Special Characters in RegEx: . matches any single character, except line terminators \\n (newline) \\r (carriage return) \\u2028 (unicode line separator) \\u2029 (unicode paragraph separator) \n\n \\d matches any digit. [0-9] works identically.\n\n \\w matches any alphanumeric character, including underscores. Works the same as [A-Za-z0-9_] \n\n \\W  matches any character that is not a word character. Same as [^A-Za-z0-9_] \n\n \\s matches a single whitespace character. \n\n \\S matches a single character other than whitespace. \n\n \\t matches a horizontal tab character \n\n \\r matches a carriage return. \n\n \\n matches a new line or linefeed. \n\n \\ a backslash is for characters that usually have special handling, you can escape that character and it will be treated literally. For example \\d would match a digit, while \\\\d will match a string that has a backslash followed by the letter d. \n\n x|y the pipe is an or operator in RegEx, it will match either x or y \n\n ^ the caret means start with, it matches the beginning of input. \n\n $ is the complement of the caret and indicates the string to be matched must end. \n\n \b matches a word boundary. It is most often used to insert characters before or after words. It has no length, since it is a concept rather than a character. \n\n \B matches a non-word boundary. \n\n (x) surrounding part of your query in quotes creates a capturing group. It matches x and remembers the match. \n\n Currently unsupported characters \\1 referencing a capturing group \n\n \\v vertical tab [\\b] backspace \\0 matches NUL \\cX matches ctrl-X \\uDDDD matches a given unicode character \\f matches a form feed `;
 
       this.state = {
         exampleText: textContent,
@@ -22,25 +23,22 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
       this.handleReplaceInputChange = this.handleReplaceInputChange.bind(this);
-      this.handleFunctionButtonClick = this.handleFunctionButtonClick.bind(this);
+      this.handleFunctionButtonClick =
+        this.handleFunctionButtonClick.bind(this);
     }
 
     componentDidUpdate() {
       const {
         resultsBox,
-        props: { regexText },
+        props: { regexText, regexFlags },
         state: { exampleText, currentTransferFunction }
       } = this;
 
-      // Create regex to match with
-      // NOTE: Global flag set
-      // TODO: Set flags with GUI
-      const flags = ['g'];
 
+      let regex;
       try {
-        const regex = new RegExp(regexText, flags.join(''));
-      } catch(error) {
-        //
+        // Create regex to match with
+        regex = new RegExp(regexText, regexFlags.join(''));
       } finally {
         // Set results box content
         resultsBox.innerHTML = this[currentTransferFunction](regex);
