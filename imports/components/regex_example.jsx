@@ -34,6 +34,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         state: { exampleText, currentTransferFunction }
       } = this;
 
+
       let regex;
       try {
         // Create regex to match with
