@@ -8,7 +8,6 @@ export const srlToRegex = (srl) => {
 };
 
 export const regexToSrl = regex => {
-
   // throw error if invalid
   new RegExp(regex);
 
@@ -229,7 +228,6 @@ class Node {
     this.children.push(newChild);
     return newChild;
   }
-
 
   /* Adds a new JS object child. For things which don't contain other regex parts */
   addChildObj(obj) {
