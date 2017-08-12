@@ -75,8 +75,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
 
     render() {
-
-
       //Initialize a variable to hold our PatternDropdown component (if
       // we've received our regexs)
       let DropdownComponent;
@@ -128,10 +126,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
           {DropdownComponent}
           {SaveComponent}
-
-          <footer>
-            <img className="save" src={`img/${'outline'}-star.png`} />
-          </footer>
         </div>
       );
     }

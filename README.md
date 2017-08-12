@@ -68,6 +68,7 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 - Rod Shokrian, OAuth, Personalization, RegEx Pattern Library, Redux, Database
 - Andy Booth, SASS, Redux, Integration, SRL to RegEx, Swapping, UI 
 
+
 ## Timeline
 
 ### Day 1 - Saturday August 5th
@@ -82,7 +83,7 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 ### Day 2 - Sunday August 6th
 -Adam: Basic framework for Regex to SRL translations. Not all functions supported.
 
--Andrew: Hook SRL translation into Redux cycle and begin styling
+-Andrew: Hook SRL translation into Redux cycle and begin styling,
 [configure papertrail](https://elements.heroku.com/addons/papertrail)
 
 -Dave: Create Favicon, provision database, begin modal for UI of auth
