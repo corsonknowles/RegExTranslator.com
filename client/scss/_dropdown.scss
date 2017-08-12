@@ -35,6 +35,15 @@
       float: left;
       position: relative;
 
+      .dropdown-header {
+        width: 100%;
+        padding-top: 10px;
+        margin-bottom: 5px;
+        text-align: center;
+        border-bottom: solid 1px;
+
+      }
+
       .dropdown-item {
         display: block;
         font-family: Roboto, monospace;
