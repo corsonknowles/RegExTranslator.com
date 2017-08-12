@@ -1,6 +1,7 @@
 import Regexs from '../api/regexs.js';
 
 export const RECEIVE_REGEX = 'RECEIVE_REGEX';
+export const RECEIVE_REGEX_FLAGS = 'RECEIVE_REGEX_FLAGS';
 export const RECEIVE_REGEX_ERRORS = 'RECEIVE_REGEX_ERRORS';
 export const GET_REGEXS = 'GET_REGEXS';
 export const CREATE_REGEX = 'CREATE_REGEX';
@@ -9,6 +10,11 @@ export const receiveRegex = input => ({
   type: RECEIVE_REGEX,
   input
 });
+
+export const receiveRegexFlags = flags => ({
+  type: RECEIVE_REGEX_FLAGS,
+  flags
+})
 
 export const receiveRegexErrors = errors => ({
   type: RECEIVE_REGEX_ERRORS,
