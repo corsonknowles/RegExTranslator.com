@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Accounts } from 'meteor/accounts-base';
+import { Accounts } from 'meteor/accounts-base';
 
 class PatternDropdown extends React.Component {
   constructor(props) {
