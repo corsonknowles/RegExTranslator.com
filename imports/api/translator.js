@@ -229,10 +229,6 @@ class Node {
     return newChild;
   }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 82bd71f949dd348db75e1acd0aabe56f21181efb
   /* Adds a new JS object child. For things which don't contain other regex parts */
   addChildObj(obj) {
     this.children.push(obj);
