@@ -1,27 +1,50 @@
 .save-bar {
   position: absolute;
   left: 0px;
-  bottom: 0px;
+  bottom: 50px;
   padding: 15px;
   transform: scale(1, 1);
 
-  .fa-bookmark-o {
+  .fa-star-o {
     cursor: pointer;
+    padding-bottom: 3px;
+    color: $go-blue;
   }
 
   .save-input {
     width: 0;
     overflow: hidden;
     position: fixed;
+    max-height: 25px;
     bottom: 15px;
+    -webkit-transition:width 300ms ease-in;
+    -moz-transition:width 300ms ease-in;
+    -o-transition:width 300ms ease-in;
+    transition:width 300ms ease-in;
   }
 
   .name-input {
     display: inline;
+    margin-left: 10px;
+    padding-left: 10px;
+    background-color: white;
+    height: 25px;
+    background-color: #E0E0E0;
+    border-radius: 2px;
+  }
+
+  .name-input::placeholder {
+    color: #606060;
   }
 
   .save-regex {
     display: inline;
+    margin-left: 10px;
+    background-color: $go-blue;
+    border: 0.5px solid rgb(48, 121, 237);
+    border-radius: 2px;
+    padding: 2px 10px 2px 10px;
+    color: $go-white;
   }
 
   .clicked {

@@ -124,8 +124,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             className={klasses.join(' ')}
           />
 
-          {DropdownComponent}
           {SaveComponent}
+          {DropdownComponent}
         </div>
       );
     }
