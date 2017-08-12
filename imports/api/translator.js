@@ -71,8 +71,30 @@ const traverseTree = node => {
   return text.join(" ");
 };
 
-const combineLiterals = text => {
+const literally = /literally "(.*)"/;
 
+const combineLiterals = text => {
+  let combined = [];
+  let lastLiteral;
+  text.forEach((part, idx) => {
+    let current = part.match(literally);
+    if (current) {
+      if (!lastLiteral) {
+        lastLiteral = idx;
+      }
+      let previous = text[idx - 1].match(literally);
+      if (previous) {
+        combined[lastLiteral] = `literally "${previous[1] + current[1]}"`;
+      } else {
+        combined[lastLiteral] = `literally "${current[1]}"`;
+      }
+    } else {
+      lastLiteral = null;
+      combined.push(part);
+    }
+  });
+
+  return combined;
 };
 
 const boundary = input => {
