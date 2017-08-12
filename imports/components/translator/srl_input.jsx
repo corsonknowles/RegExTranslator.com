@@ -6,17 +6,22 @@ import {
   receiveSrlErrors,
   clearSrlInputErrors
 } from '../../actions/srl_actions';
-import { receiveRegex } from '../../actions/regex_actions';
+import {
+  receiveRegex,
+  receiveRegexFlags
+} from '../../actions/regex_actions';
 
-const mapStateToProps = ({ srl: { srlText } }) => ({
-  srlText
+const mapStateToProps = ({ srl: { srlText, errors } }) => ({
+  srlText,
+  errors
 });
 
 const mapDispatchToProps = dispatch => ({
   receiveSrl: input => dispatch(receiveSrl(input)),
   receiveSrlErrors: errors => dispatch(receiveSrlErrors(errors)),
   clearSrlInputErrors: () => dispatch(clearSrlInputErrors()),
-  setRegex: regexText => dispatch(receiveRegex(regexText))
+  setRegex: regexText => dispatch(receiveRegex(regexText)),
+  setRegexFlags: flags => dispatch(receiveRegexFlags(flags))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -31,10 +36,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       this.srlInputHandler = this.srlInputHandler.bind(this);
     }
 
-    componentDidMount() {
-      this.srlInputBox.select();
-    }
-
     componentWillReceiveProps(nextProps, nextState) {
       this.setState({ srlInputText: nextProps.srlText });
     }
@@ -45,27 +46,47 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       try {
         // NOTE: Error causing line
-        const regexText = new Srl(event.target.value).getRawRegex();
+        const regex = new Srl(event.target.value);
+
+        // Get regex data for state
+        const regexText = regex.getRawRegex();
+        const flags = regex._modifiers.split('');
 
         // Set regex to SRL-translated version and clear errors
         this.props.setRegex(regexText);
+        this.props.setRegexFlags(flags);
         this.props.clearSrlInputErrors();
-        this.srlInputBox.style.border = null;
       } catch(error) {
         // If SRL parsing fails, set errors
         this.props.receiveSrlErrors(['Invalid SRL syntax', error]);
-        this.srlInputBox.style.border = '1px solid Red';
       }
     }
 
     render() {
+      let swapButton = <div />;
+      let klasses = [];
+      if (this.props.idx === 0) {
+        swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
+        klasses.push('editable');
+      }
+
+      if (this.props.errors.length > 0) {
+        klasses.push('error');
+      }
+
       return (
         <div className="translator-input-section">
-          <h2>Simple Regex Language</h2>
+          <header>
+            <h2>Simple Regex Language</h2>
+            {swapButton}
+          </header>
+
           <textarea
-            ref={el => { this.srlInputBox = el; }}
             onChange={this.srlInputHandler}
             value={this.state.srlInputText}
+            disabled={this.props.idx !== 0}
+            autoFocus={this.props.idx === 0}
+            className={klasses.join(' ')}
           />
         </div>
       );

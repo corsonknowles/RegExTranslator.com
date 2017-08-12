@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import exampleContent from '../webcopy/example_content';
 
-const mapStateToProps = ({ regex: { regexText } }) => ({
-  regexText
+const mapStateToProps = ({ regex: { regexText, regexFlags } }) => ({
+  regexText,
+  regexFlags
 });
 
 const mapDispatchToProps = dispatch => ({});
@@ -12,34 +14,34 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     constructor(props) {
       super(props);
 
-      let textContent = "Thank you for your interest in RegExTranslator.\nYou can edit this text to see example matches for your regular expressions below.\n\nHere are some common text types you can explore matches with:\nthe lowercase letters [a-z] group abcdefghijklmnopqrstuvwxyz\nand the capital letters [A-Z] ABCDEFGHIJKLMNOPQRSTUVWXYZ\ndigits [0-9] 0123456789\ncommon keyboard special characters [!-/] !\"#$%&\'()*+,-./\n\nCommand-Z will undo typing and command-Y will redo typing in most browsers.";
-
       this.state = {
-        exampleText: textContent,
+        exampleText: exampleContent,
         currentTransferFunction: 'match',
         replaceText: ', '
       };
 
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
       this.handleReplaceInputChange = this.handleReplaceInputChange.bind(this);
-      this.handleFunctionButtonClick = this.handleFunctionButtonClick.bind(this);
+      this.handleFunctionButtonClick =
+        this.handleFunctionButtonClick.bind(this);
     }
 
     componentDidUpdate() {
       const {
         resultsBox,
-        props: { regexText },
+        props: { regexText, regexFlags },
         state: { exampleText, currentTransferFunction }
       } = this;
 
-      // Create regex to match with
-      // NOTE: Global flag set
-      // TODO: Set flags with GUI
-      const flags = ['g'];
-      const regex = new RegExp(regexText, flags.join(''));
 
-      // Set results box content
-      resultsBox.innerHTML = this[currentTransferFunction](regex);
+      let regex;
+      try {
+        // Create regex to match with
+        regex = new RegExp(regexText, regexFlags.join(''));
+      } finally {
+        // Set results box content
+        resultsBox.innerHTML = this[currentTransferFunction](regex);
+      }
     }
 
     handleFunctionButtonClick(event) {

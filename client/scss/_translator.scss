@@ -8,32 +8,52 @@
   flex-flow: row;
 }
 
-.translator-container {
-  width: 100%;
-
-  padding: 5px;
-
-  box-sizing: border=box;
-}
-
 .translator-input-section {
+  position: relative;
+
   width: 100%;
 
   padding: 5px;
 
   box-sizing: border-box;
 
-  h2 {
-    font-family: Verdana;
-    margin: 5px;
+  header {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+
+    padding-right: 0;
+
+    h2 {
+      font-family: Verdana;
+      margin: 5px;
+    }
+
+    button {
+      padding: 5px 8px;
+      border: 1px solid LightGray;
+      border-radius: 2px;
+
+      font-family: Arial;
+      font-size: 12px;
+      font-weight: bold;
+      background-color: $display-text-field-background;
+      color: #444;
+    }
+
+    div {
+      display: none;
+    }
   }
 
   textarea {
-    height: 130px;
-    width: 100%;
+    flex: 1;
 
     padding: 5px 8px;
     border: 1px solid $border-normal;
+
+    height: 130px;
+    width: 100%;
 
     background-color: $display-text-field-background;
 
@@ -41,20 +61,44 @@
     font-family: Monaco, monospace;
 
     resize: none;
+  }
 
-    &:hover {
-      box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
-      background-color: $input-text-field-background;
-      border: 1px solid $border-normal;
-    }
+  .editable {
+    background-color: $input-text-field-background;
+    border: 1px solid $border-normal;
 
-    &:focus {
+    &:hover, &:focus {
       box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;
-      background-color: $input-text-field-background;
       border: 1px solid $go-blue;
     }
   }
 
+  .error {
+    border: 1px solid Red;
+  }
+
+  footer {
+    position: absolute;
+
+    top: 148px;
+
+    display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+
+    padding: 5px;
+
+    img.save {
+      height: auto;
+      width: 15px;
+
+      margin-right: 5px;
+    }
+
+    img.save-click {
+      display: none;
+    }
+  }
 }
 
 .pattern-box {
