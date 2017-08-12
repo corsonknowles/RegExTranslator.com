@@ -21,6 +21,7 @@ export const tokenizeRegex = input => {
 const charsetPatterns = [
   { regex: /^\[/, tag: "boundary" },
   { regex: /\]$/, tag: "boundary" },
+  { regex: /\^.*/, tag: "negativeSet" },
   { regex: /0-9/, tag: "digit" },
   { regex: /a-z/, tag: "letter" },
   { regex: /A-Z/, tag: "uppercase" },

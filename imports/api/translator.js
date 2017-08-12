@@ -164,6 +164,9 @@ const charset = input => {
     switch(token.tag) {
       case "boundary":
         break;
+      case "negativeSet": // negation currently not supported
+        text.push(`raw [${token.text}]`);
+        break;
       case "digitRange":
         text.push(`digit from ${res[1]} to ${res[2]}`);
         break;
@@ -172,6 +175,15 @@ const charset = input => {
         break;
       case "uppercaseRange":
         text.push(`uppercase letter from ${res[1]} to ${res[2]}`);
+        break;
+      case "digit":
+        text.push("digit");
+        break;
+      case "letter":
+        text.push("letter");
+        break;
+      case "uppercase":
+        text.push("uppercase");
         break;
       case "remaining":
         text.push(`one of "${token.text}"`);
