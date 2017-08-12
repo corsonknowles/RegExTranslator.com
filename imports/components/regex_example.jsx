@@ -38,13 +38,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       const flags = ['g'];
 
       try {
+        // NOTE: Error causing line
         const regex = new RegExp(regexText, flags.join(''));
-      } catch(error) {
-        //
-      } finally {
+
         // Set results box content
         resultsBox.innerHTML = this[currentTransferFunction](regex);
-      }
+      } catch(e) {}
     }
 
     handleFunctionButtonClick(event) {
