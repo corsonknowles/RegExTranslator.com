@@ -36,22 +36,36 @@ class PatternDropdown extends React.Component {
       }
     );
 
-    const RegexArray = Object.values(this.props.regexs);
-    const dropdownItems = Object.keys(this.props.regexs).map((id) => (
-      <button className="dropdown-item" key={id}
-        onClick={() => this.props.regexSelector(this.props.regexs[id].pattern)}>
-          {this.props.regexs[id].name}
-      </button>
-      )
+    const publicPatterns = Object.keys(this.props.regexs).map((id) => {
+      if (!(this.props.regexs[id].hasOwnProperty("userId"))) return (
+        <button className="dropdown-item" key={id}
+          onClick={() => this.props.regexSelector(this.props.regexs[id].pattern)}>
+            {this.props.regexs[id].name}
+        </button>
+        );
+      }
+    );
+
+    const privatePatterns = Object.keys(this.props.regexs).map((id) => {
+      if (this.props.regexs[id].hasOwnProperty("userId")) return (
+        <button className="dropdown-item" key={id}
+          onClick={() => this.props.regexSelector(this.props.regexs[id].pattern)}>
+            {this.props.regexs[id].name}
+        </button>
+        );
+      }
     );
 
     return (
       <div className="dropdown-container">
-        <h2 onClick={this.handleClick}>Prebuilt Patterns ▼</h2>
+        <h2 onClick={this.handleClick}>Regex Patterns ▼</h2>
         <div className={"dropdown-display" +
           (this.state.visible ? " clicked" : "")}>
           <div className="dropdown-list">
-            {dropdownItems}
+            <div className="dropdown-header">Prebuilt Patterns</div>
+              {publicPatterns}
+            <div className="dropdown-header">Custom Patterns</div>
+              {privatePatterns}
           </div>
         </div>
       </div>

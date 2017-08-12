@@ -12,6 +12,7 @@ export const regexToSrl = regex => {
   new RegExp(regex);
 
   const tree = createTree(regex);
+  console.log(tree);
   return traverseTree(tree);
 };
 
@@ -29,14 +30,14 @@ const traverseTree = node => {
         case "count":
           text.push(count(child.text));
           break;
-        case "charData":
-          text.push(child.text);
+        case "literal":
+          text.push(escapedLiteral(child.text));
           break;
         case "or":
           orGroup = true;
           break;
-        case "literal":
-          text.push(escaped(child.text));
+        case "escaped":
+          text.push(escapedLiteral(child.text));
           break;
         case "quantifier":
           text.push(quantifier(child.text));
@@ -70,6 +71,32 @@ const traverseTree = node => {
   return text.join(" ");
 };
 
+const literally = /literally "(.*)"/;
+
+const combineLiterals = text => {
+  let combined = [];
+  let lastLiteral;
+  text.forEach((part, idx) => {
+    let current = part.match(literally);
+    if (current) {
+      if (!lastLiteral) {
+        lastLiteral = idx;
+      }
+      let previous = text[idx - 1].match(literally);
+      if (previous) {
+        combined[lastLiteral] = `literally "${previous[1] + current[1]}"`;
+      } else {
+        combined[lastLiteral] = `literally "${current[1]}"`;
+      }
+    } else {
+      lastLiteral = null;
+      combined.push(part);
+    }
+  });
+
+  return combined;
+};
+
 const boundary = input => {
   switch (input) {
     case "^":
@@ -92,7 +119,7 @@ const quantifier = input => {
 
 const escapedChars = /^\\(.+)$/;
 
-const escaped = input => {
+const escapedLiteral = input => {
   switch(true) {
     case /\\s/.test(input):
       return "whitespace";
@@ -164,6 +191,9 @@ const charset = input => {
     switch(token.tag) {
       case "boundary":
         break;
+      case "negativeSet": // negation currently not supported
+        text.push(`raw [${token.text}]`);
+        break;
       case "digitRange":
         text.push(`digit from ${res[1]} to ${res[2]}`);
         break;
@@ -172,6 +202,15 @@ const charset = input => {
         break;
       case "uppercaseRange":
         text.push(`uppercase letter from ${res[1]} to ${res[2]}`);
+        break;
+      case "digit":
+        text.push("digit");
+        break;
+      case "letter":
+        text.push("letter");
+        break;
+      case "uppercase":
+        text.push("uppercase");
         break;
       case "remaining":
         text.push(`one of "${token.text}"`);
