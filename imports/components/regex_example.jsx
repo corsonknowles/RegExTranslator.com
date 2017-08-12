@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = ({ regex: { regexText } }) => ({
-  regexText
+const mapStateToProps = ({ regex: { regexText, regexFlags } }) => ({
+  regexText,
+  regexFlags
 });
 
 const mapDispatchToProps = dispatch => ({});
@@ -22,25 +23,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
       this.handleReplaceInputChange = this.handleReplaceInputChange.bind(this);
-      this.handleFunctionButtonClick = this.handleFunctionButtonClick.bind(this);
+      this.handleFunctionButtonClick =
+        this.handleFunctionButtonClick.bind(this);
     }
 
     componentDidUpdate() {
       const {
         resultsBox,
-        props: { regexText },
+        props: { regexText, regexFlags },
         state: { exampleText, currentTransferFunction }
       } = this;
 
-      // Create regex to match with
-      // NOTE: Global flag set
-      // TODO: Set flags with GUI
-      const flags = ['g'];
-
+      let regex;
       try {
-        const regex = new RegExp(regexText, flags.join(''));
-      } catch(error) {
-        //
+        // Create regex to match with
+        regex = new RegExp(regexText, regexFlags.join(''));
       } finally {
         // Set results box content
         resultsBox.innerHTML = this[currentTransferFunction](regex);
