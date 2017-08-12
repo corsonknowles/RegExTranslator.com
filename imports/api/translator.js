@@ -12,6 +12,7 @@ export const regexToSrl = regex => {
   new RegExp(regex);
 
   const tree = createTree(regex);
+  console.log(tree);
   return traverseTree(tree);
 };
 
@@ -29,14 +30,14 @@ const traverseTree = node => {
         case "count":
           text.push(count(child.text));
           break;
-        case "charData":
-          text.push(child.text);
+        case "literal":
+          text.push(escapedLiteral(child.text));
           break;
         case "or":
           orGroup = true;
           break;
-        case "literal":
-          text.push(escaped(child.text));
+        case "escaped":
+          text.push(escapedLiteral(child.text));
           break;
         case "quantifier":
           text.push(quantifier(child.text));
@@ -70,6 +71,10 @@ const traverseTree = node => {
   return text.join(" ");
 };
 
+const combineLiterals = text => {
+
+};
+
 const boundary = input => {
   switch (input) {
     case "^":
@@ -92,7 +97,7 @@ const quantifier = input => {
 
 const escapedChars = /^\\(.+)$/;
 
-const escaped = input => {
+const escapedLiteral = input => {
   switch(true) {
     case /\\s/.test(input):
       return "whitespace";
