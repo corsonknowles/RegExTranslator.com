@@ -1,7 +1,9 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown.jsx';
+import SaveButton from './save_button.jsx';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
@@ -20,7 +22,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       super(props);
 
       this.state = {
-        regexInputText: this.props.regexText
+        regexInputText: this.props.regexText,
+        userSwitch: false
       };
 
       this.regexInputHandler = this.regexInputHandler.bind(this);
@@ -40,20 +43,36 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // TODO: Run reverse translation here
     }
 
+    //Set the regex input text to the selected prebuilt pattern
     regexSelector(pattern) {
       this.setState({ regexInputText: pattern });
     }
 
+
     render() {
+
+
       //Initialize a variable to hold our PatternDropdown component (if
       // we've received our regexs)
       let DropdownComponent;
       if (Object.keys(this.props.regexs).length > 0) {
         DropdownComponent = <PatternDropdown
                             regexs={this.props.regexs}
-                            regexSelector={this.regexSelector} />;
+                            regexSelector={this.regexSelector}
+                            getRegexs={this.props.getRegexs}/>;
       } else {
         DropdownComponent = <div />;
+      }
+
+      let SaveComponent;
+      if (Meteor.userId()) {
+        SaveComponent = <SaveButton createRegex={this.props.createRegex}
+                                    getRegexs={this.props.getRegexs}
+                                    pattern={this.state.regexInputText}
+                                    language="javascript"
+                                    userId={Meteor.userId}/>;
+      } else {
+        SaveComponent = <div className="save-bar"/>;
       }
 
       return (
@@ -64,6 +83,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
               onChange={this.regexInputHandler}
               value={this.state.regexInputText}
             />
+            {SaveComponent}
           </div>
           {DropdownComponent}
         </div>

@@ -4,9 +4,12 @@ import { Meteor } from 'meteor/meteor';
 const Regexs = new Mongo.Collection('regexs');
 
 Meteor.methods({
-  'regexs.fetch'() { return Regexs.find().fetch(); },
-  'regexs.insert'(data) { return Regexs.insert(data); }
+  'regexs.fetch'() { return Regexs.find({
+    $or: [ { userId: {$exists: false} }, { userId: { $eq: Meteor.userId()} } ]
+    }).fetch(); },
+  'regexs.insert'(data) { return Regexs.insert(data); },
 });
+
 
 export default Regexs;
 //
