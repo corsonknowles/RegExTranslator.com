@@ -66,7 +66,8 @@ We plan to use the 'Big Huge Thesaurus' API to retrieve synonyms for SRL paramet
 - David Corson-Knowles, Server, Coordination, Libraries, SSL, OAuth, UX, Analytics
 - Adam Jacobson, RegEx to SRL, a new technology
 - Rod Shokrian, OAuth, Personalization, RegEx Pattern Library, Redux, Database
-- Andy Booth, SASS, Redux, Integration, SRL to RegEx, Swapping, UI
+- Andy Booth, SASS, Redux, Integration, SRL to RegEx, Swapping, UI 
+
 
 ## Timeline
 
