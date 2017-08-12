@@ -1,9 +1,10 @@
 import React from 'react';
+import { Account } from 'meteor/accounts-base';
 
 class PatternDropdown extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { visible: false };
+    this.state = { visible: false, dummy: true };
     this.show = this.show.bind(this);
     this.hide = this.hide.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -22,6 +23,19 @@ class PatternDropdown extends React.Component {
   }
 
   render() {
+
+    //Update regexs in props if user logs in or out
+    //N.B. Ignore linter errors for Accounts
+    Accounts.onLogin( () => {
+      this.props.getRegexs();
+      }
+    );
+    Accounts.onLogout( () => {
+        this.props.getRegexs();
+        this.setState({ dummy: !this.state.dummy });
+      }
+    );
+
     const RegexArray = Object.values(this.props.regexs);
     const dropdownItems = Object.keys(this.props.regexs).map((id) => (
       <button className="dropdown-item" key={id}

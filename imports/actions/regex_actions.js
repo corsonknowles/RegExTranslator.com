@@ -20,6 +20,7 @@ export const clearRegexInputErrors = () => ({
   errors: []
 });
 
+//N.B. Ignore async function linter errors
 export function getRegexs() {
   return async function(dispatch) {
     const regexs = await

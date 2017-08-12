@@ -22,7 +22,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       super(props);
 
       this.state = {
-        regexInputText: this.props.regexText
+        regexInputText: this.props.regexText,
+        userSwitch: false
       };
 
       this.regexInputHandler = this.regexInputHandler.bind(this);
@@ -47,14 +48,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       this.setState({ regexInputText: pattern });
     }
 
+
     render() {
+
+
       //Initialize a variable to hold our PatternDropdown component (if
       // we've received our regexs)
       let DropdownComponent;
       if (Object.keys(this.props.regexs).length > 0) {
         DropdownComponent = <PatternDropdown
                             regexs={this.props.regexs}
-                            regexSelector={this.regexSelector} />;
+                            regexSelector={this.regexSelector}
+                            getRegexs={this.props.getRegexs}/>;
       } else {
         DropdownComponent = <div />;
       }
@@ -62,6 +67,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       let SaveComponent;
       if (Meteor.userId()) {
         SaveComponent = <SaveButton createRegex={this.props.createRegex}
+                                    getRegexs={this.props.getRegexs}
                                     pattern={this.state.regexInputText}
                                     language="javascript"
                                     userId={Meteor.userId}/>;
