@@ -6,10 +6,15 @@ import SessionForm from './session/session_form';
 
 export default ({ store }) => (
   <Provider store={store}>
-    <main>
-      <SessionForm />
-      <Translator />
-      <RegexExample />
-    </main>
+    <div className="app">
+      <header>
+        <SessionForm />
+      </header>
+
+      <main>
+        <Translator />
+        <RegexExample />
+      </main>
+    </div>
   </Provider>
 );
