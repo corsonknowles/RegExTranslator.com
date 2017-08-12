@@ -44,9 +44,9 @@ class SaveButton extends React.Component {
 
     return (
       <div className="save-bar">
-        <i className="fa fa-bookmark-o fa-lg" onClick={this.handleClick}></i>
+        <i className="fa fa-star-o fa-lg" onClick={this.handleClick}></i>
         <span className={"save-input" + (this.state.visible ? " clicked" : "")}>
-          <input type="text" value={this.state.name} className="name-input" onChange={this.handleInput}></input>
+          <input type="text" placeholder="Name this pattern" className="name-input" onChange={this.handleInput}></input>
           <button className="save-regex" onClick={this.handleSubmit}>Save It!</button>
         </span>
       </div>
