@@ -1,19 +1,31 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
-import { receiveRegex, getRegexs, createRegex } from '../../actions/regex_actions';
-import PatternDropdown from './pattern_dropdown.jsx';
+import { receiveSrl } from '../../actions/srl_actions';
+import {
+  receiveRegex,
+  receiveRegexErrors,
+  clearRegexInputErrors,
+  getRegexs,
+  createRegex
+} from '../../actions/regex_actions';
+import PatternDropdown from './pattern_dropdown';
+import { regexToSrl } from '../../api/translator';
 import SaveButton from './save_button.jsx';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
-  regexs: state.regexs
+  regexs: state.regexs,
+  errors: state.regex.errors
 });
 
 const mapDispatchToProps = dispatch => ({
   receiveRegex: input => dispatch(receiveRegex(input)),
+  receiveRegexErrors: errors => dispatch(receiveRegexErrors(errors)),
+  clearRegexInputErrors: () => dispatch(clearRegexInputErrors()),
   getRegexs: () => dispatch(getRegexs()),
-  createRegex: (data) => dispatch(createRegex(data))
+  createRegex: (data) => dispatch(createRegex(data)),
+  setSrl: srlText => dispatch(receiveSrl(srlText))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -23,6 +35,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.state = {
         regexInputText: this.props.regexText,
+        regexSaved: false,
         userSwitch: false
       };
 
@@ -39,8 +52,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     regexInputHandler(event) {
+      // Set regex slice
       this.props.receiveRegex(event.target.value);
-      // TODO: Run reverse translation here
+
+      try {
+        // NOTE: Error causing line
+        const srlText = regexToSrl(event.target.value);
+
+        // Set regex to reverse-translated version and clear errors
+        this.props.setSrl(srlText);
+        this.props.clearRegexInputErrors();
+      } catch(error) {
+        // If regex parsing fails, set errors
+        this.props.receiveRegexErrors(['Invalid regex syntax', error]);
+      }
     }
 
     //Set the regex input text to the selected prebuilt pattern
@@ -64,6 +89,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         DropdownComponent = <div />;
       }
 
+      let swapButton = <div />;
+      let klasses = [];
+      if (this.props.idx === 0) {
+        swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
+        klasses.push('editable');
+      }
+
+      if (this.props.errors.length > 0) {
+        klasses.push('error');
+      }
+
       let SaveComponent;
       if (Meteor.userId()) {
         SaveComponent = <SaveButton createRegex={this.props.createRegex}
@@ -76,16 +112,26 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       }
 
       return (
-        <div className="translator-container">
-          <div className="translator-input-section">
+        <div className="translator-input-section">
+          <header>
             <h2>Regular Expression</h2>
-            <textarea
-              onChange={this.regexInputHandler}
-              value={this.state.regexInputText}
-            />
-            {SaveComponent}
-          </div>
+            {swapButton}
+          </header>
+
+          <textarea
+            onChange={this.regexInputHandler}
+            value={this.state.regexInputText}
+            disabled={this.props.idx !== 0}
+            autoFocus={this.props.idx === 0}
+            className={klasses.join(' ')}
+          />
+
           {DropdownComponent}
+          {SaveComponent}
+
+          <footer>
+            <img className="save" src={`img/${'outline'}-star.png`} />
+          </footer>
         </div>
       );
     }
