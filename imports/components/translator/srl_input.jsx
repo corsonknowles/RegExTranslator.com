@@ -6,7 +6,10 @@ import {
   receiveSrlErrors,
   clearSrlInputErrors
 } from '../../actions/srl_actions';
-import { receiveRegex } from '../../actions/regex_actions';
+import {
+  receiveRegex,
+  receiveRegexFlags
+} from '../../actions/regex_actions';
 
 const mapStateToProps = ({ srl: { srlText, errors } }) => ({
   srlText,
@@ -17,7 +20,8 @@ const mapDispatchToProps = dispatch => ({
   receiveSrl: input => dispatch(receiveSrl(input)),
   receiveSrlErrors: errors => dispatch(receiveSrlErrors(errors)),
   clearSrlInputErrors: () => dispatch(clearSrlInputErrors()),
-  setRegex: regexText => dispatch(receiveRegex(regexText))
+  setRegex: regexText => dispatch(receiveRegex(regexText)),
+  setRegexFlags: flags => dispatch(receiveRegexFlags(flags))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -42,10 +46,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       try {
         // NOTE: Error causing line
-        const regexText = new Srl(event.target.value).getRawRegex();
+        const regex = new Srl(event.target.value);
+
+        // Get regex data for state
+        const regexText = regex.getRawRegex();
+        const flags = regex._modifiers.split('');
 
         // Set regex to SRL-translated version and clear errors
         this.props.setRegex(regexText);
+        this.props.setRegexFlags(flags);
         this.props.clearSrlInputErrors();
       } catch(error) {
         // If SRL parsing fails, set errors
