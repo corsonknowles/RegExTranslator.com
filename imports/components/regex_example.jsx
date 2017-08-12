@@ -76,7 +76,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // Create list of matches and match indices (all indices at which a
       //  character should be highlighted)
       const matchIndices = new Set;
-      let match, counter = 0;
+      let match;
       while ((match = regex.exec(exampleText))) {
         if (match.index === regex.lastIndex) regex.lastIndex++;
 
