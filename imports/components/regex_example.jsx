@@ -22,8 +22,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
       this.handleReplaceInputChange = this.handleReplaceInputChange.bind(this);
-      this.handleFunctionButtonClick =
-        this.handleFunctionButtonClick.bind(this);
+      this.handleFunctionButtonClick = (
+        this.handleFunctionButtonClick.bind(this)
+      );
     }
 
     componentDidUpdate() {
@@ -33,14 +34,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         state: { exampleText, currentTransferFunction }
       } = this;
 
-
-      let regex;
       try {
         // Create regex to match with
-        regex = new RegExp(regexText, regexFlags.join(''));
-      } finally {
+        const regex = new RegExp(regexText, regexFlags.join(''));
+
         // Set results box content
         resultsBox.innerHTML = this[currentTransferFunction](regex);
+      } catch(error) {
+        resultsBox.innerHTML = null;
       }
     }
 
@@ -125,14 +126,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       const exampleText = this.state.exampleText;
 
       // Print list of captures
-      // TODO: Not sure if this is actually right. How do I obtain capture
-      //  groups?
-      let resultsMarkup = '';
-      resultsMarkup += '[<br/>&nbsp;&nbsp;';
-      resultsMarkup += exampleText.match(regex).join(',<br/>&nbsp;&nbsp;');
-      resultsMarkup += '<br/>]';
+      const captures = [];
+      let match;
+      while ((match = regex.exec(exampleText))) {
+        if (match.index === regex.lastIndex) regex.lastIndex++;
 
-      return resultsMarkup;
+        captures.push(match[1]);
+      }
+
+      return `[${captures.join(', ')}]`;
     }
 
     split(regex) {
