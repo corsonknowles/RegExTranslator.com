@@ -140,13 +140,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     split(regex) {
       const exampleText = this.state.exampleText;
 
-      // Print list of split results
-      let resultsMarkup = '';
-      resultsMarkup += '[<br/>&nbsp;&nbsp;';
-      resultsMarkup += exampleText.split(regex).join(',<br/>&nbsp;&nbsp;');
-      resultsMarkup += '<br/>]';
-
-      return resultsMarkup;
+      // // Print list of split results
+      // let resultsMarkup = '';
+      // resultsMarkup += '[<br/>&nbsp;&nbsp;';
+      // resultsMarkup += exampleText.split(regex).join(',<br/>&nbsp;&nbsp;');
+      // resultsMarkup += '<br/>]';
+      //
+      // return resultsMarkup;
+      return `[${exampleText.split(regex).join(', ')}]`;
     }
 
     replace(regex) {
