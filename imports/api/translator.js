@@ -10,9 +10,7 @@ export const srlToRegex = (srl) => {
 export const regexToSrl = regex => {
   // throw error if invalid
   new RegExp(regex);
-
   const tree = createTree(regex);
-  console.log(tree);
   return traverseTree(tree);
 };
 
@@ -35,6 +33,7 @@ const traverseTree = node => {
           break;
         case "or":
           orGroup = true;
+          text.push("or");
           break;
         case "escaped":
           text.push(escapedLiteral(child.text));
@@ -55,7 +54,11 @@ const traverseTree = node => {
           text.push(traverseTree(child));
           break;
         case "nonCapture":
-          text.push(traverseTree(child));
+          let childText = traverseTree(child);
+          if (!isSelfContained(childText)) {
+            childText = `( ${childText} )`;
+          }
+          text.push(childText);
           break;
         case "capture":
           text.push("capture (" + traverseTree(child) + ")");
@@ -64,11 +67,61 @@ const traverseTree = node => {
     }
   });
 
+  console.warn(text);
+
   if (orGroup) {
-    return "any of (" + text.join(", ") + ")";
+    return "any of (" + combine(text) + ")";
   }
 
-  return text.join(" ");
+  return combine(text);
+};
+
+const combine = arr => {
+  let chunks = chunkArray(arr, "or");
+
+  // if part of an or'ed group, wrap groups with parentheses
+  if (chunks.length > 1) {
+    chunks.forEach(chunk => {
+      if (chunk.length > 1) {
+        chunk[0] = `(${chunk[0]}`;
+        chunk[chunk.length-1] = `${chunk[chunk.length-1]})`;
+        chunk = chunk.join(" ");
+      }
+    });
+  }
+
+  chunks = flatten(chunks);
+  return chunks.join(", ");
+};
+
+const flatten = array => {
+  return [].concat.apply([], array);
+};
+
+const isSelfContained = input => {
+  if (input.match(/^any of/)) {
+    return true;
+  }
+
+  return false;
+};
+
+const chunkArray = (arr, divider) => {
+  let chunked = [];
+  let chunkIdx = 0;
+
+  arr.forEach(entry => {
+    if (!chunked[chunkIdx]) {
+      chunked[chunkIdx] = [];
+    }
+    if (entry === divider) {
+      chunkIdx++;
+    } else {
+      chunked[chunkIdx].push(entry);
+    }
+  });
+
+  return chunked;
 };
 
 const literally = /literally "(.*)"/;
@@ -224,12 +277,11 @@ const charset = input => {
     return "any of (" + text.join(", ") + ")";
   }
 
-  return text.join("");
+  return text.join(" ");
 };
 
 const createTree = regex => {
   const tokens = tokenizeRegex(regex);
-
   const root = new Node();
   let currentNode = root;
 

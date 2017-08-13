@@ -1,7 +1,7 @@
 import tokenize from 'regex-tokenizer';
 
 const patterns = [
-  { regex: /\(\?\:/, tag: "nonCapture" },
+  { regex: /\(\?\:/g, tag: "nonCapture" },
   { regex: /\[[^\]]*\]/g, tag: "charset" },
   { regex: /\{[0-9,]*\}/, tag: "count" },
   { regex: /\\./g, tag: "escaped" },
