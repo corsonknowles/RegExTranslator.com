@@ -11,6 +11,7 @@ import {
   receiveRegexFlags
 } from '../../actions/regex_actions';
 import TextInput from 'react-autocomplete-input';
+import 'react-autocomplete-input/dist/bundle.css';
 
 const mapStateToProps = ({ srl: { srlText, errors } }) => ({
   srlText,
@@ -31,7 +32,44 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       super(props);
 
       this.state = {
-        srlInputText: this.props.srlText
+        srlInputText: this.props.srlText,
+        options: [
+          'any character',
+          'any of',
+          'anything',
+          'at least',
+          'between',
+          'capture',
+          'atb',
+          'case insensitive',
+          'digit',
+          'digit from',
+          'either of',
+          'exactly',
+          'if followed by',
+          'if not followed by',
+          'letter',
+          'letter from',
+          'literally',
+          'must end',
+          'multi line',
+          'never or more',
+          'new line',
+          'no character',
+          'no whitespace',
+          'number from',
+          'once',
+          'one of',
+          'optional',
+          'once or more',
+          'raw',
+          'twice',
+          'starts with',
+          'until',
+          'uppercase',
+          'uppercase letter from',
+          'whitespace'
+        ]
       };
 
       this.srlInputHandler = this.srlInputHandler.bind(this);
@@ -45,17 +83,48 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     handleRequestOptions(part) {
       // console.log(part);
-      this.setState({ options: [one of, any character, no character, multi line, case insensitive,
-      starts with, must end, once or more, never or more, new line, whitespace,
-      no whitespace, anything, atb, digit, letter, uppercase, once, twice,
-      literally, either of, any of, if followed by, if not followed by,
-      optional, until, raw, one of, digit from, number from, letter from,
-      uppercase letter from, exactly, at least, between, capture
+      this.setState({ options: [
+        'any character',
+        'any of',
+        'anything',
+        'at least',
+        'between',
+        'capture',
+        'atb',
+        'case insensitive',
+        'digit',
+        'digit from',
+        'either of',
+        'exactly',
+        'if followed by',
+        'if not followed by',
+        'letter',
+        'letter from',
+        'literally',
+        'must end',
+        'multi line',
+        'never or more',
+        'new line',
+        'no character',
+        'no whitespace',
+        'number from',
+        'once',
+        'one of',
+        'optional',
+        'once or more',
+        'raw',
+        'twice',
+        'starts with',
+        'until',
+        'uppercase',
+        'uppercase letter from',
+        'whitespace'
       ] });
     }
 
     srlInputHandler(event) {
       // Set SRL slice
+      console.log(event);
       this.props.receiveSrl(event.target.value);
 
       try {
@@ -100,8 +169,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.srlInputText}
             disabled={this.props.idx !== 0}
             autoFocus={this.props.idx === 0}
-            className={klasses.join(' ')},
-            onRequestOptions={this.handleRequestOptions},
+            className={klasses.join(' ')}
             options={this.state.options}
           />
         </div>

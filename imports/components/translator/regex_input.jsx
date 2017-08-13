@@ -11,7 +11,7 @@ import {
 } from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown';
 import { regexToSrl } from '../../api/translator';
-import SaveButton from './save_button.jsx';
+import SaveButton from './save_button';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
