@@ -1,10 +1,21 @@
-export default {
-  'one of': [
-    'included in',
-    'in list',
-    'in'
+module.exports = {
+  'one of $1': [
+    'included in $1',
+    'in list $1',
+    '1 of $1',
+    'any of $1',
+    'exactly one of $1',
+    'in $1'
   ],
-  'any character': [],
+  'any character': [
+    'one letter',
+    'any letter',
+    'one single letter',
+    'any one letter',
+    'one character',
+    'any character except newline'
+
+  ],
   'no character': [
     'non character'
   ],
@@ -14,16 +25,20 @@ export default {
   'case insensitive': [
     'ignore case'
   ],
-  'starts with': [],
+  'starts with': [
+  ],
   'start with': [],
   'begin with': [],
   'begins with': [],
   'must end': [],
   'once or more': [
     'plus',
+    'many',
     'several',
     'more than one',
-    'repeatedly'
+    'repeatedly',
+    'one or more',
+    '1 or more'
   ],
   'never or more': [
     'as many times as needed'
@@ -33,25 +48,38 @@ export default {
     'line break',
     'next line'
   ],
+  'whitespace': [
+    'white space'
+  ],
+  'no whitespace': [
+    'not whitespace',
+    'nonwhitespace',
+    'not-whitespace',
+    'nonwhitespace'
+  ],
   'anything': [],
   'atb': [
     'tab'
   ],
-  'no digit': [
-    'any nondigit character',
-    'not a number',
-    'nonnumber',
-    'non number',
-    'no number',
-    'not a digit'
+  'digit': [
+    'any digit'
   ],
-  'nondigit': [],
+  // 'no digit': [
+  //   'any nondigit character',
+  //   'not a number',
+  //   'nonnumber',
+  //   'non number',
+  //   'no number',
+  //   'not a digit'
+  // ],
+  // 'nondigit': [],
+  // 'number': [
+  //   'any number'
+  // ],
   'letter': [],
   'uppercase': [],
   'once': [],
-  'twice': [
-    '2 times'
-  ],
+  'twice': [],
   // 'word': [
   //   'word boundary',
   //   'before or after words',
@@ -64,15 +92,19 @@ export default {
   //   'new paragraph'
   // ],
   // 'carriagereturn': [],
-  'literally $1': [
-    'exactly $1'
-  ],
+  'literally': [],
   'either of': [],
   'any of': [],
   // 'none of': [],
   'if followed by': [],
   'if not followed by': [],
-  'optional': [],
+  'optional': [
+    '0 or 1',
+    'zero or one',
+    'optionally',
+    'maybe',
+    'allowed'
+  ],
   'until': [],
   'raw': [
     'in regex',
@@ -83,18 +115,13 @@ export default {
     'precisely'
   ],
   'digit from $1 to $2': [
-    'digit between $1 and $2'
+    'number from $1 to $2'
   ],
-  'number from $1 to $2': [
-    'number between $1 and $2'
-  ],
-  'letter from $1 to $2': [
-    'letter between $1 and $2'
-  ],
+  'number from $1 to $2': [],
+  'letter from': [],
   'uppercase letter from': [],
+  'exactly': [],
   'at least': [],
-  'capture $1': [
-    'grab $1',
-    'find $1'
-  ]
+  'between': [],
+  'capture': []
 };
