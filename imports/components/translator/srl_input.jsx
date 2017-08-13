@@ -92,7 +92,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.srlInputText}
             disabled={this.props.idx !== 0}
             autoFocus={this.props.idx === 0}
-              className={klasses.join(' ')}
+            className={classes.join(' ')}
           />
           <div className="help-text">
 
@@ -108,8 +108,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       digit \\d<br />
     digit from 3 to 5 [3-5]<br />
   either of (x, y, z) (x|y|z)<br />
-            exactly once &#123;1&#125;<br />
-          exactly twice &#123;2&#125;<br />
+exactly 3 &#123;3&#125;<br />
         exactly 4 times &#123;4&#125;<br />
       if followed by -> capture (digit) if followed by (any character) -> /([0-9])(?=\\w)/<br />
     if not followed by -> capture (letter) if not followed by (digit) /([a-z])(?![0-9])/<br />
@@ -130,7 +129,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           raw "[a-zA-Z]" -> [a-zA-Z]<br />
         starts with ^<br />
       tab \\t<br />
-    twice,<br />
+    twice &#123;2&#125;<br />
   until -> capture (anything once or more) until "." -> (.+?)(?:\.)<br />
             uppercase letter [A-Z]<br />
           uppercase letter from M to P [M-P]<br />
