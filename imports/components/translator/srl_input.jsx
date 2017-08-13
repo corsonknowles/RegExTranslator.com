@@ -10,6 +10,8 @@ import {
   receiveRegex,
   receiveRegexFlags
 } from '../../actions/regex_actions';
+import helpText from '../../webcopy/help_text';
+import glossary from '../../webcopy/glossary';
 
 const mapStateToProps = ({ srl: { srlText, errors } }) => ({
   srlText,
@@ -30,7 +32,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       super(props);
 
       this.state = {
-        srlInputText: this.props.srlText
+        srlInputText: this.props.srlText,
+        helpText: helpText,
+        glossary: glossary
       };
 
       this.srlInputHandler = this.srlInputHandler.bind(this);
@@ -88,6 +92,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             autoFocus={this.props.idx === 0}
             className={klasses.join(' ')}
           />
+        <textarea
+          className="help-text"
+          value={this.state.helpText}
+          disabled>
+        </textarea>
+        <textarea
+          className="help-text"
+          value={this.state.glossary}
+          disabled>
+        </textarea>
         </div>
       );
     }

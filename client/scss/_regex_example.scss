@@ -8,9 +8,8 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    width: 50%;
+    width: 100%;
 
-    font-family: Verdana;
     font-size: 16px;
 
     textarea, .results-box {
@@ -22,6 +21,10 @@
 
       resize: none;
       border: 1px solid $border-normal;
+
+      background-color: white;
+      font-family: Arial;
+      font-size: 16px;
     }
 
     textarea {
@@ -52,7 +55,8 @@
 
       div {
         position: absolute;
-        transform: translate(-35%, -55px);
+        transform: translate(-40%, -55px);
+        width: 100%;
 
         button {
           background-color: $display-text-field-background;
@@ -92,6 +96,7 @@
       }
 
     }
+
 
     .results-box {
       overflow-y: scroll;

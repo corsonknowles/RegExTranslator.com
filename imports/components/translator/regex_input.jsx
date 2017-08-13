@@ -12,6 +12,7 @@ import {
 import PatternDropdown from './pattern_dropdown';
 import { regexToSrl } from '../../api/translator';
 import SaveButton from './save_button';
+import RegexExample from '../regex_example';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
@@ -129,6 +130,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
           {SaveComponent}
           {DropdownComponent}
+
+          <RegexExample />
         </div>
       );
     }
