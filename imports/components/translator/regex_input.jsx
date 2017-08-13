@@ -5,7 +5,7 @@ import { receiveSrl } from '../../actions/srl_actions';
 import {
   receiveRegex,
   receiveRegexErrors,
-  clearRegexInputErrors,
+  clearRegexErrors,
   getRegexs,
   createRegex
 } from '../../actions/regex_actions';
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   receiveRegex: input => dispatch(receiveRegex(input)),
   receiveRegexErrors: errors => dispatch(receiveRegexErrors(errors)),
-  clearRegexInputErrors: () => dispatch(clearRegexInputErrors()),
+  clearRegexErrors: () => dispatch(clearRegexErrors()),
   getRegexs: () => dispatch(getRegexs()),
   createRegex: (data) => dispatch(createRegex(data)),
   setSrl: srlText => dispatch(receiveSrl(srlText))
@@ -62,7 +62,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
         // Set regex to reverse-translated version and clear errors
         this.props.setSrl(srlText);
-        this.props.clearRegexInputErrors();
+        this.props.clearRegexErrors();
       } catch(error) {
         // If regex parsing fails, set errors
         console.error(error);

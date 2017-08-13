@@ -4,7 +4,7 @@ import Srl from 'srl';
 import {
   receiveSrl,
   receiveSrlErrors,
-  clearSrlInputErrors
+  clearSrlErrors
 } from '../../actions/srl_actions';
 import {
   receiveRegex,
@@ -22,7 +22,7 @@ const mapStateToProps = ({ srl: { srlText, errors } }) => ({
 const mapDispatchToProps = dispatch => ({
   receiveSrl: input => dispatch(receiveSrl(input)),
   receiveSrlErrors: errors => dispatch(receiveSrlErrors(errors)),
-  clearSrlInputErrors: () => dispatch(clearSrlInputErrors()),
+  clearSrlErrors: () => dispatch(clearSrlErrors()),
   setRegex: regexText => dispatch(receiveRegex(regexText)),
   setRegexFlags: flags => dispatch(receiveRegexFlags(flags))
 });
@@ -61,7 +61,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         // Set regex to SRL-translated version and clear errors
         this.props.setRegex(regexText);
         this.props.setRegexFlags(flags);
-        this.props.clearSrlInputErrors();
+        this.props.clearSrlErrors();
       } catch(error) {
         // If SRL parsing fails, set errors
         this.props.receiveSrlErrors(['Invalid SRL syntax', error]);
