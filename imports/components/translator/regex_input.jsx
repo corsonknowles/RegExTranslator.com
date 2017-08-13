@@ -65,7 +65,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         this.props.clearRegexInputErrors();
       } catch(error) {
         // If regex parsing fails, set errors
-        console.error(error);
         this.props.receiveRegexErrors(['Invalid regex syntax', error]);
       }
     }
