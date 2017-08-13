@@ -21,7 +21,7 @@ export const receiveRegexErrors = errors => ({
   errors
 });
 
-export const clearRegexInputErrors = () => ({
+export const clearRegexErrors = () => ({
   type: RECEIVE_REGEX_ERRORS,
   errors: []
 });
