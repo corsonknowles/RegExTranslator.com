@@ -1,37 +1,97 @@
 export default
 
 `
+'any character' \\w
+'any of (a, b, c)' (a|b|c)
+'anything' .
+'at least 8 times' {8,}
+'backslash' \\
+'between 3 and 7 times' {3,7}
+'capture',
+'case insensitive',
+'digit' \\d
+'digit from 3 to 5' [3-5]
+'either of',
+'exactly once' {1}
+'exactly twice' {2}
+'exactly 4 times' {4}
+'if followed by',
+'if not followed by',
+'letter' [a-z]
+'letter from g to m' [g-m]
+'literally "a string to match"' -> a string to match
+'must end' $
+'multi line' /yourRegex/m
+'never or more' *
+'new line' \\n
+'no character' \\W
+'no whitespace' \\S
+'number from',
+'once',
+'one of "defg1234"' [defg1234]
+'optional' ?
+'once or more' +
+'raw "[a-zA-Z]"' -> [a-zA-Z]
+'tab' \\t
+'twice',
+'starts with' ^
+'until',
+'uppercase letter' [A-Z]
+'uppercase letter from M to P' [M-P]
+'whitespace' \\s
+
+(a) capture (a)
+
+[abc] one of "abc"
+
+[^abc] raw [^abc]
+
+[a-z] letter
+
+[A-Z] uppercase letter
+
+"plain text string" -> literally "plain text string"
+
+^ starts with
+
+? optional
+
+$ must end
+
+. anything
+
++ once or more
+
+* never or more
+
+{8,} at least 8 times
+
 \\d digit
 
-\\w whitespace
+\\w any character
 
-\\W no whitespace
+\\W no character
 
-\\s matches a single whitespace character.
+\\s whitespace
 
-\\S matches a single character other than whitespace.
+\\S no whitespace
 
-\\t matches a horizontal tab character
+\\t tab
 
-\\r matches a carriage return.
+\\r carriage return
 
-\\n matches a new line or linefeed.
+\\n new line
 
 \\ a backslash is for characters that usually have special handling, you can escape that character and it will be treated literally. For example \\d would match a digit, while \\\d will match a string that has a backslash followed by the letter d.
 
-x|y the pipe is an or operator in RegEx, it will match either x or y
+/yourRegex/m multi line
 
-^ the caret means start with, it matches the beginning of input.
 
-$ is the complement of the caret and indicates the string to be matched must end.
-
- matches a word boundary. It is most often used to insert characters before or after words. It has no length, since it is a concept rather than a character.
-
-B matches a non-word boundary.
-
-(x) surrounding part of your query in quotes creates a capturing group. It matches x and remembers the match.
 
 Currently unsupported characters \\1 referencing a capturing group
 
 \\v vertical tab [\\b] backspace \\0 matches NUL \\cX matches ctrl-X \\uDDDD matches a given unicode character \\f matches a form feed
+'any character',
+
+
 `;
