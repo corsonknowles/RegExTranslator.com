@@ -19,7 +19,7 @@ export default
 'if not followed by' -> capture (letter) if not followed by (digit) /([a-z])(?![0-9])/
 'letter' [a-z]
 'letter from g to m' [g-m]
-'literally "a string to match"' -> a string to match
+'literally "a string to match"' -> (?:a string to match)
 'multi line' /yourRegex/m
 'must end' $
 'never or more' *

@@ -3,6 +3,8 @@ export default
 `Translating RegEx:
 (a) capture (a)
 
+(?abc) literally abc
+
 [abc] one of "abc"
 
 [^abc] raw [^abc]
