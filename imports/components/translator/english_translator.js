@@ -1,5 +1,4 @@
-// import translationHash from './english_translation_hash';
-const translationHash = require('./english_translation_hash.js');
+import translationHash from './english_translation_hash';
 
 const srlToEngHash = {};
 const engToSrlHash = {};
@@ -19,7 +18,7 @@ Object.keys(translationHash).forEach(srlTemplate => {
   });
 });
 
-const engToSrl = input => {
+export const engToSrl = input => {
   let output = input.slice();
 
   Object.keys(engToSrlHash).forEach(srlTemplate => {
@@ -30,7 +29,7 @@ const engToSrl = input => {
   return output;
 };
 
-const srlToEng = input => {
+export const srlToEng = input => {
   let output = input.slice();
 
   Object.keys(srlToEngHash).forEach(engTemplate => {

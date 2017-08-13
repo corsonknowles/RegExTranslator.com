@@ -1,4 +1,5 @@
 import React from 'react';
+import EnglishInput from './english_input';
 import SrlInput from './srl_input';
 import RegexInput from './regex_input';
 
@@ -8,6 +9,7 @@ export default class extends React.Component {
 
     this.state = {
       inputBoxOrder: [
+        EnglishInput,
         SrlInput,
         RegexInput
       ]

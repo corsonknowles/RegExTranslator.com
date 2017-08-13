@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   'one of': [
     'included in',
     'in list',
