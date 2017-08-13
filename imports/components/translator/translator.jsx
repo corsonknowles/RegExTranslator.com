@@ -9,7 +9,6 @@ export default class extends React.Component {
 
     this.state = {
       inputBoxOrder: [
-        EnglishInput,
         SrlInput,
         RegexInput
       ],

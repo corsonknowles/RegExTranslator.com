@@ -12,6 +12,7 @@ import {
 } from '../../actions/regex_actions';
 import helpText from '../../webcopy/help_text';
 import glossary from '../../webcopy/glossary';
+import { engToSrl } from './english_translator';
 
 const mapStateToProps = ({ srl: { srlText, errors } }) => ({
   srlText,
@@ -48,9 +49,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // Set SRL slice
       this.props.receiveSrl(event.target.value);
 
+      const srl = engToSrl(event.target.value);
       try {
         // NOTE: Error causing line
-        const regex = new Srl(event.target.value);
+        const regex = new Srl(srl);
 
         // Get regex data for state
         const regexText = regex.getRawRegex();
@@ -68,20 +70,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     render() {
       let swapButton = <div />;
-      let klasses = [];
+      let classes = [];
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
-        klasses.push('editable');
+        classes.push('editable');
       }
 
       if (this.props.errors.length > 0) {
-        klasses.push('error');
+        classes.push('error');
       }
 
       return (
         <div className="translator-input-section">
           <header>
-            <h2>Simple Regex Language</h2>
+            <h2>Simpler Regex Language</h2>
             {swapButton}
           </header>
 
@@ -90,18 +92,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.srlInputText}
             disabled={this.props.idx !== 0}
             autoFocus={this.props.idx === 0}
-            className={klasses.join(' ')}
-          />
-        <textarea
-          className="help-text"
-          value={this.state.helpText}
-          disabled>
-        </textarea>
-        <textarea
-          className="help-text"
-          value={this.state.glossary}
-          disabled>
-        </textarea>
+            className={classes.join(' ')}>
+          </textarea>
+
+          <textarea
+            className="help-text"
+            value={this.state.helpText}
+            disabled>
+          </textarea>
+
+          <textarea
+            className="help-text"
+            value={this.state.glossary}
+            disabled>
+          </textarea>
         </div>
       );
     }

@@ -4,13 +4,10 @@ const srlToEngHash = {};
 const engToSrlHash = {};
 Object.keys(translationHash).forEach(srlTemplate => {
   const englishTemplates = translationHash[srlTemplate];
+  englishTemplates.push(srlTemplate);
 
   const est = `\\b${srlTemplate.replace(/\$\d+/g, '(.*?)')}\\b`;
-  if (englishTemplates.length === 0) {
-    srlToEngHash[est] = srlTemplate;
-  } else {
-    srlToEngHash[est] = englishTemplates;
-  }
+  srlToEngHash[est] = englishTemplates;
 
   englishTemplates.forEach(englishTemplate => {
     const eet = `\\b${englishTemplate.replace(/\$\d+/g, '(.*?)')}\\b`;
