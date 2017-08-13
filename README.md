@@ -17,8 +17,6 @@ Well, now you can. Creating a regular expression in either English or classical 
 
 The app's main page is roughly modeled on [Google Translate](https://translate.google.com/)  
 
-![AuthModal](docs/Modal.png)
-
 ## Technologies
 
 RegexTranslator.com is a web application built on the Meteor platform, an implementation of Node.js.
