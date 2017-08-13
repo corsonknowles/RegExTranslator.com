@@ -92,16 +92,53 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             autoFocus={this.props.idx === 0}
             className={klasses.join(' ')}
           />
-        <textarea
-          className="help-text"
-          value={this.state.helpText}
-          disabled>
-        </textarea>
-        <textarea
-          className="help-text"
-          value={this.state.glossary}
-          disabled>
-        </textarea>
+        <div className="help-text">
+
+          Glossary:<br />
+        any character \\w<br />
+      any of (a, b, c) (a|b|c)<br />
+    anything .<br />
+  at least 8 times &#123;8,&#125;<br />
+backslash \\<br />
+          between 3 and 7 times &#123;3,7&#125;<br />
+        capture a (a)<br />
+      case insensitive /myRegex/i<br />
+    digit \\d<br />
+  digit from 3 to 5 [3-5]<br />
+either of (x, y, z) (x|y|z)<br />
+          exactly once &#123;1&#125;<br />
+        exactly twice &#123;2&#125;<br />
+      exactly 4 times &#123;4&#125;<br />
+    if followed by -> capture (digit) if followed by (any character) -> /([0-9])(?=\\w)/<br />
+  if not followed by -> capture (letter) if not followed by (digit) /([a-z])(?![0-9])/<br />
+letter [a-z]<br />
+          letter from g to m [g-m]<br />
+        literally "a string to match" -> (?:a string to match)<br />
+      multi line /yourRegex/m<br />
+    must end $<br />
+  never or more *<br />
+new line \\n<br />
+          no character \\W<br />
+        no whitespace \\S<br />
+      number from -> number from 4 to 6 -> [4-6]<br />
+    once &#123;1&#125;<br />
+  one of "defg1234" [defg1234]<br />
+optional ?<br />
+          once or more +<br />
+        raw "[a-zA-Z]" -> [a-zA-Z]<br />
+      starts with ^<br />
+    tab \\t<br />
+  twice,<br />
+until -> capture (anything once or more) until "." -> (.+?)(?:\.)<br />
+          uppercase letter [A-Z]<br />
+        uppercase letter from M to P [M-P]<br />
+      whitespace \\s<br />
+
+
+        </div>
+        <div className="help-text">
+          {this.state.glossary}
+        </div>
         </div>
       );
     }
