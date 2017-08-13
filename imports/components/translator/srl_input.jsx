@@ -49,7 +49,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // Set SRL slice
       this.props.receiveSrl(event.target.value);
 
-      const srl = engToSrl(event.target.value);
+      const srl = engToSrl(event.target.value.replace(/\n/g, ' '));
       try {
         // NOTE: Error causing line
         const regex = new Srl(srl);
