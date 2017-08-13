@@ -1,16 +1,10 @@
 module.exports = {
-  'one of $1': [
-    'included in $1',
-    'in list $1',
-    'in $1'
+  'one of': [
+    'included in',
+    'in list',
+    'in'
   ],
-  'any character': [
-    'one letter',
-    'any letter',
-    'one single letter',
-    'any one letter',
-    'one character'
-  ],
+  'any character': [],
   'no character': [
     'non character'
   ],
@@ -20,15 +14,13 @@ module.exports = {
   'case insensitive': [
     'ignore case'
   ],
-  'starts with': [
-  ],
+  'starts with': [],
   'start with': [],
   'begin with': [],
   'begins with': [],
   'must end': [],
   'once or more': [
     'plus',
-    'many',
     'several',
     'more than one',
     'repeatedly'
@@ -41,14 +33,9 @@ module.exports = {
     'line break',
     'next line'
   ],
-  'whitespace': [],
-  'no whitespace': [],
   'anything': [],
   'atb': [
     'tab'
-  ],
-  'digit': [
-    'any digit'
   ],
   'no digit': [
     'any nondigit character',
@@ -59,13 +46,12 @@ module.exports = {
     'not a digit'
   ],
   'nondigit': [],
-  'number': [
-    'any number'
-  ],
   'letter': [],
   'uppercase': [],
   'once': [],
-  'twice': [],
+  'twice': [
+    '2 times'
+  ],
   // 'word': [
   //   'word boundary',
   //   'before or after words',
@@ -78,7 +64,9 @@ module.exports = {
   //   'new paragraph'
   // ],
   // 'carriagereturn': [],
-  'literally': [],
+  'literally $1': [
+    'exactly $1'
+  ],
   'either of': [],
   'any of': [],
   // 'none of': [],
@@ -94,13 +82,19 @@ module.exports = {
     'match this',
     'precisely'
   ],
-  'one of': [],
-  'digit from': [],
-  'number from': [],
-  'letter from': [],
+  'digit from $1 to $2': [
+    'digit between $1 and $2'
+  ],
+  'number from $1 to $2': [
+    'number between $1 and $2'
+  ],
+  'letter from $1 to $2': [
+    'letter between $1 and $2'
+  ],
   'uppercase letter from': [],
-  'exactly': [],
   'at least': [],
-  'between': [],
-  'capture': []
+  'capture $1': [
+    'grab $1',
+    'find $1'
+  ]
 };
