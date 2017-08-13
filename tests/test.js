@@ -2,14 +2,6 @@ var assert = require('assert');
 
 import { srlToRegex, regexToSrl } from '../imports/api/translator';
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
-    });
-  });
-});
-
 describe('translation', function() {
   describe('charset', function() {
     it('should translate common charsets', function() {
