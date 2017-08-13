@@ -29,6 +29,15 @@ $ must end
 
 {8,} at least 8 times
 
+{5} exactly 5 times
+
+{7-9} between 7 and 9 times
+
+Lookaheads:
+(?:a)(?=(?:9)) literally a if followed by 9
+
+((?:a))(?!(?:9)) capture a if not followed by 9
+
 Character classes:
 \\d digit
 
@@ -51,7 +60,7 @@ Character classes:
 Flags:
 /yourRegex/m multi line
 
-/myRegex/i 'case insensitive'
+/myRegex/i case insensitive
 
-Currently unsupported characters \\1 referencing a capturing group \\v vertical tab [\\b] backspace \\0 matches NUL \\cX matches ctrl-X \\uDDDD matches a given unicode character \\f matches a form feed
+Currently unsupported characters \\1 referencing a capturing group \\v vertical tab [\\b] backspace \\0 NUL \\cX ctrl-X \\uDDDD for a given unicode character \\f form feed
 `;
