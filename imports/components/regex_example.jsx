@@ -155,29 +155,32 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     render() {
       return (
-        <div className="regex-example">
-          <textarea
-            onChange={this.handleExampleInputChange}
-            value={this.state.exampleText}
-          />
+        <div className="regex-example-container">
+          <div className="regex-example">
+            <textarea
+              onChange={this.handleExampleInputChange}
+              value={this.state.exampleText}
+            />
 
-          <div className="transfer-functions">
-            <img src="img/arrow-12-512.png" alt="function arrow" />
-            <div onClick={this.handleFunctionButtonClick}>
-              <button className="transfer-function-active">Match</button>
-              <button>Capture</button>
-              <button>Split</button>
-              <button>Replace</button>
-              <input
-                onChange={this.handleReplaceInputChange}
-                value={this.state.replaceText} />
+            <div className="transfer-functions">
+              <img src="img/arrow-12-512.png" alt="function arrow" />
+              <div onClick={this.handleFunctionButtonClick}>
+                <button className="transfer-function-active">Match</button>
+                <button>Capture</button>
+                <button>Split</button>
+                <button>Replace</button>
+                <input
+                  onChange={this.handleReplaceInputChange}
+                  value={this.state.replaceText} />
+              </div>
             </div>
-          </div>
 
-          <div
-            className="results-box"
-            ref={el => { this.resultsBox = el; }}
-          />
+            <div
+              className="results-box"
+              ref={el => { this.resultsBox = el; }}
+            />
+          </div>
+          // Where your text box will go, David
         </div>
       );
     }
