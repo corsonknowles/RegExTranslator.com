@@ -1,5 +1,4 @@
 import React from 'react';
-import EnglishInput from './english_input';
 import SrlInput from './srl_input';
 import RegexInput from './regex_input';
 
