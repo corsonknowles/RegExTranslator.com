@@ -10,8 +10,8 @@
 
 .translator-input-section {
   position: relative;
-
   width: 100%;
+  max-width: 425px;
 
   padding: 5px;
 
@@ -61,6 +61,11 @@
     font-family: Monaco, monospace;
 
     resize: none;
+  }
+
+  .help-text {
+    margin: 30px 0 0 0;
+    height: 500px;
   }
 
   .editable {

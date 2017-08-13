@@ -64,18 +64,18 @@ module.exports = {
   'digit': [
     'any digit'
   ],
-  // 'no digit': [
-  //   'any nondigit character',
-  //   'not a number',
-  //   'nonnumber',
-  //   'non number',
-  //   'no number',
-  //   'not a digit'
-  // ],
-  // 'nondigit': [],
-  // 'number': [
-  //   'any number'
-  // ],
+  'no digit': [
+    'any nondigit character',
+    'not a number',
+    'nonnumber',
+    'non number',
+    'no number',
+    'not a digit'
+  ],
+  'nondigit': [],
+  'number': [
+    'any number'
+  ],
   'letter': [],
   'uppercase': [],
   'once': [],

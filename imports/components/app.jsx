@@ -13,7 +13,6 @@ export default ({ store }) => (
 
       <main>
         <Translator />
-        <RegexExample />
       </main>
     </div>
   </Provider>

@@ -180,7 +180,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
               ref={el => { this.resultsBox = el; }}
             />
           </div>
-          // Where your text box will go, David
         </div>
       );
     }

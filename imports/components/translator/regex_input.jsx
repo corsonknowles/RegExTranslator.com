@@ -11,7 +11,8 @@ import {
 } from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown';
 import { regexToSrl } from '../../api/translator';
-import SaveButton from './save_button.jsx';
+import SaveButton from './save_button';
+import RegexExample from '../regex_example';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
@@ -64,6 +65,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         this.props.clearRegexInputErrors();
       } catch(error) {
         // If regex parsing fails, set errors
+        console.error(error);
         this.props.receiveRegexErrors(['Invalid regex syntax', error]);
       }
     }
@@ -128,6 +130,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
           {SaveComponent}
           {DropdownComponent}
+
+          <RegexExample />
         </div>
       );
     }
