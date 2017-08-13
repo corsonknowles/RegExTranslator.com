@@ -2,6 +2,9 @@ module.exports = {
   'one of $1': [
     'included in $1',
     'in list $1',
+    '1 of $1',
+    'any of $1',
+    'exactly one of $1',
     'in $1'
   ],
   'any character': [
@@ -9,7 +12,9 @@ module.exports = {
     'any letter',
     'one single letter',
     'any one letter',
-    'one character'
+    'one character',
+    'any character except newline'
+
   ],
   'no character': [
     'non character'
@@ -31,7 +36,9 @@ module.exports = {
     'many',
     'several',
     'more than one',
-    'repeatedly'
+    'repeatedly',
+    'one or more',
+    '1 or more'
   ],
   'never or more': [
     'as many times as needed'
@@ -41,8 +48,15 @@ module.exports = {
     'line break',
     'next line'
   ],
-  'whitespace': [],
-  'no whitespace': [],
+  'whitespace': [
+    'white space'
+  ],
+  'no whitespace': [
+    'not whitespace',
+    'nonwhitespace',
+    'not-whitespace',
+    'nonwhitespace'
+  ],
   'anything': [],
   'atb': [
     'tab'
@@ -84,7 +98,13 @@ module.exports = {
   // 'none of': [],
   'if followed by': [],
   'if not followed by': [],
-  'optional': [],
+  'optional': [
+    '0 or 1',
+    'zero or one',
+    'optionally',
+    'maybe',
+    'allowed'
+  ],
   'until': [],
   'raw': [
     'in regex',
@@ -94,9 +114,10 @@ module.exports = {
     'match this',
     'precisely'
   ],
-  'one of': [],
-  'digit from': [],
-  'number from': [],
+  'digit from $1 to $2': [
+    'number from $1 to $2'
+  ],
+  'number from $1 to $2': [],
   'letter from': [],
   'uppercase letter from': [],
   'exactly': [],
