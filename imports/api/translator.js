@@ -11,7 +11,6 @@ export const regexToSrl = regex => {
   // throw error if invalid
   new RegExp(regex);
   const tree = createTree(regex);
-  console.log(tree);
   return traverseTree(tree);
 };
 
@@ -68,6 +67,8 @@ const traverseTree = node => {
     }
   });
 
+  console.warn(text);
+
   if (orGroup) {
     return "any of (" + combine(text) + ")";
   }
@@ -89,7 +90,12 @@ const combine = arr => {
     });
   }
 
+  chunks = flatten(chunks);
   return chunks.join(", ");
+};
+
+const flatten = array => {
+  return [].concat.apply([], array);
 };
 
 const isSelfContained = input => {
@@ -271,12 +277,11 @@ const charset = input => {
     return "any of (" + text.join(", ") + ")";
   }
 
-  return text.join("");
+  return text.join(" ");
 };
 
 const createTree = regex => {
   const tokens = tokenizeRegex(regex);
-  console.log(tokens);
   const root = new Node();
   let currentNode = root;
 
