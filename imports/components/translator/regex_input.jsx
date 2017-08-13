@@ -82,7 +82,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         DropdownComponent = <PatternDropdown
                             regexs={this.props.regexs}
                             regexSelector={this.regexSelector}
-                            getRegexs={this.props.getRegexs}/>;
+                            getRegexs={this.props.getRegexs}
+                            swapped={this.props.swapped}
+                            />;
       } else {
         DropdownComponent = <div />;
       }
