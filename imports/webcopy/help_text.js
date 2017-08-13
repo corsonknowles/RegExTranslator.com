@@ -51,8 +51,6 @@ Character classes:
 
 \\t tab
 
-\\r carriage return
-
 \\n new line
 
 \\ use a backslash for characters that usually have special handling. You can escape that character and it will be treated literally. For example \\d will match a digit, while \\\\d will match a string that has a backslash followed by the letter d.
@@ -62,5 +60,7 @@ Flags:
 
 /myRegex/i case insensitive
 
-Currently unsupported characters \\1 referencing a capturing group \\v vertical tab [\\b] backspace \\0 NUL \\cX ctrl-X \\uDDDD for a given unicode character \\f form feed
+Coming soon: \\r carriage return  \\v vertical tab  \\D no digit [^abc] none of "abc" \\b word \\B no word
+
+Currently unsupported characters: \\1 referencing a capturing group [\\b] backspace \\0 NUL \\cX ctrl-X \\uDDDD for a given unicode character \\f form feed
 `;
