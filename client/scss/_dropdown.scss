@@ -4,6 +4,8 @@
   margin-left: 58%;
   margin-top: 20px;
 
+
+
   h2 {
     cursor: pointer;
 
@@ -18,12 +20,10 @@
   }
 
   .dropdown-display {
-    max-width: 170px;
-    float: left;
+    width: 170px;
     background: white;
     cursor: pointer;
     border: solid 1px $border-normal;
-    position: fixed;
     height:0;
     -webkit-transition:height 200ms ease-in;
     -moz-transition:height 200ms ease-in;
@@ -63,5 +63,9 @@
   .clicked {
     height: 200px;
   }
+}
 
+.swapped {
+  margin-right: 58%;
+  margin-left: 0%;
 }

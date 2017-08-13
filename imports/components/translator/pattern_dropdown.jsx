@@ -57,7 +57,7 @@ class PatternDropdown extends React.Component {
     );
 
     return (
-      <div className="dropdown-container">
+      <div className={"dropdown-container" + (this.props.swapped ? " swapped" : "")}>
         <h2 onClick={this.handleClick}>Regex Patterns ▼</h2>
         <div className={"dropdown-display" +
           (this.state.visible ? " clicked" : "")}>

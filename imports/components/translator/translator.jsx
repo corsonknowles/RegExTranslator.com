@@ -10,7 +10,8 @@ export default class extends React.Component {
       inputBoxOrder: [
         SrlInput,
         RegexInput
-      ]
+      ],
+      swapped: false
     };
 
     this.swapInputBoxes = this.swapInputBoxes.bind(this);
@@ -18,7 +19,10 @@ export default class extends React.Component {
 
   swapInputBoxes() {
     const inputBoxOrder = this.state.inputBoxOrder.slice();
-    this.setState({ inputBoxOrder: inputBoxOrder.reverse() });
+    this.setState({
+                  inputBoxOrder: inputBoxOrder.reverse(),
+                  swapped: !this.state.swapped
+                  });
   }
 
   render() {
@@ -30,6 +34,7 @@ export default class extends React.Component {
                 key={idx}
                 idx={idx}
                 swap={this.swapInputBoxes}
+                swapped={this.state.swapped}
               />
             ))
           }
