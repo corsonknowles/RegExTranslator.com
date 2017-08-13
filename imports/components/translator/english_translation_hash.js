@@ -44,7 +44,9 @@ module.exports = {
   'whitespace': [],
   'no whitespace': [],
   'anything': [],
-  'tab': [],
+  'atb': [
+    'tab'
+  ],
   'digit': [
     'any digit'
   ],
@@ -64,22 +66,22 @@ module.exports = {
   'uppercase': [],
   'once': [],
   'twice': [],
-  'word': [
-    'word boundary',
-    'before or after words',
-    'before or after word'
-  ],
-  'nonword': [],
-  'carriage return': [
-    'windows newline',
-    'paragraph',
-    'new paragraph'
-  ],
-  'carriagereturn': [],
+  // 'word': [
+  //   'word boundary',
+  //   'before or after words',
+  //   'before or after word'
+  // ],
+  // 'nonword': [],
+  // 'carriage return': [
+  //   'windows newline',
+  //   'paragraph',
+  //   'new paragraph'
+  // ],
+  // 'carriagereturn': [],
   'literally': [],
   'either of': [],
   'any of': [],
-  'none of': [],
+  // 'none of': [],
   'if followed by': [],
   'if not followed by': [],
   'optional': [],
