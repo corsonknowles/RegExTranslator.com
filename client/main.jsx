@@ -4,10 +4,10 @@ import { render } from 'react-dom';
 
 import { srlToRegex, regexToSrl } from '../imports/api/translator';
 
-import App from '../imports/components/app.jsx';
+import App from '../imports/components/app';
 import configureStore from '../imports/store/store';
-import '../imports/startup/accounts-config.js';
-import '../imports/api/regexs.js';
+import '../imports/startup/accounts-config';
+import '../imports/api/regexs';
 
 window.srlToRegex = srlToRegex;
 window.regexToSrl = regexToSrl;

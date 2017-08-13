@@ -67,8 +67,6 @@ const traverseTree = node => {
     }
   });
 
-  console.warn(text);
-
   if (orGroup) {
     return "any of (" + combine(text) + ")";
   }
