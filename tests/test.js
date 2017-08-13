@@ -26,10 +26,6 @@ describe('translation', function() {
 
     it('should translate combined ranges', function() {
       assert.equal(regexToSrl("[a-zA-Z0-9%#_]"), "any of (letter, uppercase, digit, one of \"%#_\")");
-    });    
+    });
   });
 });
-
-const stringFromRegex = regex => {
-
-};
