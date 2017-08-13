@@ -10,6 +10,7 @@ import {
   receiveRegex,
   receiveRegexFlags
 } from '../../actions/regex_actions';
+import TextInput from 'react-autocomplete-input';
 
 const mapStateToProps = ({ srl: { srlText, errors } }) => ({
   srlText,
@@ -34,10 +35,23 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       };
 
       this.srlInputHandler = this.srlInputHandler.bind(this);
+      this.handleRequestOptions = this.handleRequestOptions.bind(this);
+
     }
 
     componentWillReceiveProps(nextProps, nextState) {
       this.setState({ srlInputText: nextProps.srlText });
+    }
+
+    handleRequestOptions(part) {
+      // console.log(part);
+      this.setState({ options: [one of, any character, no character, multi line, case insensitive,
+      starts with, must end, once or more, never or more, new line, whitespace,
+      no whitespace, anything, atb, digit, letter, uppercase, once, twice,
+      literally, either of, any of, if followed by, if not followed by,
+      optional, until, raw, one of, digit from, number from, letter from,
+      uppercase letter from, exactly, at least, between, capture
+      ] });
     }
 
     srlInputHandler(event) {
@@ -81,12 +95,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             {swapButton}
           </header>
 
-          <textarea
+          <TextInput
             onChange={this.srlInputHandler}
             value={this.state.srlInputText}
             disabled={this.props.idx !== 0}
             autoFocus={this.props.idx === 0}
-            className={klasses.join(' ')}
+            className={klasses.join(' ')},
+            onRequestOptions={this.handleRequestOptions},
+            options={this.state.options}
           />
         </div>
       );
