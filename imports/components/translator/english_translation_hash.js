@@ -17,13 +17,17 @@ module.exports = {
 
   ],
   'no character': [
-    'non character'
+    'non character',
+    'noncharacter',
+    'not character',
+    'not a character'
   ],
   'multi line': [
     'multiline'
   ],
   'case insensitive': [
-    'ignore case'
+    'ignore case',
+    'any case'
   ],
   'starts with': [
   ],
@@ -41,7 +45,7 @@ module.exports = {
     '1 or more'
   ],
   'never or more': [
-    'as many times as needed'
+    'as many times as needed',
   ],
   'new line': [
     'newline',
@@ -74,10 +78,19 @@ module.exports = {
   ],
   'nondigit': [],
   'number': [
-    'any number'
+    'any number',
+    'a number',
+    'numbers'
   ],
   'letter': [],
-  'uppercase': [],
+  'uppercase': [
+    'capital',
+    'capitals',
+    'capitalized',
+    'caps',
+    'all caps',
+    'allcaps'
+  ],
   'once': [],
   'twice': [],
   // 'word': [
@@ -96,14 +109,23 @@ module.exports = {
   'either of': [],
   'any of': [],
   // 'none of': [],
-  'if followed by': [],
-  'if not followed by': [],
+  'if followed by': [
+    'lookahead'
+  ],
+  'if not followed by': [
+    'negative lookahead',
+    'negated lookahead',
+    'lookahead not',
+    'not lookahead'
+  ],
   'optional': [
     '0 or 1',
     'zero or one',
     'optionally',
     'maybe',
-    'allowed'
+    'allowed',
+    'permitted',
+    'allow'
   ],
   'until': [],
   'raw': [
@@ -118,10 +140,39 @@ module.exports = {
     'number from $1 to $2'
   ],
   'number from $1 to $2': [],
-  'letter from': [],
+  'letter from': [
+    'letter range',
+    'letter in',
+    'letters in',
+    'letters like',
+    'letters including',
+    'letter in range',
+    'letter including',
+    'alphabet range',
+    'alhpabet in',
+    'alphabetical character',
+    'character from',
+    'character range',
+    'character in'
+  ],
   'uppercase letter from': [],
   'exactly': [],
-  'at least': [],
-  'between': [],
-  'capture': []
+  'at least': [
+    'more than',
+    'above'
+  ],
+  'between': [
+    'inbetween',
+    'in between',
+    'betwixt',
+    'within range'
+  ],
+  'capture': [
+    'return',
+    'save',
+    'extract',
+    'hold on to',
+    'hold onto',
+    'store'
+  ]
 };
