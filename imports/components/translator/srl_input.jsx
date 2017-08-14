@@ -83,7 +83,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["[abc]", "one of \"abc\""],
         ["[^abc]", "raw [^abc]"],
         ["[a-z]", "letter"],
-        ["[A-Z]", "uppercase letter"],
+        ["[A-Z]", "uppercase"],
         ["plain text string", 'literally "plain text string"'],
         ["^", "begin with"],
         ["?", "optional"],
@@ -164,7 +164,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["starts with", "^"],
         ["tab", "\\t"],
         ["twice", "{2}"],
-        ["uppercase letter", "[A-Z]"],
+        ["uppercase", "[A-Z]"],
         ["uppercase letter from D to Y", "[D-Y]"],
         ["whitespace", "\\s"],
       ];
