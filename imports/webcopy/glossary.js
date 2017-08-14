@@ -12,8 +12,7 @@ export default
 'digit' \\d
 'digit from 3 to 5' [3-5]
 'either of (x, y, z)' (x|y|z)
-'exactly once' {1}
-'exactly twice' {2}
+'exactly 3' {3}
 'exactly 4 times' {4}
 'if followed by' -> capture (digit) if followed by (any character) -> /([0-9])(?=\\w)/
 'if not followed by' -> capture (letter) if not followed by (digit) /([a-z])(?![0-9])/
@@ -34,7 +33,7 @@ export default
 'raw "[a-zA-Z]"' -> [a-zA-Z]
 'starts with' ^
 'tab' \\t
-'twice',
+'twice' {2}
 'until' -> capture (anything once or more) until "." -> (.+?)(?:\.)
 'uppercase letter' [A-Z]
 'uppercase letter from M to P' [M-P]

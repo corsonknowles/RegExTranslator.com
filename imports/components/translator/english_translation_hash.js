@@ -2,6 +2,8 @@ module.exports = {
   'one of $1': [
     'included in $1',
     'in list $1',
+    '1 of $1',
+    'exactly one of $1',
     'in $1'
   ],
   'any character': [
@@ -9,16 +11,22 @@ module.exports = {
     'any letter',
     'one single letter',
     'any one letter',
-    'one character'
+    'one character',
+    'any character except newline'
+
   ],
   'no character': [
-    'non character'
+    'non character',
+    'noncharacter',
+    'not character',
+    'not a character'
   ],
   'multi line': [
     'multiline'
   ],
   'case insensitive': [
-    'ignore case'
+    'ignore case',
+    'any case'
   ],
   'starts with': [
   ],
@@ -31,39 +39,61 @@ module.exports = {
     'many',
     'several',
     'more than one',
-    'repeatedly'
+    'repeatedly',
+    'one or more',
+    '1 or more'
   ],
   'never or more': [
-    'as many times as needed'
+    'as many times as needed',
   ],
   'new line': [
     'newline',
     'line break',
     'next line'
   ],
-  'whitespace': [],
-  'no whitespace': [],
-  'anything': [],
-  'atb': [
-    'tab'
+  'whitespace': [
+    'white space'
   ],
+  'no whitespace': [
+    'not whitespace',
+    'nonwhitespace',
+    'not-whitespace',
+    'nonwhitespace',
+    'not white space',
+    'nonwhite space',
+    'not-white space',
+    'nonwhite space'
+  ],
+  'anything': [],
+  // 'atb': [
+  //   'tab'
+  // ],
   'digit': [
     'any digit'
   ],
-  'no digit': [
-    'any nondigit character',
-    'not a number',
-    'nonnumber',
-    'non number',
-    'no number',
-    'not a digit'
-  ],
-  'nondigit': [],
-  'number': [
-    'any number'
-  ],
+  // 'no digit': [
+  //   'any nondigit character',
+  //   'not a number',
+  //   'nonnumber',
+  //   'non number',
+  //   'no number',
+  //   'not a digit'
+  // ],
+  // 'nondigit': [],
+  // 'number': [
+  //   'any number',
+  //   'a number',
+  //   'numbers'
+  // ],
   'letter': [],
-  'uppercase': [],
+  'uppercase': [
+    'capital',
+    'capitals',
+    'capitalized',
+    'caps',
+    'all caps',
+    'allcaps'
+  ],
   'once': [],
   'twice': [],
   // 'word': [
@@ -82,9 +112,28 @@ module.exports = {
   'either of': [],
   'any of': [],
   // 'none of': [],
-  'if followed by': [],
-  'if not followed by': [],
-  'optional': [],
+  'if followed by': [
+    'lookahead'
+  ],
+  'if not followed by': [
+    'negative lookahead',
+    'negated lookahead',
+    'lookahead not',
+    'not lookahead',
+    'negative look ahead',
+    'negated look ahead',
+    'look ahead not',
+    'not look ahead'
+  ],
+  'optional': [
+    '0 or 1',
+    'zero or one',
+    'optionally',
+    'maybe',
+    'allowed',
+    'permitted',
+    'allow'
+  ],
   'until': [],
   'raw': [
     'in regex',
@@ -94,13 +143,44 @@ module.exports = {
     'match this',
     'precisely'
   ],
-  'one of': [],
-  'digit from': [],
-  'number from': [],
-  'letter from': [],
+  'digit from $1 to $2': [
+    'number from $1 to $2'
+  ],
+  'number from $1 to $2': [],
+  'letter from': [
+    'letter range',
+    'letter in',
+    'letters in',
+    'letters like',
+    'letters including',
+    'letter in range',
+    'letter including',
+    'alphabet range',
+    'alhpabet in',
+    'alphabetical character',
+    'character from',
+    'character range',
+    'character in'
+  ],
   'uppercase letter from': [],
   'exactly': [],
-  'at least': [],
-  'between': [],
-  'capture': []
+  'at least': [
+    'more than',
+    'above'
+  ],
+  'between': [
+    'inbetween',
+    'in between',
+    'betwixt',
+    'in betwixt',
+    'within range'
+  ],
+  'capture': [
+    'return',
+    'save',
+    'extract',
+    'hold on to',
+    'hold onto',
+    'store'
+  ]
 };

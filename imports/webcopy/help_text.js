@@ -33,6 +33,10 @@ $ must end
 
 {7-9} between 7 and 9 times
 
+{1} once
+
+{2} twice
+
 Lookaheads:
 (?:a)(?=(?:9)) literally a if followed by 9
 

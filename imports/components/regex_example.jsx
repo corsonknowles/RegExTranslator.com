@@ -14,8 +14,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     constructor(props) {
       super(props);
 
-      let textContent = `Thank you for your interest in RegExTranslator.\nYou can edit this text to see example matches for your regular expressions below.\n\nHere are some common text types you can explore matches with:\nthe lowercase letters [a-z] group abcdefghijklmnopqrstuvwxyz\nand the capital letters [A-Z] ABCDEFGHIJKLMNOPQRSTUVWXYZ\ndigits [0-9] 0123456789\ncommon keyboard special characters [!-/] !\"#$%&\'()*+,-./\n\nCommand-Z will undo typing and command-Y will redo typing in most browsers.\n\nGuide to Special Characters in RegEx: . matches any single character, except line terminators \\n (newline) \\r (carriage return) \\u2028 (unicode line separator) \\u2029 (unicode paragraph separator) \n\n \\d matches any digit. [0-9] works identically.\n\n \\w matches any alphanumeric character, including underscores. Works the same as [A-Za-z0-9_] \n\n \\W  matches any character that is not a word character. Same as [^A-Za-z0-9_] \n\n \\s matches a single whitespace character. \n\n \\S matches a single character other than whitespace. \n\n \\t matches a horizontal tab character \n\n \\r matches a carriage return. \n\n \\n matches a new line or linefeed. \n\n \\ a backslash is for characters that usually have special handling, you can escape that character and it will be treated literally. For example \\d would match a digit, while \\\\d will match a string that has a backslash followed by the letter d. \n\n x|y the pipe is an or operator in RegEx, it will match either x or y \n\n ^ the caret means start with, it matches the beginning of input. \n\n $ is the complement of the caret and indicates the string to be matched must end. \n\n \b matches a word boundary. It is most often used to insert characters before or after words. It has no length, since it is a concept rather than a character. \n\n \B matches a non-word boundary. \n\n (x) surrounding part of your query in quotes creates a capturing group. It matches x and remembers the match. \n\n Currently unsupported characters \\1 referencing a capturing group \n\n \\v vertical tab [\\b] backspace \\0 matches NUL \\cX matches ctrl-X \\uDDDD matches a given unicode character \\f matches a form feed `;
-
       this.state = {
         exampleText: exampleContent,
         currentTransferFunction: 'match',
@@ -24,8 +22,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.handleExampleInputChange = this.handleExampleInputChange.bind(this);
       this.handleReplaceInputChange = this.handleReplaceInputChange.bind(this);
-      this.handleFunctionButtonClick =
-        this.handleFunctionButtonClick.bind(this);
+      this.handleFunctionButtonClick = (
+        this.handleFunctionButtonClick.bind(this)
+      );
     }
 
     componentDidUpdate() {
@@ -35,14 +34,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         state: { exampleText, currentTransferFunction }
       } = this;
 
-
-      let regex;
       try {
         // Create regex to match with
-        regex = new RegExp(regexText, regexFlags.join(''));
-      } finally {
+        const regex = new RegExp(regexText, regexFlags.join(''));
+
         // Set results box content
         resultsBox.innerHTML = this[currentTransferFunction](regex);
+      } catch(error) {
+        resultsBox.innerHTML = null;
       }
     }
 
@@ -78,7 +77,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // Create list of matches and match indices (all indices at which a
       //  character should be highlighted)
       const matchIndices = new Set;
-      let match, counter = 0;
+      let match;
       while ((match = regex.exec(exampleText))) {
         if (match.index === regex.lastIndex) regex.lastIndex++;
 
@@ -127,26 +126,28 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       const exampleText = this.state.exampleText;
 
       // Print list of captures
-      // TODO: Not sure if this is actually right. How do I obtain capture
-      //  groups?
-      let resultsMarkup = '';
-      resultsMarkup += '[<br/>&nbsp;&nbsp;';
-      resultsMarkup += exampleText.match(regex).join(',<br/>&nbsp;&nbsp;');
-      resultsMarkup += '<br/>]';
+      const captures = [];
+      let match;
+      while ((match = regex.exec(exampleText))) {
+        if (match.index === regex.lastIndex) regex.lastIndex++;
 
-      return resultsMarkup;
+        captures.push(match[1]);
+      }
+
+      return `[${captures.join(', ')}]`;
     }
 
     split(regex) {
       const exampleText = this.state.exampleText;
 
-      // Print list of split results
-      let resultsMarkup = '';
-      resultsMarkup += '[<br/>&nbsp;&nbsp;';
-      resultsMarkup += exampleText.split(regex).join(',<br/>&nbsp;&nbsp;');
-      resultsMarkup += '<br/>]';
-
-      return resultsMarkup;
+      // // Print list of split results
+      // let resultsMarkup = '';
+      // resultsMarkup += '[<br/>&nbsp;&nbsp;';
+      // resultsMarkup += exampleText.split(regex).join(',<br/>&nbsp;&nbsp;');
+      // resultsMarkup += '<br/>]';
+      //
+      // return resultsMarkup;
+      return `[${exampleText.split(regex).join(', ')}]`;
     }
 
     replace(regex) {

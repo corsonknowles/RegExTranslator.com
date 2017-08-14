@@ -4,7 +4,7 @@ import Srl from 'srl';
 import {
   receiveSrl,
   receiveSrlErrors,
-  clearSrlInputErrors
+  clearSrlErrors
 } from '../../actions/srl_actions';
 import {
   receiveRegex,
@@ -12,6 +12,7 @@ import {
 } from '../../actions/regex_actions';
 import helpText from '../../webcopy/help_text';
 import glossary from '../../webcopy/glossary';
+import { engToSrl } from './english_translator';
 
 const mapStateToProps = ({ srl: { srlText, errors } }) => ({
   srlText,
@@ -21,7 +22,7 @@ const mapStateToProps = ({ srl: { srlText, errors } }) => ({
 const mapDispatchToProps = dispatch => ({
   receiveSrl: input => dispatch(receiveSrl(input)),
   receiveSrlErrors: errors => dispatch(receiveSrlErrors(errors)),
-  clearSrlInputErrors: () => dispatch(clearSrlInputErrors()),
+  clearSrlErrors: () => dispatch(clearSrlErrors()),
   setRegex: regexText => dispatch(receiveRegex(regexText)),
   setRegexFlags: flags => dispatch(receiveRegexFlags(flags))
 });
@@ -48,9 +49,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       // Set SRL slice
       this.props.receiveSrl(event.target.value);
 
+      const srl = engToSrl(event.target.value.replace(/\n/g, ' '));
       try {
         // NOTE: Error causing line
-        const regex = new Srl(event.target.value);
+        const regex = new Srl(srl);
 
         // Get regex data for state
         const regexText = regex.getRawRegex();
@@ -59,7 +61,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         // Set regex to SRL-translated version and clear errors
         this.props.setRegex(regexText);
         this.props.setRegexFlags(flags);
-        this.props.clearSrlInputErrors();
+        this.props.clearSrlErrors();
       } catch(error) {
         // If SRL parsing fails, set errors
         this.props.receiveSrlErrors(['Invalid SRL syntax', error]);
@@ -68,20 +70,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     render() {
       let swapButton = <div />;
-      let klasses = [];
+      let classes = ['code'];
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
-        klasses.push('editable');
+        classes.push('editable');
       }
 
       if (this.props.errors.length > 0) {
-        klasses.push('error');
+        classes.push('error');
       }
 
-      return (
+    return (
         <div className="translator-input-section">
           <header>
-            <h2>Simple Regex Language</h2>
+            <h2>Simpler Regex Language</h2>
             {swapButton}
           </header>
 
@@ -90,18 +92,124 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.srlInputText}
             disabled={this.props.idx !== 0}
             autoFocus={this.props.idx === 0}
-            className={klasses.join(' ')}
+            className={classes.join(' ')}
           />
-        <textarea
-          className="help-text"
-          value={this.state.helpText}
-          disabled>
-        </textarea>
-        <textarea
-          className="help-text"
-          value={this.state.glossary}
-          disabled>
-        </textarea>
+
+          <div className="help-text">
+            Translating RegEx:<br />
+            (a) capture (a)<br />
+
+            (?abc) literally abc<br />
+
+            [abc] one of "abc"<br />
+
+            [^abc] raw [^abc]<br />
+
+            [a-z] letter<br />
+
+            [A-Z] uppercase letter<br />
+
+            "plain text string" -> literally "plain text string"<br />
+
+            ^ starts with<br />
+
+            ? optional<br />
+
+            $ must end<br />
+
+            . anything<br />
+
+            + once or more<br />
+
+            * never or more<br />
+
+            &#123;8,&#125; at least 8 times<br />
+
+            &#123;5&#125; exactly 5 times<br />
+
+            &#123;7-9&#125; between 7 and 9 times<br />
+
+            &#123;1&#125; once<br />
+
+            &#123;2&#125; twice<br />
+
+            Lookaheads:<br />
+            (?:a)(?=(?:9)) literally a if followed by 9<br />
+
+            ((?:b))(?!(?:8)) capture b if not followed by 8<br />
+
+            Character classes:<br />
+            \d digit<br />
+
+            \w any character<br />
+
+            \W no character<br />
+
+            \s whitespace<br />
+
+            \S no whitespace<br />
+
+            \t tab<br />
+
+            \n new line<br />
+
+            \ use a backslash for characters that usually have special handling. You can escape that character and it will be treated literally. For example \d will match a digit, while \\d will match a string that has a backslash followed by the letter d.<br />
+            <br />
+            Flags:<br />
+            /yourRegex/m multi line<br />
+
+            /myRegex/i case insensitive<br />
+            <br />
+            Coming soon:<br />\r carriage return  \v vertical tab  \D no digit [^abc] none of "abc" \b word \B no word<br />
+            <br />
+            Currently unsupported characters: <br />\1 referencing a capturing group [\b] backspace \0 NUL \cX ctrl-X \uDDDD for a given unicode character \f form feed<br />
+            <br />
+          </div>
+          <div className="help-text">
+
+            Glossary:<br />
+            any character \w<br />
+            any of (a, b, c) (a|b|c)<br />
+            anything .<br />
+            at least 8 times &#123;8,&#125;<br />
+            backslash \<br />
+            between 3 and 7 times &#123;3,7&#125;<br />
+            capture a (a)<br />
+            case insensitive /myRegex/i<br />
+            digit \d<br />
+            digit from 3 to 5 [3-5]<br />
+            either of (x, y, z) (x|y|z)<br />
+            exactly 3 &#123;3&#125;<br />
+            exactly 4 times &#123;4&#125;<br />
+            if followed by -> capture (digit) if followed by (any character) -> /([0-9])(?=\w)/<br />
+            if not followed by -> capture (letter) if not followed by (digit) /([a-z])(?![0-9])/<br />
+            letter [a-z]<br />
+            letter from g to m [g-m]<br />
+            literally "a string to match" -> (?:a string to match)<br />
+            multi line /yourRegex/m<br />
+            must end $<br />
+            never or more *<br />
+            new line \n<br />
+            no character \W<br />
+            no whitespace \S<br />
+            number from -> number from 4 to 6 -> [4-6]<br />
+            once &#123;1&#125;<br />
+            one of "defg1234" [defg1234]<br />
+            optional ?<br />
+            once or more +<br />
+            raw "[a-zA-Z]" -> [a-zA-Z]<br />
+            starts with ^<br />
+            tab \t<br />
+            twice &#123;2&#125;<br />
+            until -> capture (anything once or more) until "." -> (.+?)(?:\.)<br />
+            uppercase letter [A-Z]<br />
+            uppercase letter from M to P [M-P]<br />
+            whitespace \s<br />
+
+            Coming soon: backslash, none of<br />
+            <br />
+
+          </div>
         </div>
       );
     }

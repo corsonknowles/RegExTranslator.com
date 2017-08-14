@@ -11,6 +11,7 @@ export const regexToSrl = regex => {
   // throw error if invalid
   new RegExp(regex);
   const tree = createTree(regex);
+  // console.warn(tree);
   return traverseTree(tree);
 };
 
@@ -66,8 +67,6 @@ const traverseTree = node => {
       }
     }
   });
-
-  console.warn(text);
 
   if (orGroup) {
     return "any of (" + combine(text) + ")";

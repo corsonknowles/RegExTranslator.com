@@ -5,7 +5,7 @@ import { receiveSrl } from '../../actions/srl_actions';
 import {
   receiveRegex,
   receiveRegexErrors,
-  clearRegexInputErrors,
+  clearRegexErrors,
   getRegexs,
   createRegex
 } from '../../actions/regex_actions';
@@ -23,7 +23,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   receiveRegex: input => dispatch(receiveRegex(input)),
   receiveRegexErrors: errors => dispatch(receiveRegexErrors(errors)),
-  clearRegexInputErrors: () => dispatch(clearRegexInputErrors()),
+  clearRegexErrors: () => dispatch(clearRegexErrors()),
   getRegexs: () => dispatch(getRegexs()),
   createRegex: (data) => dispatch(createRegex(data)),
   setSrl: srlText => dispatch(receiveSrl(srlText))
@@ -62,10 +62,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
         // Set regex to reverse-translated version and clear errors
         this.props.setSrl(srlText);
-        this.props.clearRegexInputErrors();
+        this.props.clearRegexErrors();
       } catch(error) {
         // If regex parsing fails, set errors
-        console.error(error);
         this.props.receiveRegexErrors(['Invalid regex syntax', error]);
       }
     }
@@ -92,14 +91,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       }
 
       let swapButton = <div />;
-      let klasses = [];
+      let classes = ['code'];
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
-        klasses.push('editable');
+        classes.push('editable');
       }
 
       if (this.props.errors.length > 0) {
-        klasses.push('error');
+        classes.push('error');
       }
 
       let SaveComponent;
@@ -125,7 +124,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.regexInputText}
             disabled={this.props.idx !== 0}
             autoFocus={this.props.idx === 0}
-            className={klasses.join(' ')}
+            className={classes.join(' ')}
           />
 
           {SaveComponent}
