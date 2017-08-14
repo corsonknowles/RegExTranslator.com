@@ -119,7 +119,7 @@ module.exports = {
     'negative lookahead',
     'negated lookahead',
     'lookahead not',
-    'not lookahead'
+    'not lookahead',
     'negative look ahead',
     'negated look ahead',
     'look ahead not',
