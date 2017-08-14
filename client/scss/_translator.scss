@@ -28,9 +28,13 @@
     h2 {
       margin: 5px;
 
+      &.help-header {
+        margin-top: 35px;
+      }
       &.glossary-header {
         margin-top: 55px;
       }
+
     }
 
     h2 .glossary-header {
@@ -90,7 +94,6 @@
   .editable {
     background-color: $input-text-field-background;
     border: 1px solid $border-normal;
-    margin-bottom: 30px;
 
     &:hover, &:focus {
       box-shadow: inset 1px 1px 0 $text-field-shadow-top, inset 0 -1px 0 $text-field-shadow-bottom;

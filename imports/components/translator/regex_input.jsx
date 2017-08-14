@@ -53,7 +53,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     regexInputHandler(event) {
-      this.regexInputHandler(event.target.value);
+      this.registerRegexInput(event.target.value);
     }
 
     registerRegexInput(pattern) {

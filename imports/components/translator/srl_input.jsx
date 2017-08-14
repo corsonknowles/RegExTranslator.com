@@ -10,8 +10,6 @@ import {
   receiveRegex,
   receiveRegexFlags
 } from '../../actions/regex_actions';
-import helpText from '../../webcopy/help_text';
-import glossary from '../../webcopy/glossary';
 import { engToSrl } from './english_translator';
 
 const mapStateToProps = ({ srl: { srlText, errors } }) => ({
@@ -34,8 +32,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.state = {
         srlInputText: this.props.srlText,
-        helpText: helpText,
-        glossary: glossary
       };
 
       this.srlInputHandler = this.srlInputHandler.bind(this);

@@ -4,7 +4,7 @@
 
 This web application began with a question: Is it possible to build a Google Translate for regular expressions? It turns out that with 9 days and an amazing team of engineers in San Francisco, the answer is a resounding, "Yes."
 
-Regular expression are incredibly useful and powerful. Their abstract nature allows them to be used in almost all modern programming languages. This very level of abstractness however is also what makes regular expressions difficult for even experienced programmers to parse. The intent of **RegEx Translator** is to turn regular expressions into something more readable. In addition to decoding regex, our web app’s two-way translation service makes Regular Expressions more accessible for programmers to craft and modify. You can even save regular expressions to your account, and keep a toolkit of your own analytical creations to return to and modify as needed.
+Regular expression are incredibly useful and powerful. Their abstract nature allows them to be used in almost all modern programming languages. This very level of abstractness however is also what makes regular expressions difficult for even experienced programmers to parse. The intent of [**RegEx Translator**](https://www.regextranslator.com) is to turn regular expressions into something more readable. In addition to decoding regex, our web app’s two-way translation service makes Regular Expressions more accessible for programmers to craft and modify. You can even save regular expressions to your account, keeping a toolkit of your own analytical creations to return to and modify as needed.
 
 ## Core Functionality
 
@@ -15,7 +15,7 @@ Well, now you can. Creating a regular expression in either English or classical 
 ## The Translator
 ![Screenshots](docs/regextranslator_screenshot.png)
 
-The app's main page is roughly modeled on [Google Translate](https://translate.google.com/)  
+The app's main page is modeled to be an homage to the current design of [Google Translate](https://translate.google.com/).  
 
 ## Technologies
 
@@ -36,16 +36,28 @@ Technologies used:
 - Papertrail
 - Cloudflare
 - Segment.io and Google Analytics
+- Mocha
+- Babel
+
 
 ## Members and Responsibilities
 
-- David Corson-Knowles, Server, Coordination, Libraries, SSL, OAuth, UX, Analytics, Chrome Extension
-- Adam Jacobson, RegEx to SRL, a new technology
-- Rod Shokrian, OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
-- Andy Booth, SASS, Redux, Integration, SRL to RegEx, Swapping, UI
-
-
-## Timeline
+- David Corson-Knowles 
+ [LinkedIn](https://www.linkedin.com/in/davidcorsonknowles/) 
+ [Github](https://github.com/corsonknowles/)
+- Server, Coordination, Libraries, SSL, OAuth, UX, Analytics, Chrome Extension
+- Adam Jacobson
+ [LinkedIn](https://www.linkedin.com/in/adam-jacobson/)
+ [Github](https://github.com/AdamJacobson)
+- RegEx to SRL, a new technology
+- Rod Shokrian
+ [LinkedIn](https://www.linkedin.com/in/rodshokrian/)
+ [Github](https://github.com/RodShokrian)
+- OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
+- Andy Booth
+ [LinkedIn](https://www.linkedin.com/in/boothandrewd/)
+ [Github](https://github.com/BoothAndrewD)
+- SASS, Redux, Integration, SRL to RegEx, Swapping, UI
 
 ## Peek inside the Code
 
@@ -73,6 +85,7 @@ Technologies used:
 
 
 Input handling
+Write Regex or SRL patterns and get real-time matches!
 
 ```JavaScript
     srlInputHandler(event) {
@@ -99,7 +112,8 @@ Input handling
     }
  ```
 
- Box swap!
+ Box swap
+Seamlessly transition from writing SRL to Regex and vice versa. Never worry about tracking your eyes five degrees laterally again!
 
  ```JavaScript
        <div className="translator">
@@ -117,6 +131,8 @@ Input handling
  ```
 
 Transfer functions
+See how your text would look after matching, capturing, splitting, or replacing a pattern - all on the fly! 
+
 ```JavaScript
             <div className="transfer-functions">
               <img src="img/arrow-12-512.png" alt="function arrow" />
@@ -136,7 +152,7 @@ Transfer functions
 
 ## New Directions
 
-- [ ] Because this web application is built in the Meteor framework on Node, it will be straightforward to deploy native iOS and Android apps delivering the same features. Because this is a developer tool, any mobile users would be more likely to be on tablets than phones.
+- [ ] Because this web application is built in the Meteor framework on Node, it will be straightforward to deploy native iOS and Android apps delivering the same features. Since this is a developer tool, mobile users are more likely to be on tablets than phones.
 
 - [ ] Further extension of the translation dictionary. Creating a user extensible dictionary will allow the language to grow and evolve freely to meet the needs of developers using the tool.
 
@@ -144,6 +160,8 @@ Transfer functions
 
 ### Bonus Feature
 
-- [x] Google Chrome Extensions
+- [x] Google Chrome Extension
 
 ![ChomeExtension](docs/chrome_extension_regex.png)
+
+
