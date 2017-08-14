@@ -27,7 +27,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       );
     }
 
+    componentDidMount() {
+      this.updateOutputBox();
+    }
+
     componentDidUpdate() {
+      this.updateOutputBox();
+    }
+
+    updateOutputBox() {
       const {
         resultsBox,
         props: { regexText, regexFlags },

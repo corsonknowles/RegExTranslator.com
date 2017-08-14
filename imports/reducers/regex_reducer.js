@@ -5,7 +5,7 @@ import {
 } from '../actions/regex_actions';
 
 const defaultState = {
-  regexText: '(?:)',
+  regexText: '\\s\\w',
   regexFlags: ['g'],
   errors: []
 };
