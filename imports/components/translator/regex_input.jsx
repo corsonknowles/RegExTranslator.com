@@ -95,10 +95,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
         classes.push('editable');
-      }
 
-      if (this.props.errors.length > 0) {
-        classes.push('error');
+        if (this.props.errors.length > 0) {
+          classes.push('error');
+        }
       }
 
       let SaveComponent;
@@ -130,6 +130,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           {SaveComponent}
           {DropdownComponent}
 
+          <header>
+            <h2>Regex Demo</h2>
+          </header>
           <RegexExample />
         </div>
       );
