@@ -143,6 +143,6 @@ Transfer functions
 
 ### Bonus Feature
 
-- [x] Google Chrome Extensions
+- [x] Google Chrome Extension
 
 ![ChomeExtension](docs/chrome_extension_regex.png)
