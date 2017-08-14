@@ -5,6 +5,7 @@
 This web application began with a question: Is it possible to build a Google Translate for regular expressions? It turns out that with 9 days and an amazing team of engineers in San Francisco, the answer is a resounding, "Yes."
 
 Regular expression are incredibly useful and powerful. Their abstract nature allows them to be used in almost all modern programming languages. This very level of abstractness however is also what makes regular expressions difficult for even experienced programmers to parse. The intent of [**RegEx Translator**](https://www.regextranslator.com) is to turn regular expressions into something more readable. In addition to decoding regex, our web app’s two-way translation service makes Regular Expressions more accessible for programmers to craft and modify. You can even save regular expressions to your account, keeping a toolkit of your own analytical creations to return to and modify as needed.
+![Saving Regex](https://github.com/corsonknowles/RegExTranslator.com/blob/gifs/docs/gifs/saving.gif)
 
 ## Core Functionality
 
@@ -12,10 +13,14 @@ Wouldn't it be cool if you could translate a regular expression into English, ti
 
 Well, now you can. Creating a regular expression in either English or classical syntax will also highlight matched patterns in an example body of text. It can even display the results of common operations performed on matched patterns, such as replacing text.
 
+![Entering Regex](https://github.com/corsonknowles/RegExTranslator.com/blob/gifs/docs/gifs/entering_regex.gif)
+
 ## The Translator
 ![Screenshots](docs/regextranslator_screenshot.png)
 
 The app's main page is modeled to be an homage to the current design of [Google Translate](https://translate.google.com/).  
+
+![Logging In](https://github.com/corsonknowles/RegExTranslator.com/blob/gifs/docs/gifs/login.gif)
 
 ## Technologies
 
@@ -61,6 +66,8 @@ Technologies used:
 
 ## Peek inside the Code
 
+Get your stored patterns back from the database
+![Presets](https://github.com/corsonknowles/RegExTranslator.com/blob/gifs/docs/gifs/presets.gif)
 ```JavaScript
     const publicPatterns = Object.keys(this.props.regexs).map((id) => {
       if (!(this.props.regexs[id].hasOwnProperty("userId"))) return (
@@ -112,7 +119,8 @@ Write Regex or SRL patterns and get real-time matches!
     }
  ```
 
- Box swap
+![Box Swap and SRL](https://github.com/corsonknowles/RegExTranslator.com/blob/gifs/docs/gifs/srl.gif)
+Box swap
 Seamlessly transition from writing SRL to Regex and vice versa. Never worry about tracking your eyes five degrees laterally again!
 
  ```JavaScript
@@ -148,7 +156,7 @@ See how your text would look after matching, capturing, splitting, or replacing 
             </div>
 
 ```
-
+![Restore Saved](https://github.com/corsonknowles/RegExTranslator.com/blob/gifs/docs/gifs/using_saved.gif)
 
 ## New Directions
 
