@@ -70,7 +70,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     render() {
       let swapButton = <div />;
-      let classes = [];
+      let classes = ['code'];
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
         classes.push('editable');
@@ -83,7 +83,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     return (
         <div className="translator-input-section">
           <header>
-            <h2>Simpler Regex Language</h2>
+            <h2>Simple Regex Language</h2>
             {swapButton}
           </header>
 
@@ -94,9 +94,12 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             autoFocus={this.props.idx === 0}
             className={classes.join(' ')}
           />
-          <div className="help-text">
 
-            Glossary:<br />
+          <header>
+            <h2>Glossary</h2>
+          </header>
+
+          <div className="help-text">
           any character \\w<br />
         any of (a, b, c) (a|b|c)<br />
       anything .<br />
@@ -134,9 +137,12 @@ exactly 3 &#123;3&#125;<br />
             uppercase letter [A-Z]<br />
           uppercase letter from M to P [M-P]<br />
         whitespace \\s<br />
-
-
           </div>
+
+          <header>
+            <h2>Glossary</h2>
+          </header>
+
           <div className="help-text">
             {this.state.glossary}
           </div>

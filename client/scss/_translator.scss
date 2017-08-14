@@ -26,7 +26,6 @@
     padding-right: 0;
 
     h2 {
-      font-family: Verdana;
       margin: 5px;
     }
 
@@ -35,7 +34,6 @@
       border: 1px solid LightGray;
       border-radius: 2px;
 
-      font-family: Arial;
       font-size: 12px;
       font-weight: bold;
       background-color: $display-text-field-background;
@@ -59,16 +57,18 @@
     background-color: $display-text-field-background;
 
     font-size: 14px;
-    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
 
     resize: none;
+
+    &.code {
+      font-family: Monaco, 'Lucida Console', monospace;
+      margin-bottom: 20px;
+    }
   }
 
   .help-text {
-    margin: 30px 0 0 0;
     height: 500px;
     overflow-y: scroll;
-    font-family: 'Roboto', Verdana, Arial, Helvetica, sans-serif;
   }
 
   .editable {
@@ -127,7 +127,6 @@
 .pattern-item {
   display: block;
   font-size: 14px;
-  font-family: Roboto, monospace;
   width: 100%;
 
   &:hover {

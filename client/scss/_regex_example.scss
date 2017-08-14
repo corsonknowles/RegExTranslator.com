@@ -1,6 +1,5 @@
 .regex-example-container {
   width: 100%;
-  // padding: 20px 0;
   display: flex;
   flex-flow: row;
 
@@ -16,14 +15,12 @@
       height: 130px;
       width: 100%;
 
-      // margin: 10px 0;
       padding: 8px 10px;
 
       resize: none;
       border: 1px solid $border-normal;
 
       background-color: white;
-      font-family: Arial;
       font-size: 16px;
     }
 
@@ -42,6 +39,8 @@
     }
 
     .transfer-functions {
+      margin: 10px 0;
+
       text-align: center;
 
       user-select: none;
@@ -82,7 +81,6 @@
           margin-left: -1px;
           border: 1px solid LightGray;
 
-          font-family: Arial;
           font-size: 12px;
 
           &:first-child {
@@ -101,8 +99,6 @@
     .results-box {
       overflow-y: scroll;
 
-      // NOTE: Can't figure out how to get word breaking to break only between
-      //  words. Think it might be because of usage of non-breaking spaces
       word-wrap: break-word;
 
       span {
