@@ -16,7 +16,6 @@ Well, now you can. Creating a regular expression in either English or classical 
 ![Entering Regex](https://github.com/corsonknowles/RegExTranslator.com/blob/gifs/docs/gifs/entering_regex.gif)
 
 ## The Translator
-![Screenshots](docs/regextranslator_screenshot.png)
 
 The app's main page is modeled to be an homage to the current design of [Google Translate](https://translate.google.com/).  
 
