@@ -132,7 +132,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["\\f", "form feed"],
       ];
 
-  // ["backslash", "\\"],
       const glossaryContent = [
         ["any character", "\\w"],
         ["any of (letter, digit)", "(?:[a-z]|[0-9])"],
@@ -143,7 +142,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["case insensitive", "/regex/i"],
         ["digit", "\\d"],
         ["digit from 3 to 5", "[3-5]"],
-        ["either of (x, y, z)", "(x|y|z)"],
+        ["either of (digit, letter)", "(?:[0-9]|[a-z])"],
         ["exactly 3", "{3}"],
         ["exactly 4 times", "{4}"],
         ["letter", "[a-z]"],
