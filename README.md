@@ -36,6 +36,8 @@ Technologies used:
 - Papertrail
 - Cloudflare
 - Segment.io and Google Analytics
+- Mocha
+- Babel
 
 ## Members and Responsibilities
 
