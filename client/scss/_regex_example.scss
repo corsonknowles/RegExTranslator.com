@@ -12,7 +12,7 @@
     font-size: 16px;
 
     textarea, .results-box {
-      height: 130px;
+      height: 200px;
       width: 100%;
 
       padding: 8px 10px;
@@ -39,7 +39,7 @@
     }
 
     .transfer-functions {
-      margin: 10px 0;
+      margin: 9.5px 0;
 
       text-align: center;
 
@@ -47,7 +47,8 @@
 
       img {
         width: auto;
-        height: 80px;
+        height: 70px;
+
 
         @include rotate(90deg);
       }
@@ -61,6 +62,7 @@
           background-color: $display-text-field-background;
           color: #444;
           font-weight: bold;
+
 
           &.transfer-function-active {
             box-shadow: inset 1px 1px 1px LightGray;
@@ -98,6 +100,7 @@
 
     .results-box {
       overflow-y: scroll;
+      height: 250px;
 
       word-wrap: break-word;
 

@@ -1,8 +1,6 @@
 .dropdown-container {
 
-  width: 35%;
-  margin-left: 58%;
-  margin-top: 25px;
+  width: 100%;
 
   h2 {
     cursor: pointer;
@@ -12,13 +10,14 @@
     border-radius: 2px;
     padding: 5px;
     color: $go-white;
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: 1px;
-    width: 170px;
+    width: 100%;
+    text-align: center;
   }
 
   .dropdown-display {
-    width: 170px;
+    width: 100%;
     background: white;
     cursor: pointer;
     border: solid 1px $border-normal;
