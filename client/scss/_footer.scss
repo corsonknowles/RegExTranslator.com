@@ -2,6 +2,7 @@
   display: flex;
   flex-flow: row;
   width: 100%;
+  position: relative;
 
   .adam {
     float: left;
@@ -35,10 +36,24 @@
     text-align: center;
   }
 
+  .bio-text {
+    padding-top: 10px;
+    padding-bottom: 40px;
+    display: block;
+    width: 75%;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 14px;
+    color: black;
+  }
+
   .footer-icons {
+    position: absolute;
+    bottom: 0;
+    margin-left: 7%;
+
 
     .github-icon {
-      color: black;
       transition-duration: 0.4s;
       margin-right: 50px;
 
@@ -48,7 +63,6 @@
     }
 
     .linkedin-icon {
-      color: black;
       transition-duration: 0.4s;
 
       &:hover {

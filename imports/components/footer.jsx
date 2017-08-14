@@ -6,7 +6,11 @@ class Footer extends React.Component {
       <footer className="footer">
         <div className="adam">
           <div className="bio">
-            Adam
+            Adam Jacobson
+            <span className="bio-text">
+              Adam was born with a keyboard in one hand and a copy of
+              The Algorithm Design Manual in the other. It was a difficult birth.
+            </span>
             <div className="footer-icons">
               <a className="github-icon" href="https://github.com/AdamJacobson">
                 <i className="fa fa-github fa-2x" aria-hidden="true"></i>
@@ -19,7 +23,13 @@ class Footer extends React.Component {
         </div>
         <div className="andy">
           <div className="bio">
-            Andy
+            Andrew Booth
+            <span className="bio-text">
+              Andrew taught himself to program on a TI-83,
+              selling his programs to his high school peers for $5
+              a pop. Now, he is
+              well-versed in Rails, Node, JavaScript, React, and Redux.
+            </span>
             <div className="footer-icons">
               <a className="github-icon" href="https://github.com/BoothAndrewD">
                 <i className="fa fa-github fa-2x" aria-hidden="true"></i>
@@ -32,7 +42,11 @@ class Footer extends React.Component {
         </div>
         <div className="david">
           <div className="bio">
-            David
+            David Corson-Knowles
+            <span className="bio-text">
+              Dave is passionate about the usefulness of Regex, which is why we are all here today.
+               He loves Ruby, and he also loves React even though it is not Ruby.
+            </span>
             <div className="footer-icons">
               <a className="github-icon" href="https://github.com/corsonknowles/">
                 <i className="fa fa-github fa-2x" aria-hidden="true"></i>
@@ -45,7 +59,12 @@ class Footer extends React.Component {
         </div>
         <div className="rod">
           <div className="bio">
-            Rod
+            Rod Shokrian
+            <span className="bio-text">
+              Rod is a full stack web developer working out of San Francisco.
+              He has experience in React, Rails, Meteor, Nodejs, and MongoDB.
+              When not coding, he enjoys jogging with his dog, Canelo.
+            </span>
             <div className="footer-icons">
               <a className="github-icon" href="https://github.com/RodShokrian">
                 <i className="fa fa-github fa-2x" aria-hidden="true"></i>
