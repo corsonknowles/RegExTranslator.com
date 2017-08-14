@@ -48,21 +48,21 @@ Technologies used:
 ## Members and Responsibilities
 
 - David Corson-Knowles 
- [LinkedIn](https://www.linkedin.com/in/davidcorsonknowles/) 
- [Github](https://github.com/corsonknowles/)
-- Server, Coordination, Libraries, SSL, OAuth, UX, Analytics, Chrome Extension
+    - [LinkedIn](https://www.linkedin.com/in/davidcorsonknowles/) 
+    - [Github](https://github.com/corsonknowles/)
+    - Server, Coordination, Libraries, SSL, OAuth, UX, Analytics, Chrome Extension
 - Adam Jacobson
- [LinkedIn](https://www.linkedin.com/in/adam-jacobson/)
- [Github](https://github.com/AdamJacobson)
-- RegEx to SRL, a new technology
+    - [LinkedIn](https://www.linkedin.com/in/adam-jacobson/)
+    - [Github](https://github.com/AdamJacobson)
+    - RegEx to SRL, a new technology
 - Rod Shokrian
- [LinkedIn](https://www.linkedin.com/in/rodshokrian/)
- [Github](https://github.com/RodShokrian)
-- OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
+    - [LinkedIn](https://www.linkedin.com/in/rodshokrian/)
+    - [Github](https://github.com/RodShokrian)
+    - OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
 - Andy Booth
- [LinkedIn](https://www.linkedin.com/in/boothandrewd/)
- [Github](https://github.com/BoothAndrewD)
-- SASS, Redux, Integration, SRL to RegEx, Swapping, UI
+    - [LinkedIn](https://www.linkedin.com/in/boothandrewd/)
+    - [Github](https://github.com/BoothAndrewD)
+    - SASS, Redux, Integration, SRL to RegEx, Swapping, UI
 
 ## Peek inside the Code
 
