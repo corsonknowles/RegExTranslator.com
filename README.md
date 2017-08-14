@@ -39,13 +39,99 @@ Technologies used:
 
 ## Members and Responsibilities
 
-- David Corson-Knowles, Server, Coordination, Libraries, SSL, OAuth, UX, Analytics
+- David Corson-Knowles, Server, Coordination, Libraries, SSL, OAuth, UX, Analytics, Chrome Extension
 - Adam Jacobson, RegEx to SRL, a new technology
-- Rod Shokrian, OAuth, Personalization, RegEx Pattern Library, Redux, Database
+- Rod Shokrian, OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
 - Andy Booth, SASS, Redux, Integration, SRL to RegEx, Swapping, UI
 
 
 ## Timeline
+
+## Peek inside the Code
+
+'''
+    const publicPatterns = Object.keys(this.props.regexs).map((id) => {
+      if (!(this.props.regexs[id].hasOwnProperty("userId"))) return (
+        <button className="dropdown-item" key={id}
+          onClick={() => this.props.regexSelector(this.props.regexs[id].pattern)}>
+            {this.props.regexs[id].name}
+        </button>
+        );
+      }
+    );
+
+    const privatePatterns = Object.keys(this.props.regexs).map((id) => {
+      if (this.props.regexs[id].hasOwnProperty("userId")) return (
+        <button className="dropdown-item" key={id}
+          onClick={() => this.props.regexSelector(this.props.regexs[id].pattern)}>
+            {this.props.regexs[id].name}
+        </button>
+        );
+      }
+    );
+'''
+
+
+Input handling 
+
+'''
+    srlInputHandler(event) {
+      // Set SRL slice
+      this.props.receiveSrl(event.target.value);
+
+      const srl = engToSrl(event.target.value.replace(/\n/g, ' '));
+      try {
+        // NOTE: Error causing line
+        const regex = new Srl(srl);
+
+        // Get regex data for state
+        const regexText = regex.getRawRegex();
+        const flags = regex._modifiers.split('');
+
+        // Set regex to SRL-translated version and clear errors
+        this.props.setRegex(regexText);
+        this.props.setRegexFlags(flags);
+        this.props.clearSrlErrors();
+      } catch(error) {
+        // If SRL parsing fails, set errors
+        this.props.receiveSrlErrors(['Invalid SRL syntax', error]);
+      }
+    }
+ '''
+ 
+ Box swap! 
+ 
+ '''
+       <div className="translator">
+          {
+            this.state.inputBoxOrder.map((Component, idx) => (
+              <Component
+                key={idx}
+                idx={idx}
+                swap={this.swapInputBoxes}
+                swapped={this.state.swapped}
+              />
+            ))
+          }
+      </div>
+ '''
+
+Transfer functions
+'''
+            <div className="transfer-functions">
+              <img src="img/arrow-12-512.png" alt="function arrow" />
+              <div onClick={this.handleFunctionButtonClick}>
+                <button className="transfer-function-active">Match</button>
+                <button>Capture</button>
+                <button>Split</button>
+                <button>Replace</button>
+                <input
+                  onChange={this.handleReplaceInputChange}
+                  value={this.state.replaceText} />
+              </div>
+            </div>
+
+'''
 
 
 ## New Directions
@@ -53,3 +139,5 @@ Technologies used:
 - [ ] Because this web application is built in the Meteor framework on Node, it will be straightforward to deploy native iOS and Android apps delivering the same features. Because this is a developer tool, any mobile users would be more likely to be on tablets than phones.
 
 - [ ] Further extension of the translation dictionary. Creating a user extensible dictionary will allow the language to grow and evolve freely to meet the needs of developers using the tool. 
+
+- [ ] Autocomplete, Dev API, User suggested translations.  
