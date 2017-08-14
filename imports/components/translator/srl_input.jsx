@@ -10,8 +10,6 @@ import {
   receiveRegex,
   receiveRegexFlags
 } from '../../actions/regex_actions';
-import helpText from '../../webcopy/help_text';
-import glossary from '../../webcopy/glossary';
 import { engToSrl } from './english_translator';
 
 const mapStateToProps = ({ srl: { srlText, errors } }) => ({
@@ -34,8 +32,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
       this.state = {
         srlInputText: this.props.srlText,
-        helpText: helpText,
-        glossary: glossary
       };
 
       this.srlInputHandler = this.srlInputHandler.bind(this);
@@ -156,16 +152,22 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
             \n new line<br />
 
-            \ use a backslash for characters that usually have special handling. You can escape that character and it will be treated literally. For example \d will match a digit, while \\d will match a string that has a backslash followed by the letter d.<br />
+            \ use a backslash for characters that usually have special handling.
+             You can escape that character and it will be treated literally. For
+              example \d will match a digit, while \\d will match a string that
+              has a backslash followed by the letter d.<br />
             <br />
             Flags:<br />
             /yourRegex/m multi line<br />
 
             /myRegex/i case insensitive<br />
             <br />
-            Coming soon:<br />\r carriage return  \v vertical tab  \D no digit [^abc] none of "abc" \b word \B no word<br />
+            Coming soon:<br />\r carriage return  \v vertical tab  \D no digit
+            [^abc] none of "abc" \b word \B no word<br />
             <br />
-            Currently unsupported characters: <br />\1 referencing a capturing group [\b] backspace \0 NUL \cX ctrl-X \uDDDD for a given unicode character \f form feed<br />
+            Currently unsupported characters: <br />\1 referencing a capturing
+            group [\b] backspace \0 NUL \cX ctrl-X \uDDDD for a given unicode
+            character \f form feed<br />
             <br />
           </div>
 
@@ -189,8 +191,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             either of (x, y, z) (x|y|z)<br />
             exactly 3 &#123;3&#125;<br />
             exactly 4 times &#123;4&#125;<br />
-            if followed by -> capture (digit) if followed by (any character) -> /([0-9])(?=\w)/<br />
-            if not followed by -> capture (letter) if not followed by (digit) /([a-z])(?![0-9])/<br />
+            if followed by -> capture (digit) if followed by (any character) ->
+            /([0-9])(?=\w)/<br />
+            if not followed by -> capture (letter) if not followed by (digit)
+            /([a-z])(?![0-9])/<br />
             letter [a-z]<br />
             letter from g to m [g-m]<br />
             literally "a string to match" -> (?:a string to match)<br />
