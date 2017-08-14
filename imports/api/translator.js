@@ -183,13 +183,15 @@ const escapedLiteral = input => {
     case /\\d/.test(input):
       return "digit";
     case /\\D/.test(input): // non-digit
-      return "raw [^0-9]"; // No direct representation in SRL
+      return "nondigit"; //
     case /\\w/.test(input):
       return "any character";
     case /\\W/.test(input):
       return "no character";
     case /\\b/.test(input): // Word boundary
-      return "raw \\b"; // No direct representation in SRL
+      return "word"; //
+    case /\\B/.test(input): // Word boundary
+      return "nonword"; //
     case /\\t/.test(input):
       return "tab";
     case /\\r/.test(input): // Carriage return
