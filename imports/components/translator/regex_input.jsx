@@ -53,12 +53,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     regexInputHandler(event) {
+      this.regexInputHandler(event.target.value);
+    }
+
+    registerRegexInput(pattern) {
       // Set regex slice
-      this.props.receiveRegex(event.target.value);
+      this.props.receiveRegex(pattern);
 
       try {
         // NOTE: Error causing line
-        const srlText = regexToSrl(event.target.value);
+        const srlText = regexToSrl(pattern);
 
         // Set regex to reverse-translated version and clear errors
         this.props.setSrl(srlText);
@@ -71,9 +75,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     //Set the regex input text to the selected prebuilt pattern
     regexSelector(pattern) {
-      this.setState({ regexInputText: pattern });
+      this.registerRegexInput(pattern);
     }
-
 
     render() {
       //Initialize a variable to hold our PatternDropdown component (if

@@ -8,8 +8,8 @@ class Footer extends React.Component {
           <div className="bio">
             Adam Jacobson
             <span className="bio-text">
-              Adam was born with a keyboard in one hand and a copy of
-              The Algorithm Design Manual in the other. It was a difficult birth.
+              Adam has been programming for a decade and has worked as both
+              Software Developer and Quality Engineer at companies large and small.
             </span>
             <div className="footer-icons">
               <a className="github-icon" href="https://github.com/AdamJacobson">
