@@ -92,11 +92,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.srlInputText}
             disabled={this.props.idx !== 0}
             autoFocus={this.props.idx === 0}
-            className={classes.join(' ')}
-          />
+            className={classes.join(' ')} />
+
+          <header>
+            <h2>Help Text</h2>
+          </header>
 
           <div className="help-text">
-            Translating RegEx:<br />
             (a) capture (a)<br />
 
             (?abc) literally abc<br />
@@ -165,6 +167,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             Currently unsupported characters: <br />\1 referencing a capturing group [\b] backspace \0 NUL \cX ctrl-X \uDDDD for a given unicode character \f form feed<br />
             <br />
           </div>
+
+          <header>
+            <h2>Glossary</h2>
+          </header>
+
           <div className="help-text">
 
             Glossary:<br />
