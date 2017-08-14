@@ -183,7 +183,7 @@ const escapedLiteral = input => {
     case /\\d/.test(input):
       return "digit";
     case /\\D/.test(input): // non-digit
-      return "nondigit"; //
+      return "no digit"; //
     case /\\w/.test(input):
       return "any character";
     case /\\W/.test(input):
@@ -252,8 +252,8 @@ const charset = input => {
     switch(token.tag) {
       case "boundary":
         break;
-      case "negativeSet": // negation currently not supported
-        text.push(`raw [${token.text}]`);
+      case "negativeSet":
+        text.push(`none of ${token.text.slice(1)}`);
         break;
       case "digitRange":
         text.push(`digit from ${res[1]} to ${res[2]}`);
