@@ -78,21 +78,21 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       }
 
       const helpTextContent = [
-        ["(a)", "capture (a)"],
         ["(?:abc)", "literally abc"],
         ["[abc]", "one of \"abc\""],
         ["[^abc]", "raw [^abc]"],
         ["[a-z]", "letter"],
         ["[A-Z]", "uppercase"],
         ["plain text string", 'literally "plain text string"'],
+        ["(letter)", "capture (letter)"]
         ["^", "begin with"],
+        ["$", "must end"],
         ["?", "optional"],
+        [".", "anything"],
         [null, null],
         ["Quantifiers", null],
         ["+", "one or more"],
         ["*", "never or more"],
-        ["$", "must end"],
-        [".", "anything"],
         ["{1}", "once"],
         ["{2}", "twice"],
         ["{3}", "exactly 3 times"],
@@ -132,15 +132,13 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["\\f", "form feed"],
       ];
 
-        // ["backslash", "\\"],
-        // ["tab", "\\t"],
       const glossaryContent = [
         ["any character", "\\w"],
-        ["any of (digit whitespace)", "(?:[0-9]|\\s)"],
+        ["any of (letter, digit)", "(?:[a-z]|[0-9])"],
         ["anything", "."],
         ["at least 3 times", "{3,}"],
         ["between 3 and 6 times", "{3,6}"],
-        ["capture (letter)", "([a-z])"],
+        ["capture a", "(a)"],
         ["case insensitive", "/regex/i"],
         ["digit", "\\d"],
         ["digit from 3 to 5", "[3-5]"],
