@@ -133,6 +133,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       ];
 
         // ["backslash", "\\"],
+        // ["tab", "\\t"],
       const glossaryContent = [
         ["any character", "\\w"],
         ["any of (digit whitespace)", "(?:[0-9]|\\s)"],
@@ -143,7 +144,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["case insensitive", "/regex/i"],
         ["digit", "\\d"],
         ["digit from 3 to 5", "[3-5]"],
-        ["either of (x, y, z)", "(x|y|z)"],
+        ["either of (digit, letter)", "(?:[0-9]|[a-z])"],
         ["exactly 3", "{3}"],
         ["exactly 4 times", "{4}"],
         ["letter", "[a-z]"],
@@ -162,7 +163,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["optional", "?"],
         ["raw [a-zA-Z]", "[a-zA-Z]"],
         ["starts with", "^"],
-        ["tab", "\\t"],
         ["twice", "{2}"],
         ["uppercase", "[A-Z]"],
         ["uppercase letter from D to Y", "[D-Y]"],
