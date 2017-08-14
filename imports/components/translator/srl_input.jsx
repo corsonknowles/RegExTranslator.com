@@ -165,7 +165,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             Currently unsupported characters: <br />\1 referencing a capturing group [\b] backspace \0 NUL \cX ctrl-X \uDDDD for a given unicode character \f form feed<br />
             <br />
           </div>
-          <div className="help-text">
+          <div className="glossary">
 
             Glossary:<br />
             any character \w<br />
