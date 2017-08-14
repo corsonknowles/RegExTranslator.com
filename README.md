@@ -49,7 +49,7 @@ Technologies used:
 
 ## Peek inside the Code
 
-'''
+```JavaScript
     const publicPatterns = Object.keys(this.props.regexs).map((id) => {
       if (!(this.props.regexs[id].hasOwnProperty("userId"))) return (
         <button className="dropdown-item" key={id}
@@ -69,12 +69,12 @@ Technologies used:
         );
       }
     );
-'''
+```
 
 
-Input handling 
+Input handling
 
-'''
+```JavaScript
     srlInputHandler(event) {
       // Set SRL slice
       this.props.receiveSrl(event.target.value);
@@ -97,11 +97,11 @@ Input handling
         this.props.receiveSrlErrors(['Invalid SRL syntax', error]);
       }
     }
- '''
- 
- Box swap! 
- 
- '''
+ ```
+
+ Box swap!
+
+ ```JavaScript
        <div className="translator">
           {
             this.state.inputBoxOrder.map((Component, idx) => (
@@ -114,10 +114,10 @@ Input handling
             ))
           }
       </div>
- '''
+ ```
 
 Transfer functions
-'''
+```JavaScript
             <div className="transfer-functions">
               <img src="img/arrow-12-512.png" alt="function arrow" />
               <div onClick={this.handleFunctionButtonClick}>
@@ -131,13 +131,19 @@ Transfer functions
               </div>
             </div>
 
-'''
+```
 
 
 ## New Directions
 
 - [ ] Because this web application is built in the Meteor framework on Node, it will be straightforward to deploy native iOS and Android apps delivering the same features. Because this is a developer tool, any mobile users would be more likely to be on tablets than phones.
 
-- [ ] Further extension of the translation dictionary. Creating a user extensible dictionary will allow the language to grow and evolve freely to meet the needs of developers using the tool. 
+- [ ] Further extension of the translation dictionary. Creating a user extensible dictionary will allow the language to grow and evolve freely to meet the needs of developers using the tool.
 
 - [ ] Autocomplete, Dev API, User suggested translations.  
+
+### Bonus Feature
+
+- [ ] Google Chrome Extensions
+
+![ChomeExtension](docs/chrome_extension_regex.png)
