@@ -3,7 +3,6 @@ module.exports = {
     'included in $1',
     'in list $1',
     '1 of $1',
-    'any of $1',
     'exactly one of $1',
     'in $1'
   ],
@@ -60,28 +59,32 @@ module.exports = {
     'nonwhitespace',
     'not-whitespace',
     'nonwhitespace'
+    'not white space',
+    'nonwhite space',
+    'not-white space',
+    'nonwhite space'
   ],
   'anything': [],
-  'atb': [
-    'tab'
-  ],
+  // 'atb': [
+  //   'tab'
+  // ],
   'digit': [
     'any digit'
   ],
-  'no digit': [
-    'any nondigit character',
-    'not a number',
-    'nonnumber',
-    'non number',
-    'no number',
-    'not a digit'
-  ],
-  'nondigit': [],
-  'number': [
-    'any number',
-    'a number',
-    'numbers'
-  ],
+  // 'no digit': [
+  //   'any nondigit character',
+  //   'not a number',
+  //   'nonnumber',
+  //   'non number',
+  //   'no number',
+  //   'not a digit'
+  // ],
+  // 'nondigit': [],
+  // 'number': [
+  //   'any number',
+  //   'a number',
+  //   'numbers'
+  // ],
   'letter': [],
   'uppercase': [
     'capital',
@@ -117,6 +120,10 @@ module.exports = {
     'negated lookahead',
     'lookahead not',
     'not lookahead'
+    'negative look ahead',
+    'negated look ahead',
+    'look ahead not',
+    'not look ahead'
   ],
   'optional': [
     '0 or 1',
@@ -165,6 +172,7 @@ module.exports = {
     'inbetween',
     'in between',
     'betwixt',
+    'in betwixt',
     'within range'
   ],
   'capture': [
