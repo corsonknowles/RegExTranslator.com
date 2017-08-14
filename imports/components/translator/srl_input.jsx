@@ -155,6 +155,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["no character", "\\W"],
         ["no whitespace", "\\S"],
         ["no word", "\\W"],
+        ["none of \"xyz\"", "[^xyz]"],
         ["number from 3 to 6", "[3-6]"],
         ["once", "{1}"],
         ["once or more", "+"],
