@@ -84,7 +84,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     handleRequestOptions(part) {
-      // console.log(part);
+      console.log(part);
       this.setState({ options: [
         'any character',
         'any of',
