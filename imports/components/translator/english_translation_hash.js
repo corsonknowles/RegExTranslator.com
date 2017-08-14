@@ -65,26 +65,26 @@ module.exports = {
     'nonwhite space'
   ],
   'anything': [],
-  // 'atb': [
-  //   'tab'
-  // ],
+  'tab': [
+    'atb'
+  ],
   'digit': [
     'any digit'
   ],
-  // 'no digit': [
-  //   'any nondigit character',
-  //   'not a number',
-  //   'nonnumber',
-  //   'non number',
-  //   'no number',
-  //   'not a digit'
-  // ],
-  // 'nondigit': [],
-  // 'number': [
-  //   'any number',
-  //   'a number',
-  //   'numbers'
-  // ],
+  'no digit': [
+    'any nondigit character',
+    'not a number',
+    'nonnumber',
+    'non number',
+    'no number',
+    'not a digit'
+  ],
+  'nondigit': [],
+  'number': [
+    'any number',
+    'a number',
+    'numbers'
+  ],
   'letter': [],
   'uppercase': [
     'capital',
@@ -96,24 +96,29 @@ module.exports = {
   ],
   'once': [],
   'twice': [],
-  // 'word': [
-  //   'word boundary',
-  //   'before or after words',
-  //   'before or after word'
-  // ],
-  // 'nonword': [],
-  // 'carriage return': [
-  //   'windows newline',
-  //   'paragraph',
-  //   'new paragraph'
-  // ],
-  // 'carriagereturn': [],
+  'word': [
+    'word boundary',
+    'before or after words',
+    'before and after words',
+    'before or after word'
+  ],
+  'nonword': [],
+  'carriage return': [
+    'windows newline',
+    'paragraph',
+    'new paragraph'
+  ],
+  'carriagereturn': [],
   'literally': [],
   'either of': [],
   'any of': [],
-  // 'none of': [],
+  'none of': [
+    'not any',
+    'anything but'
+  ],
   'if followed by': [
-    'lookahead'
+    'lookahead',
+    'look ahead'
   ],
   'if not followed by': [
     'negative lookahead',
