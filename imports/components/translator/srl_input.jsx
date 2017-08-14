@@ -136,7 +136,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             Lookaheads:<br />
             (?:a)(?=(?:9)) literally a if followed by 9<br />
 
-            ((?:a))(?!(?:9)) capture a if not followed by 9<br />
+            ((?:b))(?!(?:8)) capture b if not followed by 8<br />
 
             Character classes:<br />
             \d digit<br />
