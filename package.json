@@ -27,7 +27,7 @@
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "regex-tokenizer": "^1.0.1",
-    "srl": "^0.2.1"
+    "srl": "SimpleRegex/SRL-JavaScript"
   },
   "description": "## Background",
   "version": "1.0.0",
