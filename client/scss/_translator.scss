@@ -78,6 +78,15 @@
     overflow-y: scroll;
   }
 
+  .column {
+    max-width: 50%;
+    width: 50%;
+  }
+
+  .row {
+    display: flex;
+  }
+
   .editable {
     background-color: $input-text-field-background;
     border: 1px solid $border-normal;
