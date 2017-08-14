@@ -184,7 +184,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             className={classes.join(' ')} />
 
           <header>
-            <h2>Syntax: Simple Regex Language vs Regex</h2>
+            <h2 className="help-header">Syntax: Simple Regex Language vs Regex</h2>
           </header>
 
           <div className="help-text">
