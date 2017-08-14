@@ -23,7 +23,6 @@
       border: 1px solid $border-normal;
 
       background-color: white;
-      font-family: Arial;
       font-size: 16px;
     }
 
@@ -82,7 +81,6 @@
           margin-left: -1px;
           border: 1px solid LightGray;
 
-          font-family: Arial;
           font-size: 12px;
 
           &:first-child {
@@ -101,8 +99,6 @@
     .results-box {
       overflow-y: scroll;
 
-      // NOTE: Can't figure out how to get word breaking to break only between
-      //  words. Think it might be because of usage of non-breaking spaces
       word-wrap: break-word;
 
       span {
