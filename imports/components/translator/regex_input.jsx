@@ -130,6 +130,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           {SaveComponent}
           {DropdownComponent}
 
+          <header>
+            <h2>Target Text</h2>
+          </header>
           <RegexExample />
         </div>
       );
