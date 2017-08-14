@@ -78,7 +78,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       }
 
       const helpTextContent = [
-        ["(a)", "capture (a)"],
+        ["(letter)", "capture (letter)"],
         ["(?abc)", "literally abc"],
         ["[abc]", "one of \"abc\""],
         ["[^abc]", "raw [^abc]"],
