@@ -100,6 +100,9 @@ const flatten = array => {
 const isSelfContained = input => {
   if (input.match(/^any of/)) {
     return true;
+  } else if (input.match(/^literally ".*"$/)) {
+    // SRL always wraps literals in their own non-capturing group
+    return true;
   }
 
   return false;
