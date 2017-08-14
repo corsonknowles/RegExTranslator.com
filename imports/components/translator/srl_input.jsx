@@ -97,7 +97,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["{2}", "twice"],
         ["{3}", "exactly 3 times"],
         ["{3,}", "at least 3 times"],
-        ["{3,6}", "between 3 to 6 times"],
+        ["{3,6}", "between 3 and 6 times"],
         [null, null],
         ["Character classes", null],
         ["\\d", "digit"],
