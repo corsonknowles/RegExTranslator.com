@@ -21,7 +21,6 @@ header {
       display: inline;
 
       font-size: 25px;
-      font-family: Verdana;
 
       cursor: pointer;
     }
@@ -56,10 +55,6 @@ header {
   left: -200px;
 
   border-radius: 0;
-
-  * {
-    font-family: Arial;
-  }
 }
 
 #login-dropdown-list > .login-close-text {
@@ -79,16 +74,8 @@ header {
   font-size: 12px;
   letter-spacing: 1px;
 
-  span.text-besides-image {
-    font-family: Arial;
-  }
-
   &:hover {
     background-color: rgb(48, 121, 237);
     border-color: rgb(48, 121, 237);
   }
-}
-
-div#login-buttons-password {
-  font-family: Arial;
 }

@@ -91,7 +91,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       }
 
       let swapButton = <div />;
-      let classes = [];
+      let classes = ['code'];
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
         classes.push('editable');
