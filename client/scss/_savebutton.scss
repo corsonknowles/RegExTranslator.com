@@ -5,6 +5,13 @@
   padding: 4%;
   transform: scale(1, 1);
 
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+
+  width: 100%;
+  padding-right: 0;
+
   .fa-star-o {
     cursor: pointer;
     padding-bottom: 3px;
@@ -51,4 +58,28 @@
     width: 350px;
   }
 
+  .flag-buttons {
+    padding: 2px;
+
+    button {
+      background-color: $display-text-field-background;
+      padding: 1px 0;
+      width: 25px;
+      text-align: center;
+      margin-left: -1px;
+      border: 1px solid LightGray;
+
+      &:first-child {
+        border-radius: 4px 0 0 4px;
+      }
+
+      &:last-child {
+        border-radius: 0 4px 4px 0;
+      }
+
+      .active {
+
+      }
+    }
+  }
 }

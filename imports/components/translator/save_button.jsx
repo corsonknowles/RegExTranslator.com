@@ -49,13 +49,13 @@ class SaveButton extends React.Component {
           <input type="text" placeholder="Name this pattern" className="name-input" onChange={this.handleInput}></input>
           <button className="save-regex" onClick={this.handleSubmit}>Save It!</button>
 
-          <span>
-            {
-              ['g', 'i', 'm'].map(flag => (
-                <button>{flag}</button>
-              ))
-            }
-          </span>
+        </span>
+        <span className="flag-buttons">
+          {
+            ['g', 'i', 'm'].map(flag => (
+              <button>{flag}</button>
+            ))
+          }
         </span>
       </div>
     );
