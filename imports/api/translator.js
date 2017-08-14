@@ -200,6 +200,8 @@ const escapedLiteral = input => {
       return "raw \\r"; // No direct representation in SRL
     case /\\n/.test(input):
       return "new line";
+    case /\\/.test(input):
+      return "backslash";
 
     case escapedChars.test(input):
       let res = input.match(escapedChars);
