@@ -80,8 +80,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       const helpTextContent = [
         ["(?:abc)", "literally abc"],
         ["[abc]", "one of \"abc\""],
-        ["[^abc]", "none of abc"],
-        ["[^abc]", "raw [^abc]"],
+        ["[^abc]", "none of \"abc\""],
         ["[a-z]", "letter"],
         ["[A-Z]", "uppercase"],
         ["plain text string", 'literally "plain text string"'],
