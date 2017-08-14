@@ -58,7 +58,7 @@ module.exports = {
     'not whitespace',
     'nonwhitespace',
     'not-whitespace',
-    'nonwhitespace'
+    'nonwhitespace',
     'not white space',
     'nonwhite space',
     'not-white space',
