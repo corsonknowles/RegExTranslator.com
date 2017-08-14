@@ -11,7 +11,7 @@ export const receiveSrlErrors = errors => ({
   errors
 });
 
-export const clearSrlInputErrors = () => ({
+export const clearSrlErrors = () => ({
   type: RECEIVE_SRL_ERRORS,
   errors: []
 });

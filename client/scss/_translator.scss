@@ -10,8 +10,8 @@
 
 .translator-input-section {
   position: relative;
-
   width: 100%;
+  max-width: 425px;
 
   padding: 5px;
 
@@ -22,11 +22,23 @@
     flex-flow: row;
     justify-content: space-between;
 
+    padding: 5px 2px;
     padding-right: 0;
 
     h2 {
-      font-family: Verdana;
       margin: 5px;
+
+      &.help-header {
+        margin-top: 35px;
+      }
+      &.glossary-header {
+        margin-top: 55px;
+      }
+
+    }
+
+    h2 .glossary-header {
+      margin-top: 50px;
     }
 
     button {
@@ -34,7 +46,6 @@
       border: 1px solid LightGray;
       border-radius: 2px;
 
-      font-family: Arial;
       font-size: 12px;
       font-weight: bold;
       background-color: $display-text-field-background;
@@ -46,7 +57,7 @@
     }
   }
 
-  textarea {
+  textarea, .help-text, .glossary {
     flex: 1;
 
     padding: 5px 8px;
@@ -58,9 +69,17 @@
     background-color: $display-text-field-background;
 
     font-size: 14px;
-    font-family: Monaco, monospace;
 
     resize: none;
+
+    &.code {
+      font-family: Monaco, 'Lucida Console', monospace;
+    }
+  }
+
+  .help-text, .glossary {
+    height: 250px;
+    overflow-y: scroll;
   }
 
   .editable {
@@ -73,7 +92,7 @@
     }
   }
 
-  .error {
+  .error, .error:hover, .error:focus {
     border: 1px solid Red;
   }
 
@@ -119,7 +138,6 @@
 .pattern-item {
   display: block;
   font-size: 14px;
-  font-family: Roboto, monospace;
   width: 100%;
 
   &:hover {

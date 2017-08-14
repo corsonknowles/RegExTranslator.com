@@ -5,13 +5,14 @@ import { receiveSrl } from '../../actions/srl_actions';
 import {
   receiveRegex,
   receiveRegexErrors,
-  clearRegexInputErrors,
+  clearRegexErrors,
   getRegexs,
   createRegex
 } from '../../actions/regex_actions';
 import PatternDropdown from './pattern_dropdown';
 import { regexToSrl } from '../../api/translator';
 import SaveButton from './save_button';
+import RegexExample from '../regex_example';
 
 const mapStateToProps = (state) => ({
   regexText: state.regex.regexText,
@@ -22,7 +23,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = dispatch => ({
   receiveRegex: input => dispatch(receiveRegex(input)),
   receiveRegexErrors: errors => dispatch(receiveRegexErrors(errors)),
-  clearRegexInputErrors: () => dispatch(clearRegexInputErrors()),
+  clearRegexErrors: () => dispatch(clearRegexErrors()),
   getRegexs: () => dispatch(getRegexs()),
   createRegex: (data) => dispatch(createRegex(data)),
   setSrl: srlText => dispatch(receiveSrl(srlText))
@@ -52,16 +53,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     }
 
     regexInputHandler(event) {
+      this.registerRegexInput(event.target.value);
+    }
+
+    registerRegexInput(pattern) {
       // Set regex slice
-      this.props.receiveRegex(event.target.value);
+      this.props.receiveRegex(pattern);
 
       try {
         // NOTE: Error causing line
-        const srlText = regexToSrl(event.target.value);
+        const srlText = regexToSrl(pattern);
 
         // Set regex to reverse-translated version and clear errors
         this.props.setSrl(srlText);
-        this.props.clearRegexInputErrors();
+        this.props.clearRegexErrors();
       } catch(error) {
         // If regex parsing fails, set errors
         this.props.receiveRegexErrors(['Invalid regex syntax', error]);
@@ -70,9 +75,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     //Set the regex input text to the selected prebuilt pattern
     regexSelector(pattern) {
-      this.setState({ regexInputText: pattern });
+      this.registerRegexInput(pattern);
     }
-
 
     render() {
       //Initialize a variable to hold our PatternDropdown component (if
@@ -90,14 +94,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       }
 
       let swapButton = <div />;
-      let klasses = [];
+      let classes = ['code'];
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
-        klasses.push('editable');
-      }
+        classes.push('editable');
 
-      if (this.props.errors.length > 0) {
-        klasses.push('error');
+        if (this.props.errors.length > 0) {
+          classes.push('error');
+        }
       }
 
       let SaveComponent;
@@ -123,11 +127,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             value={this.state.regexInputText}
             disabled={this.props.idx !== 0}
             autoFocus={this.props.idx === 0}
-            className={klasses.join(' ')}
+            className={classes.join(' ')}
           />
 
           {SaveComponent}
           {DropdownComponent}
+
+          <header>
+            <h2>Regex Demo</h2>
+          </header>
+          <RegexExample />
         </div>
       );
     }

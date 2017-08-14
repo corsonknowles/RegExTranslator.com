@@ -1,6 +1,5 @@
 .regex-example-container {
   width: 100%;
-  padding: 20px 0;
   display: flex;
   flex-flow: row;
 
@@ -8,20 +7,21 @@
     display: flex;
     flex-flow: column;
     align-items: center;
-    width: 50%;
+    width: 100%;
 
-    font-family: Verdana;
     font-size: 16px;
 
     textarea, .results-box {
-      height: 130px;
+      height: 250px;
       width: 100%;
 
-      margin: 10px 0;
       padding: 8px 10px;
 
       resize: none;
       border: 1px solid $border-normal;
+
+      background-color: white;
+      font-size: 16px;
     }
 
     textarea {
@@ -39,25 +39,30 @@
     }
 
     .transfer-functions {
+      margin: 9.5px 0;
+
       text-align: center;
 
       user-select: none;
 
       img {
         width: auto;
-        height: 80px;
+        height: 70px;
+
 
         @include rotate(90deg);
       }
 
       div {
         position: absolute;
-        transform: translate(-35%, -55px);
+        transform: translate(-40%, -55px);
+        width: 100%;
 
         button {
           background-color: $display-text-field-background;
           color: #444;
           font-weight: bold;
+
 
           &.transfer-function-active {
             box-shadow: inset 1px 1px 1px LightGray;
@@ -78,7 +83,6 @@
           margin-left: -1px;
           border: 1px solid LightGray;
 
-          font-family: Arial;
           font-size: 12px;
 
           &:first-child {
@@ -93,11 +97,11 @@
 
     }
 
+
     .results-box {
       overflow-y: scroll;
+      height: 250px;
 
-      // NOTE: Can't figure out how to get word breaking to break only between
-      //  words. Think it might be because of usage of non-breaking spaces
       word-wrap: break-word;
 
       span {
