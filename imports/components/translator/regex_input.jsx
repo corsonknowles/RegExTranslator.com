@@ -46,6 +46,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
     componentDidMount() {
       this.props.getRegexs();
+      this.registerRegexInput(this.state.regexInputText);
     }
 
     componentWillReceiveProps(nextProps) {
