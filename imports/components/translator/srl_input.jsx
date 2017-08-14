@@ -191,9 +191,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           </header>
 
           <div className="help-text">
-            {helpTextContent.map(pair => {
+            {helpTextContent.map((pair, idx) => {
               return (
-                <div className="row">
+                <div className="row" key={idx}>
                   {pair[0]? (<div className="column">{pair[0]}</div>) : (<div className="column">&nbsp;</div>) }
                   {pair[1]? (<div className="column">{pair[1]}</div>) : (<div className="column">&nbsp;</div>) }
                 </div>
@@ -206,9 +206,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           </header>
 
           <div className="help-text">
-            {glossaryContent.map(pair => {
+            {glossaryContent.map((pair, idx) => {
               return (
-                <div className="row">
+                <div className="row" key={idx}>
                   {pair[0]? (<div className="column">{pair[0]}</div>) : (<div className="column">&nbsp;</div>) }
                   {pair[1]? (<div className="column">{pair[1]}</div>) : (<div className="column">&nbsp;</div>) }
                 </div>

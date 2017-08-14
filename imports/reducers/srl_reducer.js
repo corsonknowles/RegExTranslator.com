@@ -4,7 +4,7 @@ import {
 } from '../actions/srl_actions';
 
 const defaultState = {
-  srlText: 'whitespace, any character',
+  srlText: '',
   errors: []
 };
 
