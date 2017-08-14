@@ -4,7 +4,7 @@
 
 This web application began with a question: Is it possible to build a Google Translate for regular expressions? It turns out that with 9 days and an amazing team of engineers in San Francisco, the answer is a resounding, "Yes."
 
-Regular expression are incredibly useful and powerful. Their abstract nature allows them to be used in almost all modern programming languages. This very level of abstractness however is also what makes regular expressions difficult for even experienced programmers to parse. The intent of **RegEx Translator** is to turn regular expressions into something more readable. In addition to decoding regex, our web app’s two-way translation service makes Regular Expressions more accessible for programmers to craft and modify. You can even save regular expressions to your account, and keep a toolkit of your own analytical creations to return to and modify as needed.
+Regular expression are incredibly useful and powerful. Their abstract nature allows them to be used in almost all modern programming languages. This very level of abstractness however is also what makes regular expressions difficult for even experienced programmers to parse. The intent of [**RegEx Translator**](https://www.regextranslator.com) is to turn regular expressions into something more readable. In addition to decoding regex, our web app’s two-way translation service makes Regular Expressions more accessible for programmers to craft and modify. You can even save regular expressions to your account, keeping a toolkit of your own analytical creations to return to and modify as needed.
 
 ## Core Functionality
 
@@ -15,7 +15,7 @@ Well, now you can. Creating a regular expression in either English or classical 
 ## The Translator
 ![Screenshots](docs/regextranslator_screenshot.png)
 
-The app's main page is roughly modeled on [Google Translate](https://translate.google.com/)  
+The app's main page is modeled to be an homage to the current design of [Google Translate](https://translate.google.com/).  
 
 ## Technologies
 
@@ -43,9 +43,6 @@ Technologies used:
 - Adam Jacobson, RegEx to SRL, a new technology
 - Rod Shokrian, OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
 - Andy Booth, SASS, Redux, Integration, SRL to RegEx, Swapping, UI
-
-
-## Timeline
 
 ## Peek inside the Code
 
@@ -136,7 +133,7 @@ Transfer functions
 
 ## New Directions
 
-- [ ] Because this web application is built in the Meteor framework on Node, it will be straightforward to deploy native iOS and Android apps delivering the same features. Because this is a developer tool, any mobile users would be more likely to be on tablets than phones.
+- [ ] Because this web application is built in the Meteor framework on Node, it will be straightforward to deploy native iOS and Android apps delivering the same features. Since this is a developer tool, mobile users are more likely to be on tablets than phones.
 
 - [ ] Further extension of the translation dictionary. Creating a user extensible dictionary will allow the language to grow and evolve freely to meet the needs of developers using the tool.
 
