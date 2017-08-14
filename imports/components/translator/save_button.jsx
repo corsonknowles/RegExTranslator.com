@@ -48,6 +48,14 @@ class SaveButton extends React.Component {
         <span className={"save-input" + (this.state.visible ? " clicked" : "")}>
           <input type="text" placeholder="Name this pattern" className="name-input" onChange={this.handleInput}></input>
           <button className="save-regex" onClick={this.handleSubmit}>Save It!</button>
+
+          <span>
+            {
+              ['g', 'i', 'm'].map(flag => (
+                
+              ))
+            }
+          </span>
         </span>
       </div>
     );
