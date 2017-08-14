@@ -63,6 +63,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         this.props.setRegexFlags(flags);
         this.props.clearSrlErrors();
       } catch(error) {
+        console.error(error);
         // If SRL parsing fails, set errors
         this.props.receiveSrlErrors(['Invalid SRL syntax', error]);
       }

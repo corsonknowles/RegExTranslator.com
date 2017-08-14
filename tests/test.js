@@ -3,14 +3,6 @@ const assert = require('assert');
 
 import { srlToRegex, regexToSrl } from '../imports/api/translator';
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(4));
-    });
-  });
-});
-
 describe('translate pieces', function() {
   describe('charset', function() {
     it('should translate common charsets', function() {
@@ -127,7 +119,7 @@ describe('translate common regexs', function() {
 
   testTranslation({
     description: 'US zipcodes',
-    original: "^[0-9]{5}(?:-[0-9]{4})?$",
+    original: "^[0-9][0-9][0-9][0-9][0-9](?:-[0-9]{4})?$",
     inputs: ["90210", "12345-0345"]
   });
 
