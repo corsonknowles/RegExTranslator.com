@@ -194,6 +194,8 @@ const escapedLiteral = input => {
       return "nonword"; //
     case /\\t/.test(input):
       return "tab";
+    case /\\v/.test(input):
+      return "vertical tab";
     case /\\r/.test(input): // Carriage return
       return "raw \\r"; // No direct representation in SRL
     case /\\n/.test(input):
