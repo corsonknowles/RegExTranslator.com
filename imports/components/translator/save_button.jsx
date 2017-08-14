@@ -52,7 +52,7 @@ class SaveButton extends React.Component {
           <span>
             {
               ['g', 'i', 'm'].map(flag => (
-                
+                <button>{flag}</button>
               ))
             }
           </span>
