@@ -84,7 +84,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["[a-z]", "letter"],
         ["[A-Z]", "uppercase"],
         ["plain text string", 'literally "plain text string"'],
-        ["(letter)", "capture (letter)"]
+        ["(letter)", "capture (letter)"],
         ["^", "begin with"],
         ["$", "must end"],
         ["?", "optional"],
@@ -129,7 +129,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["\\0", "Null character"],
         ["\\cX", "crtl-X"],
         ["\\uDDDD", "unicode character DDDD"],
-        ["\\f", "form feed"],
+        ["\\f", "form feed"]
       ];
 
       const glossaryContent = [
@@ -164,7 +164,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
         ["twice", "{2}"],
         ["uppercase", "[A-Z]"],
         ["uppercase letter from D to Y", "[D-Y]"],
-        ["whitespace", "\\s"],
+        ["whitespace", "\\s"]
       ];
 
     return (
