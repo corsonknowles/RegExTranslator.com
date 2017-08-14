@@ -6,6 +6,10 @@ html, body, #root {
   font-family: 'Roboto', Verdana, Arial, Helvetica, sans-serif;
 }
 
+.app {
+  position: relative;
+}
+
 main {
   max-width: 850px;
   margin: 0 auto;

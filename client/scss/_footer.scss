@@ -1,0 +1,76 @@
+.footer {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  position: relative;
+
+  .adam {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    background-color: #c79cc8;
+  }
+
+  .andy {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    background-color: #a89cc8;
+  }
+
+  .david {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    background-color: #9bb2e1;
+  }
+
+  .rod {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    background-color: #8cc9f0;
+  }
+
+  .bio {
+    text-align: center;
+  }
+
+  .bio-text {
+    padding-top: 10px;
+    padding-bottom: 40px;
+    display: block;
+    width: 75%;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 14px;
+    color: black;
+  }
+
+  .footer-icons {
+    position: absolute;
+    bottom: 0;
+    margin-left: 7%;
+
+
+    .github-icon {
+      transition-duration: 0.4s;
+      margin-right: 50px;
+
+      &:hover {
+        color: #014c8c;
+      }
+    }
+
+    .linkedin-icon {
+      transition-duration: 0.4s;
+
+      &:hover {
+        color: #014c8c;
+      }
+    }
+  }
+
+
+
+}
