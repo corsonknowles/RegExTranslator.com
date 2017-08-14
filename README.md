@@ -39,12 +39,25 @@ Technologies used:
 - Mocha
 - Babel
 
+
 ## Members and Responsibilities
 
-- David Corson-Knowles, Server, Coordination, Libraries, SSL, OAuth, UX, Analytics, Chrome Extension
-- Adam Jacobson, RegEx to SRL, a new technology
-- Rod Shokrian, OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
-- Andy Booth, SASS, Redux, Integration, SRL to RegEx, Swapping, UI
+- David Corson-Knowles 
+ [LinkedIn](https://www.linkedin.com/in/davidcorsonknowles/) 
+ [Github](https://github.com/corsonknowles/)
+- Server, Coordination, Libraries, SSL, OAuth, UX, Analytics, Chrome Extension
+- Adam Jacobson
+ [LinkedIn](https://www.linkedin.com/in/adam-jacobson/)
+ [Github](https://github.com/AdamJacobson)
+- RegEx to SRL, a new technology
+- Rod Shokrian
+ [LinkedIn](https://www.linkedin.com/in/rodshokrian/)
+ [Github](https://github.com/RodShokrian)
+- OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
+- Andy Booth
+ [LinkedIn](https://www.linkedin.com/in/boothandrewd/)
+ [Github](https://github.com/BoothAndrewD)
+- SASS, Redux, Integration, SRL to RegEx, Swapping, UI
 
 ## Peek inside the Code
 
@@ -72,6 +85,7 @@ Technologies used:
 
 
 Input handling
+Write Regex or SRL patterns and get real-time matches!
 
 ```JavaScript
     srlInputHandler(event) {
@@ -98,7 +112,8 @@ Input handling
     }
  ```
 
- Box swap!
+ Box swap
+Seamlessly transition from writing SRL to Regex and vice versa. Never worry about tracking your eyes five degrees laterally again!
 
  ```JavaScript
        <div className="translator">
@@ -116,6 +131,8 @@ Input handling
  ```
 
 Transfer functions
+See how your text would look after matching, capturing, splitting, or replacing a pattern - all on the fly! 
+
 ```JavaScript
             <div className="transfer-functions">
               <img src="img/arrow-12-512.png" alt="function arrow" />
@@ -146,3 +163,5 @@ Transfer functions
 - [x] Google Chrome Extension
 
 ![ChomeExtension](docs/chrome_extension_regex.png)
+
+
