@@ -183,19 +183,25 @@ const escapedLiteral = input => {
     case /\\d/.test(input):
       return "digit";
     case /\\D/.test(input): // non-digit
-      return "raw [^0-9]"; // No direct representation in SRL
+      return "no digit"; //
     case /\\w/.test(input):
       return "any character";
     case /\\W/.test(input):
       return "no character";
     case /\\b/.test(input): // Word boundary
-      return "raw \\b"; // No direct representation in SRL
+      return "word"; //
+    case /\\B/.test(input): // Word boundary
+      return "nonword"; //
     case /\\t/.test(input):
       return "tab";
+    case /\\v/.test(input):
+      return "vertical tab";
     case /\\r/.test(input): // Carriage return
       return "raw \\r"; // No direct representation in SRL
     case /\\n/.test(input):
       return "new line";
+    case /\\/.test(input):
+      return "backslash";
 
     case escapedChars.test(input):
       let res = input.match(escapedChars);
@@ -246,8 +252,8 @@ const charset = input => {
     switch(token.tag) {
       case "boundary":
         break;
-      case "negativeSet": // negation currently not supported
-        text.push(`raw [${token.text}]`);
+      case "negativeSet":
+        text.push(`none of ${token.text.slice(1)}`);
         break;
       case "digitRange":
         text.push(`digit from ${res[1]} to ${res[2]}`);
