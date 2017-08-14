@@ -95,10 +95,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
       if (this.props.idx === 0) {
         swapButton = <button onClick={() => this.props.swap()}>Swap</button>;
         classes.push('editable');
-      }
 
-      if (this.props.errors.length > 0) {
-        classes.push('error');
+        if (this.props.errors.length > 0) {
+          classes.push('error');
+        }
       }
 
       let SaveComponent;

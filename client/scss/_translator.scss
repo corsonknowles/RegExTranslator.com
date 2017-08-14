@@ -81,7 +81,7 @@
     }
   }
 
-  .error {
+  .error, .error:hover, .error:focus {
     border: 1px solid Red;
   }
 
