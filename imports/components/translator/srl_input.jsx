@@ -96,7 +96,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             className={classes.join(' ')} />
 
           <header>
-            <h2>Help Text</h2>
+            <h2 className="help-header">Help Text</h2>
           </header>
 
           <div className="help-text">
