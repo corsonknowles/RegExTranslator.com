@@ -170,7 +170,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           </div>
 
           <header>
-            <h2>Glossary</h2>
+            <h2 className="glossary-header">Glossary</h2>
           </header>
 
           <div className="help-text">
