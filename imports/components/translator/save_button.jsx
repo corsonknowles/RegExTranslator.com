@@ -21,7 +21,7 @@ class SaveButton extends React.Component {
                             pattern: this.props.pattern,
                             language: this.props.language,
                             userId: Meteor.userId()
-    }).then(this.props.getRegexs());
+    }).then(this.props.getRegexs()).then( this.setState({ visible: false }));
   }
 
   handleClick() {
