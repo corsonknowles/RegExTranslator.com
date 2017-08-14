@@ -8,8 +8,8 @@ export default class extends React.Component {
 
     this.state = {
       inputBoxOrder: [
-        SrlInput,
-        RegexInput
+        RegexInput,
+        SrlInput
       ],
       swapped: false
     };
