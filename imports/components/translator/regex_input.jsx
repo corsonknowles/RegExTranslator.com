@@ -135,7 +135,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
           {DropdownComponent}
 
           <header>
-            <h2>Regex Demo</h2>
+            <h2>Sample Text Sandbox</h2>
           </header>
           <RegexExample />
         </div>
