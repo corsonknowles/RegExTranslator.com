@@ -175,7 +175,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
     return (
         <div className="translator-input-section">
           <header>
-            <h2>Simple Regex Language</h2>
+            <h2>Simple English</h2>
             {swapButton}
           </header>
 
@@ -187,7 +187,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(
             className={classes.join(' ')} />
 
           <header>
-            <h2 className="help-header">Syntax: Regex vs Simple Regex Language</h2>
+            <h2 className="help-header">Syntax: Regex to Simple English Guide</h2>
           </header>
 
           <div className="help-text">
