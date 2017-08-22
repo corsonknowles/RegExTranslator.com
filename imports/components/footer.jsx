@@ -31,10 +31,10 @@ class Footer extends React.Component {
               well-versed in Rails, Node, JavaScript, React, and Redux.
             </span>
             <div className="footer-icons">
-              <a className="github-icon" href="https://github.com/BoothAndrewD">
+              <a className="github-icon" href="https://github.com/andydennisonbooth">
                 <i className="fa fa-github fa-2x" aria-hidden="true"></i>
               </a>
-              <a className="linkedin-icon" href="https://www.linkedin.com/in/boothandrewd/">
+              <a className="linkedin-icon" href="https://www.linkedin.com/in/andydennisonbooth/">
                 <i className="fa fa-linkedin fa-2x" aria-hidden="true"></i>
               </a>
             </div>

@@ -59,8 +59,8 @@ Technologies used:
     - [Github](https://github.com/RodShokrian)
     - OAuth, Personalization, RegEx Pattern Library, Redux, mLab and Mongo Database
 - Andy Booth
-    - [LinkedIn](https://www.linkedin.com/in/boothandrewd/)
-    - [Github](https://github.com/BoothAndrewD)
+    - [LinkedIn](https://www.linkedin.com/in/andydennisonbooth/)
+    - [Github](https://github.com/andydennisonbooth)
     - SASS, Redux, Integration, SRL to RegEx, Swapping, UI
 
 ## Peek inside the Code
