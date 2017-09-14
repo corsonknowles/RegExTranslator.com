@@ -90,7 +90,8 @@ Get your stored patterns back from the database
 ```
 
 
-Input handling
+#### Input handling
+
 Write Regex or SRL patterns and get real-time matches!
 
 ```JavaScript
@@ -119,7 +120,8 @@ Write Regex or SRL patterns and get real-time matches!
  ```
 
 ![Box Swap and SRL](https://github.com/corsonknowles/RegExTranslator.com/blob/gifs/docs/gifs/srl.gif)
-Box swap
+#### Box swap
+
 Seamlessly transition from writing SRL to Regex and vice versa. Never worry about tracking your eyes five degrees laterally again!
 
  ```JavaScript
@@ -137,7 +139,8 @@ Seamlessly transition from writing SRL to Regex and vice versa. Never worry abou
       </div>
  ```
 
-Transfer functions
+#### Transfer functions
+
 See how your text would look after matching, capturing, splitting, or replacing a pattern - all on the fly! 
 
 ```JavaScript
