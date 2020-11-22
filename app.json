@@ -16,7 +16,6 @@
   "formation": {
   },
   "addons": [
-    "mongolab",
     "papertrail"
   ],
   "buildpacks": [
